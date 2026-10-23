@@ -6,9 +6,42 @@ A team of AI agents that takes an idea from research to launch — built on [ope
   <em>Turkish: <a href="./README.tr.md">README.tr.md</a></em>
 </p>
 
+```mermaid
+flowchart LR
+  classDef start fill:#0969da,stroke:#0969da,color:#ffffff
+  classDef disc fill:#e8f1fb,stroke:#4a9fd8,color:#1f2328
+  classDef design fill:#f3edff,stroke:#7c5cff,color:#1f2328
+  classDef build fill:#e9f9f1,stroke:#2f9e6e,color:#1f2328
+  classDef ship fill:#fff4e5,stroke:#e08a2e,color:#1f2328
+
+  idea([idea]):::start --> discover
+
+  subgraph discover[Discover]
+    direction TB
+    research:::disc --> prd:::disc --> backlog:::disc
+  end
+  subgraph design[Design]
+    direction TB
+    ux:::design --> brand:::design --> architecture:::design
+  end
+  subgraph build[Build]
+    direction TB
+    buildstage[build]:::build --> qa:::build --> security:::build
+  end
+  subgraph ship[Ship]
+    direction TB
+    docs:::ship --> release:::ship --> launch:::ship
+  end
+
+  discover --> design --> build --> ship
+
+  style discover fill:transparent,stroke:#d0d7de,stroke-width:1px
+  style design fill:transparent,stroke:#d0d7de,stroke-width:1px
+  style build fill:transparent,stroke:#d0d7de,stroke-width:1px
+  style ship fill:transparent,stroke:#d0d7de,stroke-width:1px
 ```
-idea → research → PRD → backlog → UX → brand → architecture → build → QA → security → docs → release → launch
-```
+
+<sub>Each arrow is a gate: the next stage starts after your approval.</sub>
 
 ## What it is
 
@@ -214,12 +247,9 @@ The team's working language follows you. Agent instructions, code, code comments
 - An OpenCode Zen account or any provider configured in opencode — the defaults use free-tier models
 - Python 3.8+ (only for the optional logo-design skill)
 
-
 ## Disclaimer
 
 OpenCode Team is a community-driven project and is **not** built by, affiliated with, or endorsed by OpenCode (opencode.ai) or anomalyco/opencode. "OpenCode" is a trademark of Anomaly. This project uses the OpenCode CLI as its underlying agent framework.
-
-
 
 ## License
 

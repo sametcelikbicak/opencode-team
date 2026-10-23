@@ -6,9 +6,42 @@ Fikri araştırmadan lansmana kadar götüren bir yapay zekâ ajan ekibi — [op
   <em>English: <a href="./README.md">README.md</a></em>
 </p>
 
+```mermaid
+flowchart LR
+  classDef start fill:#0969da,stroke:#0969da,color:#ffffff
+  classDef disc fill:#e8f1fb,stroke:#4a9fd8,color:#1f2328
+  classDef design fill:#f3edff,stroke:#7c5cff,color:#1f2328
+  classDef build fill:#e9f9f1,stroke:#2f9e6e,color:#1f2328
+  classDef ship fill:#fff4e5,stroke:#e08a2e,color:#1f2328
+
+  idea([fikir]):::start --> discover
+
+  subgraph discover[Keşif]
+    direction TB
+    research[araştırma]:::disc --> prd[prd]:::disc --> backlog:::disc
+  end
+  subgraph design[Tasarım]
+    direction TB
+    ux[ux]:::design --> brand[marka]:::design --> architecture[mimari]:::design
+  end
+  subgraph build[Geliştirme]
+    direction TB
+    buildstage[kod]:::build --> qa[qa]:::build --> security[güvenlik]:::build
+  end
+  subgraph ship[Yayın]
+    direction TB
+    docs[doküman]:::ship --> release[sürüm]:::ship --> launch[lansman]:::ship
+  end
+
+  discover --> design --> build --> ship
+
+  style discover fill:transparent,stroke:#d0d7de,stroke-width:1px
+  style design fill:transparent,stroke:#d0d7de,stroke-width:1px
+  style build fill:transparent,stroke:#d0d7de,stroke-width:1px
+  style ship fill:transparent,stroke:#d0d7de,stroke-width:1px
 ```
-fikir → araştırma → PRD → backlog → UX → marka → mimari → kod → QA → güvenlik → doküman → sürüm → lansman
-```
+
+<sub>Her ok bir kapı: sonraki aşama onayınızdan sonra başlar.</sub>
 
 ## Nedir?
 
