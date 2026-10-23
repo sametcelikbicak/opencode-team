@@ -14,9 +14,20 @@ jobs:
   welcome:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    # Only greet first-time human contributors: skip the maintainer and any bot
+    # (Dependabot, github-actions[bot], ...), and only when the actor is the author.
+    if: >-
+      github.actor != github.repository_owner &&
+      !endsWith(github.actor, '[bot]') &&
+      (
+        github.event_name == 'issues' &&
+        github.event.issue.user.login == github.actor ||
+        github.event_name == 'pull_request_target' &&
+        github.event.pull_request.user.login == github.actor
+      )
     steps:
       - uses: actions/first-interaction@1c4688942c71f71d4f5502a26ea67c331730fa4d # v3.1.0
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          issue-message: "Thanks for your first issue. Please include your opencode version and the output of `./install.sh --check`."
-          pr-message: "Thanks for your first pull request. Run `ruby scripts/validate.rb` and `./scripts/smoke-install.sh` before review."
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          issue_message: "Thanks for your first issue. Please include your opencode version and the output of `./install.sh --check`."
+          pr_message: "Thanks for your first pull request. Run `ruby scripts/validate.rb` and `./scripts/smoke-install.sh` before review."
