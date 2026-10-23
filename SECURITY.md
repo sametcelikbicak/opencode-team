@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-`main` only. There are no versioned releases.
+`main` only. `v1.0.0` is the current release; OpenCode 2 support is planned as a separate release.
 
 ## Reporting
 
@@ -22,7 +22,7 @@ In scope:
 Out of scope:
 
 - Vulnerabilities in opencode itself — report them upstream
-- The optional `logo-design` skill's third-party content — report it to that repo. Pinning problems in this repo are in scope.
+- No external skills are shipped; all skills are local `team-*`. Adapted upstream content is attributed in `THIRD_PARTY_NOTICES.md` — report issues with adapted content here. Pinning problems in this repo are in scope.
 
 ## What to include
 

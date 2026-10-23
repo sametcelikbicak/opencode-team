@@ -23,7 +23,7 @@ Each role is an opencode agent defined with `mode: all`, so it is reachable thre
 | `devops`       | Version, CI/CD, deployment                    | release       |
 | `marketing`    | Positioning, launch                           | launch        |
 
-For specialist work the global agent pool (Data Engineer, Penetration Tester, Technical Writer, and the rest) is available through the `task` tool.
+All roles are local agents in `agents/`. For specialist work, add a new agent file and reference it from `team.yaml`; this repo does not depend on an external agent pool.
 
 ## Pipeline
 
@@ -66,4 +66,6 @@ Every stage writes one markdown file into `.team/`:
 
 ## Installation
 
-`./install.sh` — links the global directories to this repo and sets `default_agent` plus `instructions` in `~/.config/opencode/opencode.json`.
+`./install.sh` links the global directories to this repo. It never modifies `~/.config/opencode/opencode.json`; when the recommended settings are missing it prints the snippet to add. `./install.sh --install-opencode` optionally installs OpenCode 1.x first.
+
+All 12 playbooks are local under `skills/team-*` and referenced by `team.yaml`; no external skill is required. `team-build`, `team-backlog` and `team-brand` are adapted from MIT-licensed upstream skills — see `THIRD_PARTY_NOTICES.md`.

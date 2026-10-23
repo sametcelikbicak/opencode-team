@@ -49,12 +49,14 @@ OpenCode Team is a **software team** you install once and use in every project. 
 
 - **14 agent roles** — analyst, pm, po, ux, brand, architect, fe, be, qa, devops, security, marketing, docs, and an orchestrator that routes work between them
 - **12 pipeline stages** — configured in `team.yaml`, not hardcoded, so you can add, remove, or reorder stages freely
-- **9 playbooks** — methodology for research, PRDs, UX, architecture, QA, security review, release, marketing and documentation
+- **12 skills** — one methodology per stage, all local under `skills/team-*`; no external skill is cloned or required
 - **17 slash commands** — run a single stage directly, or drive the whole pipeline
 
 The orchestrator is the **default agent**. Open `opencode` anywhere, describe an idea, and the team takes it stage by stage, asking for your approval at each gate.
 
 ## Install
+
+Requires OpenCode 1.x (tested on 1.19.0). OpenCode 2 is a separate future release; this repository is the v1 release.
 
 ```bash
 git clone https://github.com/sametcelikbicak/opencode-team.git
@@ -62,20 +64,29 @@ cd opencode-team
 ./install.sh
 ```
 
+If OpenCode is not on your PATH, install it first, or let the installer run the official OpenCode 1.x installer:
+
+```bash
+./install.sh --install-opencode
+```
+
+`--install-opencode` runs `curl -fsSL https://opencode.ai/install | bash`. OpenCode 1 and 2 cannot coexist: an existing OpenCode 2 binary is replaced. Without the flag, the installer never installs OpenCode and leaves an existing binary untouched.
+
 Restart opencode. That's it — the setup is global, so it works in every project directory.
 
-`install.sh` symlinks the repo into your opencode config and installs the optional logo-design skill:
+`install.sh` symlinks the repo into your opencode config:
 
-| Path                                    | Target                                                                                                            |
-| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `~/.config/opencode/agents`             | `opencode-team/agents`                                                                                            |
-| `~/.config/opencode/commands`           | `opencode-team/commands`                                                                                          |
-| `~/.config/opencode/skills/team-*`      | `opencode-team/skills/team-*`                                                                                     |
-| `~/.config/opencode/team.yaml`          | `opencode-team/team.yaml`                                                                                         |
-| `~/.config/opencode/team/AGENTS.md`     | `opencode-team/team/AGENTS.md`                                                                                    |
-| `~/.config/opencode/skills/logo-design` | cloned from [kaankiziltug/logo-design-skill](https://github.com/kaankiziltug/logo-design-skill) (13 MB, one time) |
+| Path                                | Target                        |
+| ----------------------------------- | ----------------------------- |
+| `~/.config/opencode/agents`         | `opencode-team/agents`        |
+| `~/.config/opencode/commands`       | `opencode-team/commands`      |
+| `~/.config/opencode/skills/team-*`  | `opencode-team/skills/team-*` |
+| `~/.config/opencode/team.yaml`      | `opencode-team/team.yaml`     |
+| `~/.config/opencode/team/AGENTS.md` | `opencode-team/team/AGENTS.md` |
 
 The repo stays in git; the config directory holds symlinks. Edit a file in the repo and it takes effect immediately.
+
+The installer never modifies `opencode.json`. If `default_agent` is not set to `orchestrator`, it prints the recommended snippet and leaves the file alone.
 
 Check or remove the install:
 
@@ -84,12 +95,15 @@ Check or remove the install:
 ./install.sh --uninstall
 ```
 
+`--check` exits non-zero when a symlink is missing. A missing `default_agent` setting is shown as a hint, not a failure. `--uninstall` removes only symlinks that point into this repo.
+
 ### Manual setup
 
 If you prefer to wire it yourself, add to `~/.config/opencode/opencode.json`:
 
 ```json
 {
+  "$schema": "https://opencode.ai/config.json",
   "default_agent": "orchestrator",
   "instructions": [
     "~/.config/opencode/team/AGENTS.md",
@@ -243,13 +257,16 @@ The team's working language follows you. Agent instructions, code, code comments
 
 ## Requirements
 
-- [opencode](https://opencode.ai) v1.19+ (tested on 1.19.0)
+- [opencode](https://opencode.ai) 1.x (tested on 1.19.0)
 - An OpenCode Zen account or any provider configured in opencode — the defaults use free-tier models
-- Python 3.8+ (only for the optional logo-design skill)
 
 ## Disclaimer
 
 OpenCode Team is a community-driven project and is **not** built by, affiliated with, or endorsed by OpenCode (opencode.ai) or anomalyco/opencode. "OpenCode" is a trademark of Anomaly. This project uses the OpenCode CLI as its underlying agent framework.
+
+## Third-party notices
+
+The team skills are local. `team-build`, `team-backlog` and `team-brand` are adapted from MIT-licensed upstream skills; see [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) for attribution and licence text.
 
 ## License
 

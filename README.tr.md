@@ -49,12 +49,14 @@ OpenCode Team, bir kez kurup **her projede** kullanabileceğiniz bir yazılım e
 
 - **14 rol ajanı** — analist, pm, po, ux, marka, architect, fe, be, qa, devops, security, marketing, docs ve bunları birbirine bağlayan orkestratör
 - **12 aşamalı boru hattı** — `team.yaml` içinde tanımlı, kodda gömülü değil; aşama ekleyip çıkarabilir, sıralamayı değiştirebilirsiniz
-- **9 playbook** — araştırma, PRD, UX, mimari, QA, güvenlik incelemesi, sürüm, pazarlama ve dokümantasyon yöntemleri
+- **12 yetenek (skill)** — her aşama için bir yöntem, tamamı `skills/team-*` altında yerel; harici skill klonlanmaz veya gerekmez
 - **17 slash komutu** — tek aşamayı doğrudan çalıştırın veya tüm boru hattını sürün
 
 Orkestratör **varsayılan ajandır**. Herhangi bir dizinde `opencode` açın, fikrinizi söyleyin; ekip aşama aşama ilerler ve her kapıda onayınızı bekler.
 
 ## Kurulum
+
+OpenCode 1.x gerektirir (1.19.0 ile test edildi). OpenCode 2 ayrı bir gelecek sürümdür; bu depo v1 sürümüdür.
 
 ```bash
 git clone https://github.com/sametcelikbicak/opencode-team
@@ -62,20 +64,29 @@ cd opencode-team
 ./install.sh
 ```
 
+OpenCode PATH'te yoksa önce kurun veya kurulum betiğinin resmî OpenCode 1.x kurucusunu çalıştırmasına izin verin:
+
+```bash
+./install.sh --install-opencode
+```
+
+`--install-opencode`, `curl -fsSL https://opencode.ai/install | bash` komutunu çalıştırır. OpenCode 1 ve 2 birlikte bulunamaz: mevcut bir OpenCode 2 ikilisi değiştirilir. Bu bayrak olmadan kurulum betiği OpenCode'u kurmaz ve mevcut ikilinize dokunmaz.
+
 opencode'u yeniden başlatın. Hepsi bu — kurulum global'dir, her proje dizininde çalışır.
 
-`install.sh` repoyu opencode yapılandırmasına symlink'ler ve opsiyonel logo-design skill'ini kurar:
+`install.sh` repoyu opencode yapılandırmanıza symlink'ler:
 
-| Yol                                     | Hedef                                                                                                                     |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `~/.config/opencode/agents`             | `opencode-team/agents`                                                                                                    |
-| `~/.config/opencode/commands`           | `opencode-team/commands`                                                                                                  |
-| `~/.config/opencode/skills/team-*`      | `opencode-team/skills/team-*`                                                                                             |
-| `~/.config/opencode/team.yaml`          | `opencode-team/team.yaml`                                                                                                 |
-| `~/.config/opencode/team/AGENTS.md`     | `opencode-team/team/AGENTS.md`                                                                                            |
-| `~/.config/opencode/skills/logo-design` | [kaankiziltug/logo-design-skill](https://github.com/kaankiziltug/logo-design-skill) reposundan klonlanır (13 MB, bir kez) |
+| Yol                                 | Hedef                         |
+| ----------------------------------- | ----------------------------- |
+| `~/.config/opencode/agents`         | `opencode-team/agents`        |
+| `~/.config/opencode/commands`       | `opencode-team/commands`      |
+| `~/.config/opencode/skills/team-*`  | `opencode-team/skills/team-*` |
+| `~/.config/opencode/team.yaml`      | `opencode-team/team.yaml`     |
+| `~/.config/opencode/team/AGENTS.md` | `opencode-team/team/AGENTS.md` |
 
 Repo git'te kalır, yapılandırma dizininde symlink bulunur. Repoda bir dosyayı düzenlediğinizde etkisi anında olur.
+
+Kurulum betiği `opencode.json` dosyasını hiçbir zaman değiştirmez. `default_agent` `orchestrator` olarak ayarlı değilse önerilen snippet'i yazdırır, dosyayı olduğu gibi bırakır.
 
 Kurulumu kontrol etmek veya kaldırmak için:
 
@@ -84,12 +95,15 @@ Kurulumu kontrol etmek veya kaldırmak için:
 ./install.sh --uninstall
 ```
 
+`--check`, bir symlink eksikse sıfır dışı kodla çıkar. Eksik `default_agent` ayarı hata değil, öneri olarak gösterilir. `--uninstall` yalnızca bu repoya işaret eden symlink'leri kaldırır.
+
 ### Manuel kurulum
 
 Kendiniz bağlamak isterseniz `~/.config/opencode/opencode.json` dosyasına ekleyin:
 
 ```json
 {
+  "$schema": "https://opencode.ai/config.json",
   "default_agent": "orchestrator",
   "instructions": [
     "~/.config/opencode/team/AGENTS.md",
@@ -243,9 +257,12 @@ Ekip sizin dilinizi takip eder. Ajan talimatları, kod, kod içi yorumlar ve tek
 
 ## Gereksinimler
 
-- [opencode](https://opencode.ai) v1.19+ (1.19.0 ile test edildi)
+- [opencode](https://opencode.ai) 1.x (1.19.0 ile test edildi)
 - Bir OpenCode Zen hesabı veya opencode'da yapılandırılmış herhangi bir sağlayıcı — varsayılanlar ücretsiz katman modellerini kullanır
-- Python 3.8+ (yalnızca opsiyonel logo-design skill'i için)
+
+## Üçüncü taraf bildirimleri
+
+Ekip yetenekleri yereldir. `team-build`, `team-backlog` ve `team-brand`, MIT lisanslı üst kaynak yeteneklerden uyarlanmıştır; atıf ve lisans metni için [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) dosyasına bakın.
 
 ## Lisans
 

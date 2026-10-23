@@ -11,13 +11,9 @@ cd opencode-team
 ./install.sh           # link agents, commands, team.yaml and skills
 ```
 
+If OpenCode is not installed, `./install.sh --install-opencode` runs the official OpenCode 1.x installer first. Without it, the installer requires OpenCode on your PATH and only links files.
+
 `install.sh` never edits `opencode.json`. Set `default_agent` and `instructions` yourself (see README).
-
-The optional `logo-design` skill is not installed by default, because it clones a third-party repo:
-
-```bash
-./install.sh --with-logo-skill
-```
 
 ## What you can change
 
@@ -25,7 +21,7 @@ The optional `logo-design` skill is not installed by default, because it clones 
 | ------- | ------------------------ | ------------------------------------ |
 | Agent   | `agents/<name>.md`       | `name`, `description`, `mode`        |
 | Command | `commands/<name>.md`     | `name`, `description`, optional `agent` |
-| Skill   | `skills/<name>/SKILL.md` | `name`, `description`                |
+| Skill   | `skills/team-<name>/SKILL.md` | `name`, `description`            |
 | Pipeline| `team.yaml`              | `stages`, `profiles`                 |
 
 ### Add an agent
@@ -45,13 +41,23 @@ The optional `logo-design` skill is not installed by default, because it clones 
 
 ### Add a skill
 
-1. Create `skills/<name>/SKILL.md`.
+1. Create `skills/team-<name>/SKILL.md`.
 2. Frontmatter: `name` (must equal the directory), `description`.
-3. Reference it from a `team.yaml` stage. A stage `skill` must exist in `skills/` or in the external allowlist in `scripts/validate.rb` (`logo-design`, `tdd`, `to-tickets`).
+3. Reference it from a `team.yaml` stage. A stage `skill` must resolve to `skills/<name>/SKILL.md`; there is no external allowlist.
+
+All skills in this repo are local `team-*`. The validator rejects the old external names (`logo-design`, `tdd`, `to-tickets`) as stage skills and any external skill references in agent or command bodies.
+
+### Adapting an upstream skill
+
+Adapted skills are Markdown only and do not vendor upstream scripts or assets. When you adapt MIT-licensed content:
+
+1. Rewrite the workflow for this repo's pipeline, artifact paths and agent roles.
+2. Add an adaptation footer to `SKILL.md` naming the upstream and its author.
+3. Add the upstream and its MIT notice to `THIRD_PARTY_NOTICES.md`.
 
 ### Edit `team.yaml`
 
-Every stage needs `id`, `title`, `agent`, `output` and `brief`. `gate` and `skill` are optional. `support` lists extra agents. `profiles.*` may only list stage ids.
+Every stage needs `id`, `title`, `agent`, `skill`, `gate`, `output` and `brief`. `support` lists extra agents. Outputs must be unique and under `artifact_dir` (`.team/`). `profiles.*` may only list stage ids.
 
 ## Checks
 
@@ -62,6 +68,8 @@ ruby scripts/validate.rb
 bash -n install.sh scripts/*.sh
 ./scripts/smoke-install.sh
 ```
+
+The validator checks frontmatter, filename/name matches, agent and command references, local-only skills, and the required `team.yaml` stage fields. The smoke test installs into a throwaway config directory and covers install, check, uninstall and local-skill collisions.
 
 CI also runs `shellcheck --severity=error`. It is preinstalled on `ubuntu-latest`; locally, install it with your package manager if you want the same result.
 

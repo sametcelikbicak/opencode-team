@@ -7,7 +7,9 @@
 require "yaml"
 
 ROOT = File.expand_path("..", __dir__)
-EXTERNAL_SKILLS = %w[logo-design tdd to-tickets].freeze
+# Skills that must not leak back into the local v1 release.
+FORBIDDEN_STAGE_SKILLS = %w[logo-design to-tickets tdd].freeze
+EXTERNAL_SKILL_REFS = %w[logo-design to-tickets codebase-design code-review setup-matt-pocock-skills].freeze
 errors = []
 
 def parse_frontmatter(path)
@@ -55,6 +57,12 @@ files.each do |path|
   if rel.start_with?("commands/") && fm["agent"]
     check(errors, rel, agent_names.include?(fm["agent"]), "agent #{fm["agent"].inspect} has no agents/#{fm["agent"]}.md")
   end
+
+  # v1 is self-contained: agents and commands must not require global skills.
+  source = File.read(path)
+  EXTERNAL_SKILL_REFS.each do |name|
+    check(errors, rel, source !~ /\b#{Regexp.escape(name)}\b/, "references external skill #{name.inspect}")
+  end
 end
 
 # --- skills ---
@@ -86,7 +94,8 @@ rescue Psych::SyntaxError => e
   errors << "team.yaml: #{e.message.lines.first.strip}"
 end
 
-check(errors, "team.yaml", team["artifact_dir"].is_a?(String), "missing artifact_dir")
+artifact_dir = team["artifact_dir"]
+check(errors, "team.yaml", artifact_dir.is_a?(String) && !artifact_dir.empty?, "missing artifact_dir")
 
 stages = team["stages"]
 if stages.is_a?(Array)
@@ -94,9 +103,13 @@ if stages.is_a?(Array)
   outputs = []
   stages.each_with_index do |s, i|
     id = s["id"] || "stages[#{i}]"
-    check(errors, "team.yaml", s["id"].is_a?(String), "#{id}: missing id")
+    check(errors, "team.yaml", s["id"].is_a?(String) && !s["id"].empty?, "#{id}: missing id")
+    check(errors, "team.yaml", s["title"].is_a?(String) && !s["title"].empty?, "#{id}: missing title")
     check(errors, "team.yaml", s["agent"].is_a?(String), "#{id}: missing agent")
-    check(errors, "team.yaml", s["output"].is_a?(String), "#{id}: missing output")
+    check(errors, "team.yaml", s["skill"].is_a?(String) && !s["skill"].empty?, "#{id}: missing skill")
+    check(errors, "team.yaml", [true, false].include?(s["gate"]), "#{id}: gate must be true|false, got #{s["gate"].inspect}")
+    check(errors, "team.yaml", s["brief"].is_a?(String) && !s["brief"].empty?, "#{id}: missing brief")
+    check(errors, "team.yaml", s["output"].is_a?(String) && !s["output"].empty?, "#{id}: missing output")
 
     if s["id"]
       check(errors, "team.yaml", !ids.include?(s["id"]), "#{id}: duplicate stage id")
@@ -105,15 +118,20 @@ if stages.is_a?(Array)
     if s["output"]
       check(errors, "team.yaml", !outputs.include?(s["output"]), "#{id}: duplicate output #{s["output"].inspect}")
       outputs << s["output"]
+      if artifact_dir.is_a?(String) && !artifact_dir.empty?
+        check(errors, "team.yaml", s["output"].start_with?("#{artifact_dir}/"),
+              "#{id}: output #{s["output"].inspect} must be under #{artifact_dir}/")
+      end
     end
 
     if s["agent"]
       check(errors, "team.yaml", agent_names.include?(s["agent"]), "#{id}: agent #{s["agent"].inspect} has no agents/#{s["agent"]}.md")
     end
-    if s["skill"]
-      local = File.directory?(File.join(ROOT, "skills", s["skill"]))
-      check(errors, "team.yaml", local || EXTERNAL_SKILLS.include?(s["skill"]),
-            "#{id}: skill #{s["skill"].inspect} not found locally or in allowlist")
+    if s["skill"].is_a?(String) && !s["skill"].empty?
+      check(errors, "team.yaml", !FORBIDDEN_STAGE_SKILLS.include?(s["skill"]),
+            "#{id}: external skill #{s["skill"].inspect} is not allowed in v1")
+      check(errors, "team.yaml", File.file?(File.join(ROOT, "skills", s["skill"], "SKILL.md")),
+            "#{id}: skill #{s["skill"].inspect} has no skills/#{s["skill"]}/SKILL.md")
     end
     Array(s["support"]).each do |a|
       check(errors, "team.yaml", agent_names.include?(a), "#{id}: support #{a.inspect} has no agents/#{a}.md")

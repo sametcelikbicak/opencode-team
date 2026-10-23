@@ -73,7 +73,7 @@ stages:
   - id: backlog
     title: Epics and stories
     agent: po
-    skill: to-tickets
+    skill: team-backlog
     gate: true
     output: .team/03-backlog.md
     brief: >
@@ -94,14 +94,14 @@ stages:
   - id: brand
     title: Brand and logo
     agent: brand
-    skill: logo-design
+    skill: team-brand
     gate: true
     output: .team/05-brand.md
     brief: >
       Produce the brand identity from the PRD and UX: logo concepts (get
       approval at the checkpoint), colour palette, lockups, favicon and app-icon
       set, and a brand guide. Deliverables go in the brand/ directory. Use the
-      logo-design skill.
+      team-brand skill.
 
   - id: architecture
     title: Technical architecture
@@ -117,7 +117,7 @@ stages:
   - id: build
     title: Implementation
     agent: fe
-    skill: tdd
+    skill: team-build
     gate: true
     output: .team/07-build.md
     support: [be]
