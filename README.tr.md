@@ -14,7 +14,7 @@ fikir → araştırma → PRD → backlog → UX → marka → mimari → kod �
 
 OpenCode Team, bir kez kurup **her projede** kullanabileceğiniz bir yazılım evidir. Şunları tanımlar:
 
-- **13 rol ajanı** — analist, pm, po, ux, architect, fe, be, qa, devops, security, marketing, docs ve bunları birbirine bağlayan orkestratör
+- **14 rol ajanı** — analist, pm, po, ux, marka, architect, fe, be, qa, devops, security, marketing, docs ve bunları birbirine bağlayan orkestratör
 - **12 aşamalı boru hattı** — `team.yaml` içinde tanımlı, kodda gömülü değil; aşama ekleyip çıkarabilir, sıralamayı değiştirebilirsiniz
 - **9 playbook** — araştırma, PRD, UX, mimari, QA, güvenlik incelemesi, sürüm, pazarlama ve dokümantasyon yöntemleri
 - **17 slash komutu** — tek aşamayı doğrudan çalıştırın veya tüm boru hattını sürün

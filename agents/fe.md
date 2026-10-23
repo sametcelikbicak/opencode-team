@@ -1,6 +1,6 @@
 ---
 name: fe
-description: Senior Frontend Developer: UI implementation, React, Vue, HTML/CSS
+description: "Senior Frontend Developer: UI implementation, React, Vue, HTML/CSS"
 mode: all
 model: opencode/deepseek-v4.1-flash-free
 temperature: 0.1

@@ -6,8 +6,9 @@
 # effect immediately.
 #
 # Usage:
-#   ./install.sh            # install
-#   ./install.sh --check    # show status only
+#   ./install.sh                    # install (logo-design skill is optional)
+#   ./install.sh --with-logo-skill  # install and clone the optional logo-design skill
+#   ./install.sh --check            # show status only
 #   ./install.sh --uninstall
 
 set -euo pipefail
@@ -19,7 +20,18 @@ CONFIG="${OPENCODE_CONFIG_DIR:-$HOME/.config/opencode}"
 LOGO_SKILL_REPO="https://github.com/kaankiziltug/logo-design-skill.git"
 LOGO_SKILL_DIR="$CONFIG/skills/logo-design"
 
-MODE="${1:-install}"
+MODE="install"
+WITH_LOGO=0
+for arg in "$@"; do
+  case "$arg" in
+    --check|--uninstall) MODE="$arg" ;;
+    --with-logo-skill)   WITH_LOGO=1 ;;
+    *)
+      echo "Unknown argument: $arg" >&2
+      exit 1
+      ;;
+  esac
+done
 
 link() {
   local target="$1" name="$2"
@@ -66,8 +78,7 @@ check() {
   if [ -f "$LOGO_SKILL_DIR/SKILL.md" ]; then
     echo "  ✓ logo-design skill → installed ($(find "$LOGO_SKILL_DIR/assets/library/svg" -name '*.svg' 2>/dev/null | wc -l | tr -d ' ') reference logos)"
   else
-    echo "  ✗ logo-design skill → not installed"
-    ok=1
+    echo "  ○ logo-design skill → not installed (optional: --with-logo-skill)"
   fi
   if grep -q '"default_agent"' "$CONFIG/opencode.json" 2>/dev/null; then
     echo "  ✓ opencode.json: default_agent set"
@@ -118,13 +129,19 @@ case "$MODE" in
     ;;
   install)
     echo "Installing ($CONFIG):"
-    mkdir -p "$CONFIG/agents" "$CONFIG/commands" "$CONFIG/skills" "$CONFIG/team"
+    # Only create directories that must stay real directories. agents/ and
+    # commands/ become symlinks; pre-creating them makes link() refuse to replace them.
+    mkdir -p "$CONFIG/skills" "$CONFIG/team"
     link "$REPO/agents"      "agents"
     link "$REPO/commands"    "commands"
     link "$REPO/team.yaml"   "team.yaml"
     link "$REPO/team/AGENTS.md" "team/AGENTS.md"
     install_skills
-    install_logo_skill
+    if [ "$WITH_LOGO" -eq 1 ]; then
+      install_logo_skill
+    else
+      echo "  ○ logo-design skill → skipped (optional: --with-logo-skill)"
+    fi
     echo
     echo "Done. Restart opencode."
     ;;

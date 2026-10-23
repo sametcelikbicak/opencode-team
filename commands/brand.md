@@ -1,6 +1,6 @@
 ---
 name: brand
-description: Brand and logo design. Write the output to .team/05-brand.md. With the logo-design skill: concept → SVG → test → color → favicon set → guidelines.
+description: "Brand and logo design. Write the output to .team/05-brand.md. With the logo-design skill: concept → SVG → test → color → favicon set → guidelines."
 agent: brand
 ---
 

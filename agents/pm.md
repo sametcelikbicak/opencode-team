@@ -1,6 +1,6 @@
 ---
 name: pm
-description: Product Manager: PRD, epics, user stories, acceptance criteria
+description: "Product Manager: PRD, epics, user stories, acceptance criteria"
 mode: all
 model: opencode/beam-free
 temperature: 0.3

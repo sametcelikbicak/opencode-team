@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or usage help
+    url: https://github.com/sametcelikbicak/opencode-team/issues/new?labels=question
+    about: Ask a usage question. Use the bug report template for defects.
+  - name: Report a security issue
+    url: https://github.com/sametcelikbicak/opencode-team/security/advisories/new
+    about: Report vulnerabilities privately. Do not open a public issue.

@@ -1,6 +1,6 @@
 ---
 name: marketing
-description: Marketing: positioning, copywriting, launch strategy, go-to-market
+description: "Marketing: positioning, copywriting, launch strategy, go-to-market"
 mode: all
 model: opencode/nemotron-3-ultra-free
 temperature: 0.6

@@ -1,6 +1,6 @@
 ---
 name: ux
-description: UX Designer: user flows, wireframes, information architecture, accessibility
+description: "UX Designer: user flows, wireframes, information architecture, accessibility"
 mode: all
 model: opencode/beam-free
 temperature: 0.5

@@ -1,6 +1,6 @@
 ---
 name: qa
-description: QA Engineer: test strategy, QA test generation, test execution
+description: "QA Engineer: test strategy, QA test generation, test execution"
 mode: all
 model: opencode/deepseek-v4.1-flash-free
 temperature: 0.1

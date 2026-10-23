@@ -1,6 +1,6 @@
 ---
 name: brand
-description: Brand and logo designer. Runs the logo-design skill end to end: brief, concepts, SVG construction, testing, colour, lockups, favicon set and brand guidelines.
+description: "Brand and logo designer. Runs the logo-design skill end to end: brief, concepts, SVG construction, testing, colour, lockups, favicon set and brand guidelines."
 mode: all
 model: opencode/deepseek-v4.1-flash-free
 temperature: 0.4

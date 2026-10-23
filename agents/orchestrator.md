@@ -1,6 +1,6 @@
 ---
 name: orchestrator
-description: OpenCode Team orchestrator. Routes ideas through the team pipeline: research → PRD → backlog → UX → brand → architecture → build → QA → security → docs → release → launch.
+description: "OpenCode Team orchestrator. Routes ideas through the team pipeline: research → PRD → backlog → UX → brand → architecture → build → QA → security → docs → release → launch."
 mode: all
 model: opencode/deepseek-v4.1-flash-free
 temperature: 0.3

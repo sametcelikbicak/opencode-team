@@ -1,6 +1,6 @@
 ---
 name: docs
-description: Technical Writer: README, API docs, user guides, release notes
+description: "Technical Writer: README, API docs, user guides, release notes"
 mode: all
 model: opencode/deepseek-v4.1-flash-free
 temperature: 0.2

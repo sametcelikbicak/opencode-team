@@ -1,6 +1,6 @@
 ---
 name: po
-description: Product Owner: backlog, epics, stories, prioritization
+description: "Product Owner: backlog, epics, stories, prioritization"
 mode: all
 model: opencode/beam-free
 temperature: 0.2

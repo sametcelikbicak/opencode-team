@@ -1,0 +1,147 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Validates OpenCode manifests: agent/command/skill frontmatter and team.yaml.
+# Stdlib only; no gems. Run with: ruby scripts/validate.rb
+
+require "yaml"
+
+ROOT = File.expand_path("..", __dir__)
+EXTERNAL_SKILLS = %w[logo-design tdd to-tickets].freeze
+errors = []
+
+def parse_frontmatter(path)
+  m = File.read(path).match(/\A---\r?\n(.*?)\r?\n---\r?\n/m)
+  return nil unless m
+
+  YAML.safe_load(m[1], permitted_classes: [], aliases: false) || {}
+rescue Psych::SyntaxError => e
+  raise "frontmatter YAML: #{e.message.lines.first.strip}"
+end
+
+def check(errors, path, ok, msg)
+  errors << "#{path}: #{msg}" unless ok
+end
+
+files = Dir[File.join(ROOT, "{agents,commands}/*.md")].sort
+skills = Dir[File.join(ROOT, "skills/*/SKILL.md")].sort
+agent_names = Dir[File.join(ROOT, "agents/*.md")].map { |f| File.basename(f, ".md") }
+
+# --- agents & commands ---
+files.each do |path|
+  rel = path.sub("#{ROOT}/", "")
+  begin
+    fm = parse_frontmatter(path)
+  rescue StandardError => e
+    errors << "#{rel}: #{e.message}"
+    next
+  end
+  unless fm
+    errors << "#{rel}: missing frontmatter"
+    next
+  end
+
+  check(errors, rel, fm["name"].is_a?(String) && !fm["name"].empty?, "missing name")
+  check(errors, rel, fm["description"].is_a?(String) && !fm["description"].empty?, "missing description")
+
+  expected = File.basename(path, ".md")
+  check(errors, rel, fm["name"] == expected, "name #{fm["name"].inspect} != filename #{expected.inspect}")
+
+  if rel.start_with?("agents/")
+    modes = %w[primary subagent all]
+    check(errors, rel, modes.include?(fm["mode"]), "mode must be primary|subagent|all, got #{fm["mode"].inspect}")
+  end
+
+  if rel.start_with?("commands/") && fm["agent"]
+    check(errors, rel, agent_names.include?(fm["agent"]), "agent #{fm["agent"].inspect} has no agents/#{fm["agent"]}.md")
+  end
+end
+
+# --- skills ---
+skills.each do |path|
+  rel = path.sub("#{ROOT}/", "")
+  begin
+    fm = parse_frontmatter(path)
+  rescue StandardError => e
+    errors << "#{rel}: #{e.message}"
+    next
+  end
+  unless fm
+    errors << "#{rel}: missing frontmatter"
+    next
+  end
+
+  check(errors, rel, fm["name"].is_a?(String) && !fm["name"].empty?, "missing name")
+  check(errors, rel, fm["description"].is_a?(String) && !fm["description"].empty?, "missing description")
+
+  expected = File.basename(File.dirname(path))
+  check(errors, rel, fm["name"] == expected, "name #{fm["name"].inspect} != dir #{expected.inspect}")
+end
+
+# --- team.yaml ---
+team = {}
+begin
+  team = YAML.safe_load(File.read(File.join(ROOT, "team.yaml")), permitted_classes: [], aliases: false) || {}
+rescue Psych::SyntaxError => e
+  errors << "team.yaml: #{e.message.lines.first.strip}"
+end
+
+check(errors, "team.yaml", team["artifact_dir"].is_a?(String), "missing artifact_dir")
+
+stages = team["stages"]
+if stages.is_a?(Array)
+  ids = []
+  outputs = []
+  stages.each_with_index do |s, i|
+    id = s["id"] || "stages[#{i}]"
+    check(errors, "team.yaml", s["id"].is_a?(String), "#{id}: missing id")
+    check(errors, "team.yaml", s["agent"].is_a?(String), "#{id}: missing agent")
+    check(errors, "team.yaml", s["output"].is_a?(String), "#{id}: missing output")
+
+    if s["id"]
+      check(errors, "team.yaml", !ids.include?(s["id"]), "#{id}: duplicate stage id")
+      ids << s["id"]
+    end
+    if s["output"]
+      check(errors, "team.yaml", !outputs.include?(s["output"]), "#{id}: duplicate output #{s["output"].inspect}")
+      outputs << s["output"]
+    end
+
+    if s["agent"]
+      check(errors, "team.yaml", agent_names.include?(s["agent"]), "#{id}: agent #{s["agent"].inspect} has no agents/#{s["agent"]}.md")
+    end
+    if s["skill"]
+      local = File.directory?(File.join(ROOT, "skills", s["skill"]))
+      check(errors, "team.yaml", local || EXTERNAL_SKILLS.include?(s["skill"]),
+            "#{id}: skill #{s["skill"].inspect} not found locally or in allowlist")
+    end
+    Array(s["support"]).each do |a|
+      check(errors, "team.yaml", agent_names.include?(a), "#{id}: support #{a.inspect} has no agents/#{a}.md")
+    end
+  end
+else
+  errors << "team.yaml: stages must be an array"
+end
+
+profiles = team["profiles"]
+if profiles.is_a?(Hash) && stages.is_a?(Array)
+  ids = stages.map { |s| s["id"] }
+  profiles.each do |name, list|
+    next unless list.is_a?(Array)
+
+    list.each do |stage_id|
+      check(errors, "team.yaml", ids.include?(stage_id), "profile #{name.inspect}: unknown stage #{stage_id.inspect}")
+    end
+  end
+end
+
+# --- report ---
+count = files.size + skills.size + 1
+if errors.empty?
+  puts "validate: #{count} files OK"
+  exit 0
+else
+  errors.each { |e| puts "  ✗ #{e}" }
+  puts "validate: #{errors.size} error(s) in #{count} files"
+  exit 1
+end

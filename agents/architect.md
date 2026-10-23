@@ -1,6 +1,6 @@
 ---
 name: architect
-description: Software Architect: system design, architecture, data model
+description: "Software Architect: system design, architecture, data model"
 mode: all
 model: opencode/deepseek-v4.1-flash-free
 temperature: 0.2
