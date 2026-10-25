@@ -60,7 +60,7 @@ The orchestrator is the **default agent**. Open `opencode` anywhere, describe an
 
 ## Install
 
-Requires OpenCode 1.x (tested on 1.19.0). OpenCode 2 is a separate future release; this repository is the v1 release.
+Requires OpenCode 1.x (tested on 1.19.0). OpenCode 2 support is planned as a separate release. There is no tagged release yet; `main` is the development branch.
 
 ```bash
 git clone https://github.com/sametcelikbicak/opencode-team.git

@@ -7,7 +7,7 @@
 require "yaml"
 
 ROOT = File.expand_path("..", __dir__)
-# Skills that must not leak back into the local v1 release.
+# Skills that must not leak back into this self-contained repository.
 FORBIDDEN_STAGE_SKILLS = %w[logo-design to-tickets tdd].freeze
 EXTERNAL_SKILL_REFS = %w[logo-design to-tickets codebase-design code-review setup-matt-pocock-skills].freeze
 errors = []
@@ -58,7 +58,7 @@ files.each do |path|
     check(errors, rel, agent_names.include?(fm["agent"]), "agent #{fm["agent"].inspect} has no agents/#{fm["agent"]}.md")
   end
 
-  # v1 is self-contained: agents and commands must not require global skills.
+  # This repo is self-contained: agents and commands must not require global skills.
   source = File.read(path)
   EXTERNAL_SKILL_REFS.each do |name|
     check(errors, rel, source !~ /\b#{Regexp.escape(name)}\b/, "references external skill #{name.inspect}")
@@ -129,7 +129,7 @@ if stages.is_a?(Array)
     end
     if s["skill"].is_a?(String) && !s["skill"].empty?
       check(errors, "team.yaml", !FORBIDDEN_STAGE_SKILLS.include?(s["skill"]),
-            "#{id}: external skill #{s["skill"].inspect} is not allowed in v1")
+            "#{id}: external skill #{s["skill"].inspect} is not allowed in this repository")
       check(errors, "team.yaml", File.file?(File.join(ROOT, "skills", s["skill"], "SKILL.md")),
             "#{id}: skill #{s["skill"].inspect} has no skills/#{s["skill"]}/SKILL.md")
     end

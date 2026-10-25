@@ -15,7 +15,7 @@
 
 set -euo pipefail
 
-# This is the v1 release. The v2 release will change it to 2.
+# Targets OpenCode 1.x. OpenCode 2 support needs a separate release.
 TARGET_MAJOR=1
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -55,9 +55,9 @@ check_version() {
   local major
   major="$(opencode_major)"
   if [ -z "$major" ]; then
-    echo "  ! could not determine opencode version; this release targets OpenCode 1.x."
+    echo "  ! could not determine opencode version; the team targets OpenCode 1.x."
   elif [ "$major" != "$TARGET_MAJOR" ]; then
-    echo "  ! opencode $major detected; this release targets OpenCode 1.x. Use the v2 release for OpenCode 2."
+    echo "  ! opencode $major detected; the team targets OpenCode 1.x. OpenCode 2 support is not available yet."
   fi
 }
 
@@ -68,7 +68,7 @@ require_opencode() {
   echo "OpenCode 1.x is required." >&2
   echo "  curl -fsSL https://opencode.ai/install | bash" >&2
   echo "  Or rerun: ./install.sh --install-opencode" >&2
-  echo "  OpenCode 2 uses a different release; see the v2 release when available." >&2
+  echo "  OpenCode 2 support is not available yet." >&2
   exit 1
 }
 

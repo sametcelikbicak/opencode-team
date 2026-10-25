@@ -60,7 +60,7 @@ Orkestratör **varsayılan ajandır**. Herhangi bir dizinde `opencode` açın, f
 
 ## Kurulum
 
-OpenCode 1.x gerektirir (1.19.0 ile test edildi). OpenCode 2 ayrı bir gelecek sürümdür; bu depo v1 sürümüdür.
+OpenCode 1.x gerektirir (1.19.0 ile test edildi). OpenCode 2 desteği ayrı bir sürüm olarak planlanıyor. Henüz etiketli sürüm yok; geliştirme `main` üzerinde devam ediyor.
 
 ```bash
 git clone https://github.com/sametcelikbicak/opencode-team
