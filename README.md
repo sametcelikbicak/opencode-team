@@ -1,4 +1,8 @@
-# OpenCode Team
+<p align="center">
+  <img src="./assets/opencode-team.webp" alt="OpenCode Team" width="480" height="240">
+</p>
+
+<h1 align="center">OpenCode Team</h1>
 
 A team of AI agents that takes an idea from research to launch — built on [opencode](https://opencode.ai), with no framework and no extra dependencies.
 
@@ -76,12 +80,12 @@ Restart opencode. That's it — the setup is global, so it works in every projec
 
 `install.sh` symlinks the repo into your opencode config:
 
-| Path                                | Target                        |
-| ----------------------------------- | ----------------------------- |
-| `~/.config/opencode/agents`         | `opencode-team/agents`        |
-| `~/.config/opencode/commands`       | `opencode-team/commands`      |
-| `~/.config/opencode/skills/team-*`  | `opencode-team/skills/team-*` |
-| `~/.config/opencode/team.yaml`      | `opencode-team/team.yaml`     |
+| Path                                | Target                         |
+| ----------------------------------- | ------------------------------ |
+| `~/.config/opencode/agents`         | `opencode-team/agents`         |
+| `~/.config/opencode/commands`       | `opencode-team/commands`       |
+| `~/.config/opencode/skills/team-*`  | `opencode-team/skills/team-*`  |
+| `~/.config/opencode/team.yaml`      | `opencode-team/team.yaml`      |
 | `~/.config/opencode/team/AGENTS.md` | `opencode-team/team/AGENTS.md` |
 
 The repo stays in git; the config directory holds symlinks. Edit a file in the repo and it takes effect immediately.

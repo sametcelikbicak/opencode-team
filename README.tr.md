@@ -1,6 +1,10 @@
-# OpenCode Team
+<p align="center">
+  <img src="./assets/opencode-team.webp" alt="OpenCode Team" width="480" height="240">
+</p>
 
-Fikri araştırmadan lansmana kadar götüren bir yapay zekâ ajan ekibi — [opencode](https://opencode.ai) üzerine kurulu, framework'siz ve ek bağımlılıksız.
+<h1 align="center">OpenCode Team</h1>
+
+Fikri araştırmadan lansmana kadar götüren bir yapay zekâ ajan ekibi — [opencode](https://opencode.ai) üzerine kurulu, framework ve ek bağımlılık yok.
 
 <p align="center">
   <em>English: <a href="./README.md">README.md</a></em>
@@ -76,12 +80,12 @@ opencode'u yeniden başlatın. Hepsi bu — kurulum global'dir, her proje dizini
 
 `install.sh` repoyu opencode yapılandırmanıza symlink'ler:
 
-| Yol                                 | Hedef                         |
-| ----------------------------------- | ----------------------------- |
-| `~/.config/opencode/agents`         | `opencode-team/agents`        |
-| `~/.config/opencode/commands`       | `opencode-team/commands`      |
-| `~/.config/opencode/skills/team-*`  | `opencode-team/skills/team-*` |
-| `~/.config/opencode/team.yaml`      | `opencode-team/team.yaml`     |
+| Yol                                 | Hedef                          |
+| ----------------------------------- | ------------------------------ |
+| `~/.config/opencode/agents`         | `opencode-team/agents`         |
+| `~/.config/opencode/commands`       | `opencode-team/commands`       |
+| `~/.config/opencode/skills/team-*`  | `opencode-team/skills/team-*`  |
+| `~/.config/opencode/team.yaml`      | `opencode-team/team.yaml`      |
 | `~/.config/opencode/team/AGENTS.md` | `opencode-team/team/AGENTS.md` |
 
 Repo git'te kalır, yapılandırma dizininde symlink bulunur. Repoda bir dosyayı düzenlediğinizde etkisi anında olur.
