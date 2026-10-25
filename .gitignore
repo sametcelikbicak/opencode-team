@@ -5,5 +5,8 @@
 # team stage artifacts (per project)
 .team/
 
+# local-only development notes and research
+research/
+
 # macOS
 .DS_Store
