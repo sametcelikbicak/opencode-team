@@ -207,6 +207,10 @@ Every stage writes a markdown artifact:
 
 Plain files in a folder. No database, no framework, fully diffable in git, and a human can step in at any stage.
 
+## Design notes
+
+- [Project-local agent memory](./docs/rfcs/0001-project-memory.md) — accepted RFC for a small `.team/memory/` shared by the orchestrator and every specialist agent.
+
 ## Customising the pipeline
 
 `team.yaml` is configuration, not code. Change it and the pipeline changes — no code changes needed.

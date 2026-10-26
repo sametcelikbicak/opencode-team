@@ -207,6 +207,10 @@ Her aşama bir markdown artefaktı yazar:
 
 Klasör içinde düz dosyalar. Veritabanı yok, framework yok, git'te difflenebilir ve insan her aşamada devreye girebilir.
 
+## Tasarım notları
+
+- [Proje-yerel ajan hafızası](./docs/rfcs/0001-project-memory.md) — orchestrator ve tüm uzman ajanların paylaştığı küçük `.team/memory/` için kabul edilmiş RFC.
+
 ## Boru hattını özelleştirme
 
 `team.yaml` kod değil, konfigürasyondur. Değiştirin, boru hattı değişsin — kod değişikliği gerekmez.
