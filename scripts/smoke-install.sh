@@ -28,7 +28,7 @@ echo "install (idempotent)"
 run "$REPO/install.sh" >/dev/null
 
 echo "new local skills are linked into the repo"
-for skill in team-backlog team-build team-brand; do
+for skill in team-backlog team-build team-brand team-memory; do
   link="$CFG/skills/$skill"
   if [ ! -L "$link" ]; then
     echo "expected $link to be a symlink" >&2
