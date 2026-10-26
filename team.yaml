@@ -21,6 +21,9 @@ languages:
 # Where stages write their artifacts
 artifact_dir: .team
 
+# Where project-local agent memory lives (configurable per project)
+memory_dir: .team/memory
+
 # Default profile. The orchestrator picks "new" in an empty directory and
 # "change" in an existing repository, unless the user says otherwise.
 default_profile: new
