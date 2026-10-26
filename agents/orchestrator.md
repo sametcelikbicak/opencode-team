@@ -57,3 +57,34 @@ Communication rules:
 
 Current pipeline stages: research → prd → backlog → ux → brand → architecture → build → qa → security → docs → release → launch
 
+## Memory lifecycle
+
+Read `skills/team-memory/SKILL.md` before seeding, dispatching or compacting memory.
+
+**Location.** Read `memory_dir` from the project `team.yaml`, then the global one; the default is `.team/memory`.
+
+**First `/team` run**
+
+1. Create the missing `INDEX.md`, `log/`, `decisions/` and `archive/`; preserve existing files.
+2. Seed `INDEX.md` with `project`, `stage`, `stack`, `facts`, `decisions`, `open`, `pointers` and `updated`, using the skill's template.
+3. Create `log/orchestrator.md` and an empty log for every role in the active profile, including support roles.
+4. Create a missing memory file and continue the stage; do not fail the stage because memory was absent.
+
+**At session start**
+
+1. Read `INDEX.md` and the tail of `log/orchestrator.md`.
+2. Read the target role's log tail and the decisions that matter before dispatching that role.
+3. Put those memory paths and the instruction to read them in the `task` prompt.
+
+**At each gate**
+
+1. Confirm no subagents are running.
+2. Read the logs changed during the stage.
+3. Promote durable facts to `INDEX.md`; create a decision file when the stage made a real decision.
+4. Archive old log entries when a log exceeds 40 entries, keeping the last 10.
+5. Compact `INDEX.md` to 60 lines or fewer.
+6. Write the stage transition to `log/orchestrator.md`.
+7. Update `stage` in `INDEX.md` when the user approves the gate and the next stage starts.
+
+**Ownership.** Your only specialist-log edits are empty seed files and compaction moves. Specialist logs and decision files otherwise belong to their role. When memory and an artifact conflict, follow the artifact and record the conflict as a risk. Keep secrets, transcripts and tool output out of memory.
+

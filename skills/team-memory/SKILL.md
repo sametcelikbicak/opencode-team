@@ -37,7 +37,7 @@ The location comes from `memory_dir` in `team.yaml`; the default is `.team/memor
 | File | Writer | Reader | Rule |
 | --- | --- | --- | --- |
 | `INDEX.md` | Orchestrator only | All agents | <=60 lines; compacted at a gate. |
-| `log/<role>.md` | That role; orchestrator only when archiving old lines | That role and the orchestrator | <=40 lines; read the last 20. |
+| `log/<role>.md` | That role; orchestrator only when archiving old entries | That role and the orchestrator | <=40 entries; read the last 20. |
 | `decisions/*.md` | Any agent | Everyone | Unique file; never edit an old decision, supersede it. |
 | `archive/*.md` | Orchestrator | Anyone, on demand | Not read automatically; search when needed. |
 
@@ -54,7 +54,7 @@ When the orchestrator dispatches a role, it includes the memory paths in the tas
 
 ## End of a run
 
-1. Append at most five lines to your own `log/<role>.md`.
+1. Append at most five entries to your own `log/<role>.md`.
 2. Create a `decisions/<date>-<slug>.md` file only when you made a real decision.
 3. Do not write `INDEX.md`.
 4. Do not edit another agent's log or decision file.
@@ -121,12 +121,13 @@ updated: 2026-10-26
 
 Rules:
 
-- At most five lines per run.
+- At most five entries per run.
 - One entry per line; no multi-line blocks.
 - Append in chronological order; never insert or reorder entries.
+- The 40-entry cap counts entries; the header and blank line do not count.
 - Link to the artifact instead of copying code, a PRD or a README section.
 - For a `decision` entry, the last field points to the decision file. For every other entry it points to the stage artifact.
-- When the log exceeds 40 lines, the orchestrator archives old lines and keeps the last 10.
+- When the log exceeds 40 entries, the orchestrator archives old entries and keeps the last 10.
 
 Example:
 
@@ -204,7 +205,7 @@ Example:
 - At a gate, read the logs changed during the stage:
   - promote durable facts and decisions into `INDEX.md`;
   - move old lines into `archive/`;
-  - keep each log at 40 lines or fewer, with the last 10 lines retained;
+  - keep each log at 40 entries or fewer, with the last 10 entries retained;
   - compact `INDEX.md` to 60 lines or fewer.
 - Compact only when no subagents are running.
 - Write stage transitions to `log/orchestrator.md`.
@@ -217,7 +218,7 @@ Example:
 - Read `INDEX.md` and your own log.
 - Create your own log if it is missing.
 - Do not create `INDEX.md`; the orchestrator seeds it on the next run.
-- Do not compact. If your log exceeds 40 lines, append normally and leave compaction to the next orchestrator gate. If no orchestrator runs, the log may exceed the cap; this is a known limit.
+- Do not compact. If your log exceeds 40 entries, append normally and leave compaction to the next orchestrator gate. If no orchestrator runs, the log may exceed the cap; this is a known limit.
 - This keeps memory working when the orchestrator is not in the loop.
 
 ## Parallel work
@@ -232,7 +233,7 @@ Example:
 
 Run at a gate, with no subagents running:
 
-- **Log over 40 lines:** move old lines to `archive/<role>-YYYY-MM.md`, promote durable facts to `INDEX.md`, keep the last 10 lines. A compacted log is normally 10 lines; it grows again as new entries are appended. Do not pad it back to 40.
+- **Log over 40 entries:** move old entries to `archive/<role>-YYYY-MM.md`, promote durable facts to `INDEX.md`, keep the last 10 entries. A compacted log is normally 10 entries; it grows again as new entries are appended. Do not pad it back to 40.
 - **What goes where:** the archive keeps the original line as the historical record; `INDEX.md` gets a concise fact, not a copy of the whole line.
 - **Index over 60 lines:** merge duplicates, move detail into a decision file, simplify `open`.
 - **Decision files:** never delete; supersede.
@@ -279,9 +280,9 @@ Do not write:
 | Item | Limit |
 | --- | --- |
 | `INDEX.md` | 60 lines |
-| `log/<role>.md` | 40 lines, last 20 read |
+| `log/<role>.md` | 40 entries, last 20 read |
 | Lines per run | 5 |
-| Compaction keeps | last 10 log lines |
+| Compaction keeps | last 10 log entries |
 | Decision file | unique, immutable, `supersedes` on change |
 | Secrets | never |
 | Scope | project-local, `.team/memory/` |
