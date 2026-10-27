@@ -267,6 +267,21 @@ OpenCode Team, orchestrator ve uzman ajanların oturumlar arası süreklilik sa�
 
 Tam protokol: `skills/team-memory/SKILL.md` ve `docs/rfcs/0001-project-memory.md`.
 
+## Dokümantasyon
+
+Tam dokümantasyon sitesi [sametcelikbicak.github.io/opencode-team/](https://sametcelikbicak.github.io/opencode-team/) adresinde yayınlanmaktadır. İçerisinde:
+
+- [Kurulum Rehberi](./docs/install.md) — kurulum, kontrol, kaldırma
+- [Boru Hattı & Kapılar](./docs/pipeline.md) — aşamalar ve kapılar nasıl çalışır
+- [Ajanlar](./docs/agents.md) — tüm 14 rol
+- [Komutlar](./docs/commands/) — tüm 19 komut
+- [Yetenekler](./docs/skills/) — tüm 13 yetenek
+- [Aşamalar](./docs/stages) — tüm 12 boru hattı aşaması
+- [Hafıza](./docs/memory.md) — proje-yerel ajan hafızası
+- [SSS](./docs/faq.md) — sık sorulan sorular
+
+Site bu repodan derlenir ve her `main` içine push'unda yayınlanır.
+
 
 ## Boru hattını özelleştirme
 

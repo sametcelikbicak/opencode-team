@@ -267,6 +267,21 @@ OpenCode Team keeps a small, project-local memory in `.team/memory/` so the orch
 
 Full protocol: `skills/team-memory/SKILL.md` and `docs/rfcs/0001-project-memory.md`.
 
+## Documentation
+
+The full documentation site is hosted at [sametcelikbicak.github.io/opencode-team/](https://sametcelikbicak.github.io/opencode-team/). It includes:
+
+- [Install Guide](./docs/install.md) — install, check, uninstall
+- [Pipeline & Gates](./docs/pipeline.md) — how stages and gates work
+- [Agents](./docs/agents.md) — all 14 roles
+- [Commands](./docs/commands/) — all 19 slash commands
+- [Skills](./docs/skills/) — all 13 methodology skills
+- [Stages](./docs/stages) — all 12 pipeline stages
+- [Memory](./docs/memory.md) — project-local agent memory
+- [FAQ](./docs/faq.md) — common questions
+
+The site is built from this repository and deployed on every push to `main`.
+
 
 ## Customising the pipeline
 

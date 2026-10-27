@@ -10,3 +10,8 @@ research/
 
 # macOS
 .DS_Store
+
+# VitePress
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+docs/.vitepress/.temp/
