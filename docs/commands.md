@@ -1,6 +1,6 @@
-# Commands
+# How commands work
 
-OpenCode Team has 19 slash commands. Run them directly in OpenCode.
+OpenCode Team defines 19 slash commands in `commands/*.md`. Run them directly in OpenCode.
 
 ## Pipeline control
 
@@ -14,20 +14,7 @@ OpenCode Team has 19 slash commands. Run them directly in OpenCode.
 
 ## Stage commands
 
-| Command | Agent | What it does |
-|---------|-------|--------------|
-| `/research` | analyst | Market and user research |
-| `/prd` | pm | Product requirements document |
-| `/backlog` | po | Epics and user stories |
-| `/ux` | ux | Screen flows, states, accessibility |
-| `/brand` | brand | Logo, palette, favicon set, brand guide |
-| `/architecture` | architect | Data model, API contract, module boundaries |
-| `/build` | orchestrator | Frontend + backend implementation |
-| `/qa` | qa | Tests from acceptance criteria, run them |
-| `/security` | security | Security review |
-| `/docs` | docs | README, API docs, changelog |
-| `/release` | devops | Version, CHANGELOG, deploy, rollback plan |
-| `/launch` | marketing | Positioning, copy, channels, metrics |
+Each pipeline stage has a direct command: `/research`, `/prd`, `/backlog`, `/ux`, `/brand`, `/architecture`, `/build`, `/qa`, `/security`, `/docs`, `/release` and `/launch`. The command runs the stage even when you are not driving the full pipeline.
 
 ## Memory commands
 
@@ -44,10 +31,10 @@ OpenCode Team has 19 slash commands. Run them directly in OpenCode.
 
 `/remember` appends one short note to the currently active agent's own log. Creates a `decisions/` file when the note is a decision. Refuses secrets and raw transcripts.
 
-## Setup commands
+## Installation
 
-| Command | What it does |
-|---------|--------------|
-| `/install` | Install OpenCode Team into your OpenCode config |
-| `/check` | Verify the installation |
-| `/uninstall` | Remove symlinks that point into this repo |
+Installation is not a slash command. Run `./install.sh` from the repository, or see [Install](./install).
+
+## Full list
+
+[Command reference](./reference/commands) — generated from frontmatter: command, description and target agent.

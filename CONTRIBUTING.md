@@ -1,6 +1,6 @@
 # Contributing
 
-This repo is a set of opencode agents, commands and skills that run an idea-to-launch pipeline. Everything is bash, Markdown and YAML — there is no build step.
+This repo is a set of opencode agents, commands and skills that run an idea-to-launch pipeline. The team itself is bash, Markdown and YAML; the documentation site is a VitePress build.
 
 ## Local setup
 
@@ -12,6 +12,13 @@ cd opencode-team
 ```
 
 If OpenCode is not installed, `./install.sh --install-opencode` runs the official OpenCode 1.x installer first. Without it, the installer requires OpenCode on your PATH and only links files.
+
+The docs site needs Node 22 and the locked dependencies:
+
+```bash
+npm ci
+npm run docs:dev     # http://localhost:5173/opencode-team/
+```
 
 `install.sh` never edits `opencode.json`. Set `default_agent` and `instructions` yourself (see README).
 
@@ -72,6 +79,30 @@ bash -n install.sh scripts/*.sh
 The validator checks frontmatter, filename/name matches, agent and command references, local-only skills, and the required `team.yaml` stage fields. The smoke test installs into a throwaway config directory and covers install, check, uninstall and local-skill collisions.
 
 CI also runs `shellcheck --severity=error`. It is preinstalled on `ubuntu-latest`; locally, install it with your package manager if you want the same result.
+
+Build the docs before opening a PR that touches `docs/`:
+
+```bash
+npm run docs:build
+```
+
+`ignoreDeadLinks` is off, so the build fails on a broken internal link.
+
+## Generated reference
+
+`docs/reference/agents.md`, `commands.md`, `skills.md` and `stages.md` are generated from the manifests. Do not edit them by hand.
+
+```bash
+npm run generate:reference
+```
+
+The docs build runs the generator first. CI regenerates the pages and fails when `git diff --exit-code -- docs/reference` is non-empty, so a manifest change without the generated output is rejected.
+
+## Docs site
+
+`docs/` is a VitePress site deployed by `.github/workflows/docs.yml` to GitHub Pages on every push to `main`. Configure the repository once: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+`mermaid` is pinned to 11 because `vitepress-plugin-mermaid` does not support 12. The config also prebundles `fastdom`; without it the dev server serves the CJS module raw and the page goes blank. Do not bump `mermaid` without testing both `npm run docs:dev` and `npm run docs:build`.
 
 ## Commit and PR
 

@@ -45,9 +45,10 @@ const config = withMermaid(
           { text: 'Customization', link: '/customization' },
         ]},
         { text: 'Reference', items: [
-          { text: 'Agents', link: '/agents' },
-          { text: 'Commands', link: '/commands' },
-          { text: 'Memory', link: '/memory' },
+          { text: 'Agent reference', link: '/reference/agents' },
+          { text: 'Command reference', link: '/reference/commands' },
+          { text: 'Skill reference', link: '/reference/skills' },
+          { text: 'Stage reference', link: '/reference/stages' },
           { text: 'FAQ', link: '/faq' },
         ]},
       ],
@@ -59,6 +60,8 @@ const config = withMermaid(
             text: 'Guides',
             items: [
               { text: 'Pipeline & Gates', link: '/pipeline' },
+              { text: 'How Agents Work', link: '/agents' },
+              { text: 'How Commands Work', link: '/commands' },
               { text: 'Customizing the Pipeline', link: '/customization' },
               { text: 'Adding a Role', link: '/customization#adding-a-role' },
             ],
@@ -66,8 +69,10 @@ const config = withMermaid(
           {
             text: 'Reference',
             items: [
-              { text: 'Agents', link: '/agents' },
-              { text: 'Commands', link: '/commands' },
+              { text: 'Agent Reference', link: '/reference/agents' },
+              { text: 'Command Reference', link: '/reference/commands' },
+              { text: 'Skill Reference', link: '/reference/skills' },
+              { text: 'Stage Reference', link: '/reference/stages' },
               { text: 'FAQ', link: '/faq' },
             ],
           },

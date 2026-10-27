@@ -274,8 +274,10 @@ The full documentation site is hosted at [sametcelikbicak.github.io/opencode-tea
 
 - [Install Guide](./docs/install.md) — install, check, uninstall
 - [Pipeline & Gates](./docs/pipeline.md) — how stages and gates work
-- [Agents](./docs/agents.md) — all 14 roles
-- [Commands](./docs/commands.md) — all 19 slash commands
+- [Agent reference](./docs/reference/agents.md) — all 14 roles
+- [Command reference](./docs/reference/commands.md) — all 19 slash commands
+- [Skill reference](./docs/reference/skills.md) — all 13 methodology skills
+- [Stage reference](./docs/reference/stages.md) — all 12 pipeline stages
 - [Memory](./docs/memory.md) — project-local agent memory
 - [FAQ](./docs/faq.md) — common questions
 

@@ -274,8 +274,10 @@ Tam dokümantasyon sitesi [sametcelikbicak.github.io/opencode-team/](https://sam
 
 - [Kurulum Rehberi](./docs/install.md) — kurulum, kontrol, kaldırma
 - [Boru Hattı & Kapılar](./docs/pipeline.md) — aşamalar ve kapılar nasıl çalışır
-- [Ajanlar](./docs/agents.md) — tüm 14 rol
-- [Komutlar](./docs/commands.md) — tüm 19 komut
+- [Ajan referansı](./docs/reference/agents.md) — tüm 14 rol
+- [Komut referansı](./docs/reference/commands.md) — tüm 19 komut
+- [Yetenek referansı](./docs/reference/skills.md) — tüm 13 yetenek
+- [Aşama referansı](./docs/reference/stages.md) — tüm 12 boru hattı aşaması
 - [Hafıza](./docs/memory.md) — proje-yerel ajan hafızası
 - [SSS](./docs/faq.md) — sık sorulan sorular
 
