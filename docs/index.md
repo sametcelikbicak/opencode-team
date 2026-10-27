@@ -73,11 +73,11 @@ opencode
 - [Customization](./customization) — add agents, commands, skills
 - [Agents](./agents) — all 14 roles
 - [Commands](./commands/) — all 19 slash commands
-- [Skills](./skills/) — all 13 methodology skills
-- [Stages](./stages) — all 12 pipeline stages
+- [Skills](./skills/) — all 13 methodology skills *(coming soon)*
+- [Stages](./stages) — all 12 pipeline stages *(coming soon)*
 - [Memory](./memory) — project-local agent memory
 - [FAQ](./faq) — common questions
 
 ## License
 
-MIT. See [LICENSE](./LICENSE).
+MIT. See [LICENSE](https://github.com/sametcelikbicak/opencode-team/blob/main/LICENSE).

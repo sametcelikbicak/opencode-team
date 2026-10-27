@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/opencode-team.webp" alt="OpenCode Team" width="480" height="240">
+  <img src="./assets/opencode-team.svg" alt="OpenCode Team">
 </p>
 
 <h1 align="center">OpenCode Team</h1>
@@ -225,6 +225,7 @@ Project-local agent memory also lives under `.team/`:
 Plain files in a folder. No database, no framework, fully diffable in git, and a human can step in at any stage.
 
 ## Design notes
+
 - [Project-local agent memory](./docs/rfcs/0001-project-memory.md) — accepted RFC for a small `.team/memory/` shared by the orchestrator and every specialist agent.
 
 ## Memory
@@ -281,7 +282,6 @@ The full documentation site is hosted at [sametcelikbicak.github.io/opencode-tea
 - [FAQ](./docs/faq.md) — common questions
 
 The site is built from this repository and deployed on every push to `main`.
-
 
 ## Customising the pipeline
 
