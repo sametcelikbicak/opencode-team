@@ -12,6 +12,10 @@ cd opencode-team
 
 Restart opencode after installation.
 
+### Does it work on Windows?
+
+Not natively yet. macOS and Linux are supported. `install.sh` is Bash and creates symlinks; native Windows needs a separate installer and CI coverage. WSL is untested, so treat it as experimental.
+
 ### Do I need OpenCode 1.x or 2.x?
 
 OpenCode Team is tested on OpenCode 1.x (1.19.0). OpenCode 2 support is planned as a separate release. OpenCode 1 and 2 cannot coexist — an existing OpenCode 2 binary is replaced by the `--install-opencode` flag.

@@ -72,11 +72,12 @@ Run these before opening a PR. CI runs the same:
 
 ```bash
 ruby scripts/validate.rb
-bash -n install.sh scripts/*.sh
+bash -n install.sh scripts/*.sh skills/team-memory/*.sh
 ./scripts/smoke-install.sh
+./scripts/test-memory-compact.sh
 ```
 
-The validator checks frontmatter, filename/name matches, agent and command references, local-only skills, and the required `team.yaml` stage fields. The smoke test installs into a throwaway config directory and covers install, check, uninstall and local-skill collisions.
+The validator checks frontmatter, filename/name matches, agent and command references, local-only skills, and the required `team.yaml` stage fields. The smoke test installs into a throwaway config directory and covers install, check, uninstall and local-skill collisions. The memory test covers empty logs, repeated archive runs and the `INDEX.md` cap.
 
 CI also runs `shellcheck --severity=error`. It is preinstalled on `ubuntu-latest`; locally, install it with your package manager if you want the same result.
 

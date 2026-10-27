@@ -81,9 +81,9 @@ Read `skills/team-memory/SKILL.md` before seeding, dispatching or compacting mem
 1. Confirm no subagents are running.
 2. Read the logs changed during the stage.
 3. Promote durable facts to `INDEX.md`; create a decision file when the stage made a real decision.
-4. Run `scripts/memory-compact.sh` to archive old log entries (over 40) and compact `INDEX.md` (over 60 lines).
+4. Run the installed `~/.config/opencode/skills/team-memory/memory-compact.sh` from the project root to archive old log entries (over 40) and compact `INDEX.md` (over 60 lines). It reads `$PWD/.team/memory` by default.
 5. Write the stage transition to `log/orchestrator.md`.
-7. Update `stage` in `INDEX.md` when the user approves the gate and the next stage starts.
+6. Update `stage` in `INDEX.md` when the user approves the gate and the next stage starts.
 
 **Ownership.** Your only specialist-log edits are empty seed files and compaction moves. Specialist logs and decision files otherwise belong to their role. When memory and an artifact conflict, follow the artifact and record the conflict as a risk. Keep secrets, transcripts and tool output out of memory.
 

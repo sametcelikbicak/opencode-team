@@ -35,7 +35,7 @@ OpenCode Team keeps a small, project-local memory in `.team/memory/` so the orch
 
 - `status` (default): read-only summary of `INDEX.md`, log sizes, latest decisions, and open questions.
 - `init`: create the memory tree and missing logs; never overwrite existing content.
-- `compact`: archive overflow log entries and shrink `INDEX.md`; refuse when subagents are active.
+- `compact`: archive overflow log entries and shrink `INDEX.md`; refuse when subagents are active. The script removes exact duplicate index lines. If unique lines still exceed 60, it stops and reports the count; merging facts is the orchestrator's job.
 
 `/remember` appends one short note to the currently active agent's own log. Creates a `decisions/` file when the note is a decision. Refuses secrets and raw transcripts.
 

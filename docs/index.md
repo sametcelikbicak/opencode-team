@@ -8,7 +8,7 @@ OpenCode Team is a **software team** you install once and use in every project. 
 
 - **14 agent roles** — analyst, pm, po, ux, brand, architect, fe, be, qa, devops, security, marketing, docs, and an orchestrator that routes work between them
 - **12 pipeline stages** — configured in `team.yaml`, not hardcoded, so you can add, remove, or reorder stages freely
-- **13 skills** — one methodology per stage, all local under `skills/team-*`; no external skill is cloned or required
+- **13 skills** — 12 stage methodologies plus `team-memory`, all local under `skills/team-*`; no external skill is cloned or required
 - **19 slash commands** — run a single stage directly, or drive the whole pipeline
 
 The orchestrator is the **default agent**. Open `opencode` anywhere, describe an idea, and the team takes it stage by stage, asking for your approval at each gate.
@@ -73,7 +73,7 @@ opencode
 - [Customization](./customization) — add agents, commands, skills
 - [Agent reference](./reference/agents) — all 14 roles
 - [Command reference](./reference/commands) — all 19 slash commands
-- [Skill reference](./reference/skills) — all 13 methodology skills
+- [Skill reference](./reference/skills) — all 13 skills
 - [Stage reference](./reference/stages) — all 12 pipeline stages
 - [Memory](./memory) — project-local agent memory
 - [FAQ](./faq) — common questions

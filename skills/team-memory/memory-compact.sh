@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 # Compact project-local agent memory: archive old log entries and shrink INDEX.md.
-# Usage: scripts/memory-compact.sh [role]
+# Usage: skills/team-memory/memory-compact.sh [role]
 #   With no role argument, compacts all role logs and INDEX.md.
+# Run from the project root; memory defaults to $PWD/.team/memory.
 set -euo pipefail
 
-REPO="$(cd "$(dirname "$0")/.." && pwd)"
-MEMORY_DIR="${MEMORY_DIR:-$REPO/.team/memory}"
+MEMORY_DIR="${MEMORY_DIR:-$PWD/.team/memory}"
 
 # Count log entries (lines starting with "- " after the header).
 log_entry_count() {
   local log="$1"
   [ -f "$log" ] || { echo 0; return; }
-  grep -c '^-[[:space:]]' "$log" 2>/dev/null || echo 0
+  awk '/^-[[:space:]]/ { n++ } END { print n + 0 }' "$log"
 }
 
 # Archive old entries from a single role log.
@@ -19,6 +19,7 @@ compact_log() {
   local role="$1"
   local log="$MEMORY_DIR/log/$role.md"
   [ -f "$log" ] || return 0
+  mkdir -p "$MEMORY_DIR/archive"
 
   local count
   count="$(log_entry_count "$log")"
@@ -54,11 +55,13 @@ compact_log() {
     local month_name
     month_name="$(basename "$m")"
     local archive_file="$MEMORY_DIR/archive/$role-$month_name.md"
-    {
-      echo "# $role archive — $month_name"
-      echo
-      cat "$m"
-    } >> "$archive_file"
+    if [ ! -f "$archive_file" ]; then
+      {
+        echo "# $role archive — $month_name"
+        echo
+      } >> "$archive_file"
+    fi
+    cat "$m" >> "$archive_file"
   done
   rm -rf "$tmpdir"
 
@@ -74,7 +77,9 @@ compact_log() {
   echo "compacted $role: archived $archive_count entries, kept $keep"
 }
 
-# Compact INDEX.md to 60 lines or fewer.
+# Remove exact duplicate lines from INDEX.md. Semantic merging is the
+# orchestrator's job: if unique lines still exceed 60, stop and report instead
+# of dropping facts or open questions.
 compact_index() {
   local index="$MEMORY_DIR/INDEX.md"
   [ -f "$index" ] || return 0
@@ -85,32 +90,18 @@ compact_index() {
 
   local tmp
   tmp="$(mktemp)"
-  {
-    # Keep header, facts (deduped), decisions, open (simplified), pointers, updated.
-    awk '
-      /^# / { print; next }
-      /^project:/ { print; print ""; in_facts=1; next }
-      /^facts:/ { print; next }
-      in_facts && /^- / { print; next }
-      in_facts && !/^- / { in_facts=0 }
-      { print }
-    ' "$index" > "$tmp"
+  awk '!seen[$0]++' "$index" > "$tmp"
 
-    # If still over 60, drop open entries.
-    if [ "$(wc -l < "$tmp")" -gt 60 ]; then
-      awk '
-        /^open:/ { print; in_open=1; next }
-        in_open && /^- / { next }
-        in_open && !/^- / { in_open=0; print; next }
-        { print }
-      ' "$tmp" > "$tmp.tmp"
-      mv "$tmp.tmp" "$tmp"
-    fi
+  local new_count
+  new_count="$(wc -l < "$tmp")"
+  if [ "$new_count" -gt 60 ]; then
+    echo "INDEX.md is $new_count lines after removing duplicates; merge facts, move detail to a decision file, or shorten open questions, then rerun." >&2
+    rm -f "$tmp"
+    return 1
+  fi
 
-    mv "$tmp" "$index"
-  }
-
-  echo "compacted INDEX.md: $(wc -l < "$index") lines"
+  mv "$tmp" "$index"
+  echo "compacted INDEX.md: $count -> $new_count lines"
 }
 
 main() {

@@ -47,7 +47,7 @@ jobs:
         run: git diff --exit-code -- docs/reference
 
   shell:
-    name: Shell syntax and lint
+    name: Shell syntax, lint and memory compaction
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -56,10 +56,13 @@ jobs:
           persist-credentials: false
       - name: bash -n
         shell: bash
-        run: bash -n install.sh scripts/*.sh
+        run: bash -n install.sh scripts/*.sh skills/team-memory/*.sh
       - name: shellcheck
         shell: bash
-        run: shellcheck --severity=error install.sh scripts/*.sh
+        run: shellcheck --severity=error install.sh scripts/*.sh skills/team-memory/*.sh
+      - name: memory compaction
+        shell: bash
+        run: ./scripts/test-memory-compact.sh
 
   smoke:
     name: Install smoke (${{ matrix.os }})

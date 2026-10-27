@@ -7,6 +7,17 @@ Install OpenCode Team into your OpenCode configuration so you can use it in any 
 - [OpenCode](https://opencode.ai) 1.x (tested on 1.19.0)
 - An OpenCode Zen account or any provider configured in opencode — the defaults use free-tier models
 
+## Platform support
+
+| Platform | Status |
+|----------|--------|
+| macOS | Supported |
+| Linux | Supported |
+| Windows (native) | Not supported yet |
+| Windows (WSL) | Untested |
+
+`install.sh` is Bash and creates symlinks. Native Windows needs a separate installer and CI coverage; neither exists yet.
+
 ## Install
 
 Clone the repository and run the installer:
@@ -66,7 +77,7 @@ Verify the installation:
 ./install.sh --check
 ```
 
-This exits non-zero when a symlink is missing or a required setting is not configured.
+This exits non-zero when a symlink is missing. A missing `default_agent` is shown as a hint, not a failure.
 
 ## Uninstall
 
@@ -108,7 +119,7 @@ Run the check:
 ./install.sh --check
 ```
 
-It exits non-zero when a symlink is missing or a required setting is not configured. Restart `opencode` after linking; the config is read at startup.
+It exits non-zero when a symlink is missing. A missing `default_agent` is a hint, not a failure. Restart `opencode` after linking; the config is read at startup.
 
 ### The orchestrator is not the default agent
 

@@ -231,14 +231,16 @@ Example:
 
 ## Compaction
 
-Run at a gate, with no subagents running. The orchestrator runs `scripts/memory-compact.sh` to perform compaction:
+Run at a gate, with no subagents running. From the project root, the orchestrator runs the installed `~/.config/opencode/skills/team-memory/memory-compact.sh` for the mechanical parts (repo contributors can run `skills/team-memory/memory-compact.sh`).
 
-- **Log over 40 entries:** the script moves old entries to `archive/<role>-YYYY-MM.md`, promotes durable facts to `INDEX.md`, keeps the last 10 entries. A compacted log is normally 10 entries; it grows again as new entries are appended. Do not pad it back to 40.
+- **Log over 40 entries:** the script moves old entries to `archive/<role>-YYYY-MM.md` and keeps the last 10 entries. A compacted log is normally 10 entries; it grows again as new entries are appended. Do not pad it back to 40. The script does not promote facts; the orchestrator does that.
 - **What goes where:** the archive keeps the original line as the historical record; `INDEX.md` gets a concise fact, not a copy of the whole line.
-- **Index over 60 lines:** the script merges duplicates, moves detail into a decision file, simplifies `open`.
+- **Index over 60 lines:** the script removes exact duplicate lines. If unique lines still exceed 60, it stops with the line count and leaves the file unchanged. Merge facts, move detail into a decision file, or shorten `open`, then rerun. This semantic step is the orchestrator's job.
 - **Decision files:** never delete; supersede.
 - **Archive:** never read automatically; search only when needed.
 - **Another session:** do not compact while another session may be writing memory. The orchestrator cannot detect a direct invocation in another terminal.
+
+`scripts/test-memory-compact.sh` covers the empty-log, repeated-archive, index-cap and default-project-path cases.
 
 ## Content rules
 

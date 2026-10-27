@@ -53,7 +53,7 @@ OpenCode Team is a **software team** you install once and use in every project. 
 
 - **14 agent roles** — analyst, pm, po, ux, brand, architect, fe, be, qa, devops, security, marketing, docs, and an orchestrator that routes work between them
 - **12 pipeline stages** — configured in `team.yaml`, not hardcoded, so you can add, remove, or reorder stages freely
-- **13 skills** — one methodology per stage, all local under `skills/team-*`; no external skill is cloned or required
+- **13 skills** — 12 stage methodologies plus `team-memory`, all local under `skills/team-*`; no external skill is cloned or required
 - **19 slash commands** — run a single stage directly, or drive the whole pipeline
 
 The orchestrator is the **default agent**. Open `opencode` anywhere, describe an idea, and the team takes it stage by stage, asking for your approval at each gate.
@@ -61,6 +61,8 @@ The orchestrator is the **default agent**. Open `opencode` anywhere, describe an
 ## Install
 
 Requires OpenCode 1.x (tested on 1.19.0). OpenCode 2 support is planned as a separate release. There is no tagged release yet; `main` is the development branch.
+
+Supported on macOS and Linux. Native Windows is **not supported yet**: `install.sh` is Bash and uses symlinks. WSL is untested.
 
 ```bash
 git clone https://github.com/sametcelikbicak/opencode-team.git
@@ -276,7 +278,7 @@ The full documentation site is hosted at [sametcelikbicak.github.io/opencode-tea
 - [Pipeline & Gates](./docs/pipeline.md) — how stages and gates work
 - [Agent reference](./docs/reference/agents.md) — all 14 roles
 - [Command reference](./docs/reference/commands.md) — all 19 slash commands
-- [Skill reference](./docs/reference/skills.md) — all 13 methodology skills
+- [Skill reference](./docs/reference/skills.md) — all 13 skills
 - [Stage reference](./docs/reference/stages.md) — all 12 pipeline stages
 - [Memory](./docs/memory.md) — project-local agent memory
 - [FAQ](./docs/faq.md) — common questions

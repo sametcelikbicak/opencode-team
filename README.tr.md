@@ -53,7 +53,7 @@ OpenCode Team, bir kez kurup **her projede** kullanabileceğiniz bir yazılım e
 
 - **14 rol ajanı** — analist, pm, po, ux, marka, architect, fe, be, qa, devops, security, marketing, docs ve bunları birbirine bağlayan orkestratör
 - **12 aşamalı boru hattı** — `team.yaml` içinde tanımlı, kodda gömülü değil; aşama ekleyip çıkarabilir, sıralamayı değiştirebilirsiniz
-- **13 yetenek (skill)** — her aşama için bir yöntem, tamamı `skills/team-*` altında yerel; harici skill klonlanmaz veya gerekmez
+- **13 yetenek (skill)** — 12 aşama yöntemi ve `team-memory`, tamamı `skills/team-*` altında yerel; harici skill klonlanmaz veya gerekmez
 - **19 slash komutu** — tek aşamayı doğrudan çalıştırın veya tüm boru hattını sürün
 
 Orkestratör **varsayılan ajandır**. Herhangi bir dizinde `opencode` açın, fikrinizi söyleyin; ekip aşama aşama ilerler ve her kapıda onayınızı bekler.
@@ -61,6 +61,8 @@ Orkestratör **varsayılan ajandır**. Herhangi bir dizinde `opencode` açın, f
 ## Kurulum
 
 OpenCode 1.x gerektirir (1.19.0 ile test edildi). OpenCode 2 desteği ayrı bir sürüm olarak planlanıyor. Henüz etiketli sürüm yok; geliştirme `main` üzerinde devam ediyor.
+
+macOS ve Linux desteklenir. Yerel Windows **henüz desteklenmiyor**: `install.sh` Bash kullanır ve symlink oluşturur. WSL test edilmedi.
 
 ```bash
 git clone https://github.com/sametcelikbicak/opencode-team
