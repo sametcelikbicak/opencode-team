@@ -87,3 +87,33 @@ OpenCode Team, I want to build a task manager web app.
 ```
 
 The orchestrator will start the pipeline and ask for your approval at each gate.
+
+## Troubleshooting
+
+### `opencode: command not found`
+
+The installer only links files when OpenCode is already on your PATH. To install OpenCode 1.x first:
+
+```bash
+./install.sh --install-opencode
+```
+
+OpenCode 1 and 2 cannot coexist. The flag replaces an existing OpenCode 2 binary.
+
+### Agents or commands are missing after install
+
+Run the check:
+
+```bash
+./install.sh --check
+```
+
+It exits non-zero when a symlink is missing or a required setting is not configured. Restart `opencode` after linking; the config is read at startup.
+
+### The orchestrator is not the default agent
+
+`install.sh` never edits `opencode.json`. Add `default_agent` and the `instructions` entries from [Manual setup](#manual-setup), then restart `opencode`.
+
+### A change in the repo does not show up
+
+The config directory holds symlinks, not copies. Run `./install.sh --check` to confirm the targets. If the repository moved, rerun `./install.sh` from the new path.
