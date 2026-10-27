@@ -6,17 +6,17 @@ The 14 agent roles defined in `agents/*.md`. Edit the agent file, not this page.
 
 | Agent | Description | Mode | Model |
 | --- | --- | --- | --- |
-| `analyst` | Market research, competitor analysis, user research | `all` | `opencode/beam-free` |
-| `architect` | Software Architect: system design, architecture, data model | `all` | `opencode/deepseek-v4.1-flash-free` |
-| `be` | Senior Backend Developer: API, database, business logic, testing | `all` | `opencode/deepseek-v4.1-flash-free` |
-| `brand` | Brand and logo designer. Runs the team-brand skill end to end: brief, concepts, SVG construction, testing, colour, lockups, favicon set and brand guidelines. | `all` | `opencode/deepseek-v4.1-flash-free` |
-| `devops` | DevOps: CI/CD, deployment, infrastructure, release management | `all` | `opencode/deepseek-v4.1-flash-free` |
-| `docs` | Technical Writer: README, API docs, user guides, release notes | `all` | `opencode/deepseek-v4.1-flash-free` |
-| `fe` | Senior Frontend Developer: UI implementation, React, Vue, HTML/CSS | `all` | `opencode/deepseek-v4.1-flash-free` |
-| `marketing` | Marketing: positioning, copywriting, launch strategy, go-to-market | `all` | `opencode/nemotron-3-ultra-free` |
-| `orchestrator` | OpenCode Team orchestrator. Routes ideas through the team pipeline: research → PRD → backlog → UX → brand → architecture → build → QA → security → docs → release → launch. | `all` | `opencode/deepseek-v4.1-flash-free` |
-| `pm` | Product Manager: PRD, epics, user stories, acceptance criteria | `all` | `opencode/beam-free` |
-| `po` | Product Owner: backlog, epics, stories, prioritization | `all` | `opencode/beam-free` |
-| `qa` | QA Engineer: test strategy, QA test generation, test execution | `all` | `opencode/deepseek-v4.1-flash-free` |
-| `security` | Security Engineer: security audits, vulnerability assessment, security testing | `all` | `opencode/deepseek-v4.1-flash-free` |
-| `ux` | UX Designer: user flows, wireframes, information architecture, accessibility | `all` | `opencode/beam-free` |
+| `analyst` | Market research, competitor analysis, user research | `all` | — |
+| `architect` | Software Architect: system design, architecture, data model | `all` | — |
+| `be` | Senior Backend Developer: API, database, business logic, testing | `all` | — |
+| `brand` | Brand and logo designer. Runs the team-brand skill end to end: brief, concepts, SVG construction, testing, colour, lockups, favicon set and brand guidelines. | `all` | — |
+| `devops` | DevOps: CI/CD, deployment, infrastructure, release management | `all` | — |
+| `docs` | Technical Writer: README, API docs, user guides, release notes | `all` | — |
+| `fe` | Senior Frontend Developer: UI implementation, React, Vue, HTML/CSS | `all` | — |
+| `marketing` | Marketing: positioning, copywriting, launch strategy, go-to-market | `all` | — |
+| `orchestrator` | OpenCode Team orchestrator. Routes ideas through the team pipeline: research → PRD → backlog → UX → brand → architecture → build → QA → security → docs → release → launch. | `all` | — |
+| `pm` | Product Manager: PRD, epics, user stories, acceptance criteria | `all` | — |
+| `po` | Product Owner: backlog, epics, stories, prioritization | `all` | — |
+| `qa` | QA Engineer: test strategy, QA test generation, test execution | `all` | — |
+| `security` | Security Engineer: security audits, vulnerability assessment, security testing | `all` | — |
+| `ux` | UX Designer: user flows, wireframes, information architecture, accessibility | `all` | — |
