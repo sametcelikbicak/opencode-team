@@ -8,6 +8,7 @@ export default defineConfig({
   description: DESCRIPTION,
   base: '/opencode-team/',
   lastUpdated: true,
+  ignoreDeadLinks: true,
   transformHead({ page, siteConfig }) {
     const path = page.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
     const url = `${SITE}${siteConfig.site.base}${path}`

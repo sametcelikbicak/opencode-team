@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "A team of AI agents that takes an idea from research to launch — built on opencode, with no framework and no extra dependencies.",
   "private": true,
+  "type": "module",
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
