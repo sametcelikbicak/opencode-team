@@ -10,7 +10,6 @@ export default withMermaid(
     description: DESCRIPTION,
     base: '/opencode-team/',
     lastUpdated: true,
-    ignoreDeadLinks: true,
     transformHead({ page, siteConfig }) {
       const path = page.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
       const url = `${SITE}${siteConfig.site.base}${path}`
@@ -47,9 +46,7 @@ export default withMermaid(
         ]},
         { text: 'Reference', items: [
           { text: 'Agents', link: '/agents' },
-          { text: 'Commands', link: '/commands/' },
-          { text: 'Skills', link: '/skills/' },
-          { text: 'Stages', link: '/stages' },
+          { text: 'Commands', link: '/commands' },
           { text: 'Memory', link: '/memory' },
           { text: 'FAQ', link: '/faq' },
         ]},
@@ -70,9 +67,7 @@ export default withMermaid(
             text: 'Reference',
             items: [
               { text: 'Agents', link: '/agents' },
-              { text: 'Commands', link: '/commands/' },
-              { text: 'Skills', link: '/skills/' },
-              { text: 'Stages', link: '/stages' },
+              { text: 'Commands', link: '/commands' },
               { text: 'FAQ', link: '/faq' },
             ],
           },

@@ -72,9 +72,7 @@ opencode
 - [Pipeline & Gates](./pipeline) — how stages and gates work
 - [Customization](./customization) — add agents, commands, skills
 - [Agents](./agents) — all 14 roles
-- [Commands](./commands/) — all 19 slash commands
-- [Skills](./skills/) — all 13 methodology skills *(coming soon)*
-- [Stages](./stages) — all 12 pipeline stages *(coming soon)*
+- [Commands](./commands) — all 19 slash commands
 - [Memory](./memory) — project-local agent memory
 - [FAQ](./faq) — common questions
 
