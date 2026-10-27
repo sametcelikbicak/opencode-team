@@ -96,13 +96,12 @@ const config = withMermaid(
   }),
 )
 
-// The plugin hardcodes `debug` (not installed on mermaid 11) and misses fastdom,
-// which the mermaid core imports as CJS. Without prebundling, the dev server
-// serves fastdom raw and the browser throws "does not provide an export named default".
+// The plugin hardcodes `debug` (not installed) and misses elkjs, which mermaid
+// imports as CJS. Without prebundling, the dev server serves elkjs raw and the
+// browser throws "does not provide an export named default".
 config.vite.optimizeDeps.include = [
   ...(config.vite.optimizeDeps.include || []).filter((dep) => dep !== 'debug'),
-  'fastdom',
-  'fastdom/extensions/fastdom-promised.js',
+  'elkjs/lib/elk.bundled.js',
 ]
 
 export default config

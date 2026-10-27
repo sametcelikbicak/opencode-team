@@ -102,7 +102,7 @@ The docs build runs the generator first. CI regenerates the pages and fails when
 
 `docs/` is a VitePress site deployed by `.github/workflows/docs.yml` to GitHub Pages on every push to `main`. Configure the repository once: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
-`mermaid` is pinned to 11 because `vitepress-plugin-mermaid` does not support 12. The config also prebundles `fastdom`; without it the dev server serves the CJS module raw and the page goes blank. Do not bump `mermaid` without testing both `npm run docs:dev` and `npm run docs:build`.
+`mermaid` is on 12 while `vitepress-plugin-mermaid@2.0.17` still declares `10 || 11`. `.npmrc` sets `legacy-peer-deps=true` until the plugin updates. The config prebundles `elkjs`; without it the dev server serves the CJS module raw and logs a module error. Do not bump Mermaid or drop `.npmrc` without testing both `npm run docs:dev` and `npm run docs:build`.
 
 ## Commit and PR
 
