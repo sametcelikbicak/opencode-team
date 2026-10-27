@@ -4,7 +4,7 @@ import { withMermaid } from 'vitepress-plugin-mermaid'
 const SITE = 'https://sametcelikbicak.github.io'
 const DESCRIPTION = 'A team of AI agents that takes an idea from research to launch — built on opencode, with no framework and no extra dependencies.'
 
-export default withMermaid(
+const config = withMermaid(
   defineConfig({
     title: 'OpenCode Team',
     description: DESCRIPTION,
@@ -90,3 +90,14 @@ export default withMermaid(
     },
   }),
 )
+
+// The plugin hardcodes `debug` (not installed on mermaid 11) and misses fastdom,
+// which the mermaid core imports as CJS. Without prebundling, the dev server
+// serves fastdom raw and the browser throws "does not provide an export named default".
+config.vite.optimizeDeps.include = [
+  ...(config.vite.optimizeDeps.include || []).filter((dep) => dep !== 'debug'),
+  'fastdom',
+  'fastdom/extensions/fastdom-promised.js',
+]
+
+export default config
