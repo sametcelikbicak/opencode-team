@@ -12,6 +12,5 @@
   <circle cx="24" cy="64" r="4" fill="#F6F7F2"/>
   <circle cx="71" cy="64" r="4" fill="#F6F7F2"/>
   </g>
-  <text x="132" y="108" fill="#F6F7F2" font-family="Manrope, Arial, sans-serif" font-size="68" font-weight="800" letter-spacing="-4">OpenCode</text>
-  <text x="451" y="108" fill="#B7FF5A" font-family="Manrope, Arial, sans-serif" font-size="68" font-weight="800" letter-spacing="-4">Team</text>
+  <text x="132" y="108" fill="#F6F7F2" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="800" letter-spacing="-4">OpenCode <tspan fill="#B7FF5A">Team</tspan></text>
 </svg>
