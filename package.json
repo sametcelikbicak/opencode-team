@@ -10,6 +10,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
+    "mermaid": "^12.2.0",
     "vitepress": "^1.6.4",
     "vitepress-plugin-mermaid": "^2.0.17"
   },
