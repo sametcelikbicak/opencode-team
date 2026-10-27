@@ -15,3 +15,6 @@ research/
 docs/.vitepress/dist/
 docs/.vitepress/cache/
 docs/.vitepress/.temp/
+
+# Node
+node_modules/
