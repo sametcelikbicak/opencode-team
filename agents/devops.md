@@ -2,7 +2,6 @@
 name: devops
 description: "DevOps: CI/CD, deployment, infrastructure, release management"
 mode: all
-model: opencode/deepseek-v4.1-flash-free
 temperature: 0.1
 color: "#56CCF2"
 permission:

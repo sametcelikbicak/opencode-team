@@ -2,7 +2,6 @@
 name: marketing
 description: "Marketing: positioning, copywriting, launch strategy, go-to-market"
 mode: all
-model: opencode/nemotron-3-ultra-free
 temperature: 0.6
 color: "#F2C94C"
 permission:

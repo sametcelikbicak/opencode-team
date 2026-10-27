@@ -2,7 +2,6 @@
 name: pm
 description: "Product Manager: PRD, epics, user stories, acceptance criteria"
 mode: all
-model: opencode/beam-free
 temperature: 0.3
 color: "#E0A458"
 permission:

@@ -4,6 +4,14 @@
 
 <h1 align="center">OpenCode Team</h1>
 
+<p align="center">
+  <a href="https://github.com/sametcelikbicak/opencode-team/actions/workflows/checks.yml"><img src="https://img.shields.io/github/actions/workflow/status/sametcelikbicak/opencode-team/checks.yml?label=checks&branch=main" alt="CI checks"></a>
+  <a href="https://github.com/sametcelikbicak/opencode-team/actions/workflows/docs.yml"><img src="https://img.shields.io/github/actions/workflow/status/sametcelikbicak/opencode-team/docs.yml?label=docs&branch=main" alt="Docs"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT"></a>
+  <a href="https://github.com/sametcelikbicak/opencode-team/stargazers"><img src="https://img.shields.io/github/stars/sametcelikbicak/opencode-team?style=social" alt="Stars"></a>
+  <a href="https://opencode.ai"><img src="https://img.shields.io/badge/OpenCode-1.x-blue?logo=opencode" alt="OpenCode 1.x"></a>
+</p>
+
 A team of AI agents that takes an idea from research to launch — built on [opencode](https://opencode.ai), with no framework and no extra dependencies.
 
 <p align="center">
@@ -168,26 +176,35 @@ Pipeline control:
 
 ## The team
 
-| Role         | Agent file               | Model                               | Writes                     |
-| ------------ | ------------------------ | ----------------------------------- | -------------------------- |
-| Orchestrator | `agents/orchestrator.md` | `opencode/deepseek-v4.1-flash-free` | — (routes work)            |
-| Analyst      | `agents/analyst.md`      | `opencode/beam-free`                | `.team/01-research.md`     |
-| PM           | `agents/pm.md`           | `opencode/beam-free`                | `.team/02-prd.md`          |
-| PO           | `agents/po.md`           | `opencode/beam-free`                | `.team/03-backlog.md`      |
-| UX Designer  | `agents/ux.md`           | `opencode/beam-free`                | `.team/04-ux.md`           |
-| Brand        | `agents/brand.md`        | `opencode/deepseek-v4.1-flash-free` | `.team/05-brand.md`        |
-| Architect    | `agents/architect.md`    | `opencode/deepseek-v4.1-flash-free` | `.team/06-architecture.md` |
-| Frontend     | `agents/fe.md`           | `opencode/deepseek-v4.1-flash-free` | `.team/07-build.md`        |
-| Backend      | `agents/be.md`           | `opencode/deepseek-v4.1-flash-free` | `.team/07-build.md`        |
-| QA           | `agents/qa.md`           | `opencode/deepseek-v4.1-flash-free` | `.team/08-qa.md`           |
-| Security     | `agents/security.md`     | `opencode/deepseek-v4.1-flash-free` | `.team/09-security.md`     |
-| Docs         | `agents/docs.md`         | `opencode/deepseek-v4.1-flash-free` | `.team/10-docs.md`         |
-| DevOps       | `agents/devops.md`       | `opencode/deepseek-v4.1-flash-free` | `.team/11-release.md`      |
-| Marketing    | `agents/marketing.md`    | `opencode/nemotron-3-ultra-free`    | `.team/12-launch.md`       |
+| Role         | Agent file               | Writes                     |
+| ------------ | ------------------------ | -------------------------- |
+| Orchestrator | `agents/orchestrator.md` | — (routes work)            |
+| Analyst      | `agents/analyst.md`      | `.team/01-research.md`     |
+| PM           | `agents/pm.md`           | `.team/02-prd.md`          |
+| PO           | `agents/po.md`           | `.team/03-backlog.md`      |
+| UX Designer  | `agents/ux.md`           | `.team/04-ux.md`           |
+| Brand        | `agents/brand.md`        | `.team/05-brand.md`        |
+| Architect    | `agents/architect.md`    | `.team/06-architecture.md` |
+| Frontend     | `agents/fe.md`           | `.team/07-build.md`        |
+| Backend      | `agents/be.md`           | `.team/07-build.md`        |
+| QA           | `agents/qa.md`           | `.team/08-qa.md`           |
+| Security     | `agents/security.md`     | `.team/09-security.md`     |
+| Docs         | `agents/docs.md`         | `.team/10-docs.md`         |
+| DevOps       | `agents/devops.md`       | `.team/11-release.md`      |
+| Marketing    | `agents/marketing.md`    | `.team/12-launch.md`       |
 
 All agents are `mode: all`, so each one is reachable three ways: **Tab / Shift+Tab** to cycle, **`@agent-name`** to mention, and the orchestrator can launch it as a subagent via the `task` tool.
 
-Models are free-tier OpenCode Zen models. The defaults were picked by benchmarking: `deepseek-v4.1-flash-free` was the only model that produced fully working code in the test suite (9.5–10.5/10, supports image input), `beam-free` is fast and text-only, `nemotron-3-ultra-free` writes the best Turkish copy. Override any of them in the agent file.
+Models are free-tier OpenCode Zen models. Agent frontmatter no longer pins a model — each agent uses the session's active model (set in `~/.config/opencode/opencode.json` via `default_model`). To assign a specific model to a single agent, add a `model:` field to that agent's frontmatter, e.g.:
+
+```yaml
+---
+name: marketing
+model: opencode/nemotron-3-ultra-free
+---
+```
+
+Benchmark picks: `deepseek-v4.1-flash-free` (code, image input), `beam-free` (fast, text-only), `nemotron-3-ultra-free` (Turkish copy).
 
 ## Output convention
 

@@ -4,6 +4,14 @@
 
 <h1 align="center">OpenCode Team</h1>
 
+<p align="center">
+  <a href="https://github.com/sametcelikbicak/opencode-team/actions/workflows/checks.yml"><img src="https://img.shields.io/github/actions/workflow/status/sametcelikbicak/opencode-team/checks.yml?label=checks&branch=main" alt="CI checks"></a>
+  <a href="https://github.com/sametcelikbicak/opencode-team/actions/workflows/docs.yml"><img src="https://img.shields.io/github/actions/workflow/status/sametcelikbicak/opencode-team/docs.yml?label=docs&branch=main" alt="Docs"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT"></a>
+  <a href="https://github.com/sametcelikbicak/opencode-team/stargazers"><img src="https://img.shields.io/github/stars/sametcelikbicak/opencode-team?style=social" alt="Yıldız"></a>
+  <a href="https://opencode.ai"><img src="https://img.shields.io/badge/OpenCode-1.x-blue?logo=opencode" alt="OpenCode 1.x"></a>
+</p>
+
 Fikri araştırmadan lansmana kadar götüren bir yapay zekâ ajan ekibi — [opencode](https://opencode.ai) üzerine kurulu, framework ve ek bağımlılık yok.
 
 <p align="center">
@@ -168,26 +176,35 @@ Boru hattı kontrolü:
 
 ## Ekip
 
-| Rol            | Ajan dosyası             | Model                               | Yazdığı çıktı              |
-| -------------- | ------------------------ | ----------------------------------- | -------------------------- |
-| Orkestratör    | `agents/orchestrator.md` | `opencode/deepseek-v4.1-flash-free` | — (işi dağıtır)            |
-| Analist        | `agents/analyst.md`      | `opencode/beam-free`                | `.team/01-research.md`     |
-| PM             | `agents/pm.md`           | `opencode/beam-free`                | `.team/02-prd.md`          |
-| PO             | `agents/po.md`           | `opencode/beam-free`                | `.team/03-backlog.md`      |
-| UX Tasarımcısı | `agents/ux.md`           | `opencode/beam-free`                | `.team/04-ux.md`           |
-| Marka          | `agents/brand.md`        | `opencode/deepseek-v4.1-flash-free` | `.team/05-brand.md`        |
-| Mimar          | `agents/architect.md`    | `opencode/deepseek-v4.1-flash-free` | `.team/06-architecture.md` |
-| Frontend       | `agents/fe.md`           | `opencode/deepseek-v4.1-flash-free` | `.team/07-build.md`        |
-| Backend        | `agents/be.md`           | `opencode/deepseek-v4.1-flash-free` | `.team/07-build.md`        |
-| QA             | `agents/qa.md`           | `opencode/deepseek-v4.1-flash-free` | `.team/08-qa.md`           |
-| Güvenlik       | `agents/security.md`     | `opencode/deepseek-v4.1-flash-free` | `.team/09-security.md`     |
-| Doküman        | `agents/docs.md`         | `opencode/deepseek-v4.1-flash-free` | `.team/10-docs.md`         |
-| DevOps         | `agents/devops.md`       | `opencode/deepseek-v4.1-flash-free` | `.team/11-release.md`      |
-| Pazarlama      | `agents/marketing.md`    | `opencode/nemotron-3-ultra-free`    | `.team/12-launch.md`       |
+| Rol            | Ajan dosyası             | Yazdığı çıktı              |
+| -------------- | ------------------------ | -------------------------- |
+| Orkestratör    | `agents/orchestrator.md` | — (işi dağıtır)            |
+| Analist        | `agents/analyst.md`      | `.team/01-research.md`     |
+| PM             | `agents/pm.md`           | `.team/02-prd.md`          |
+| PO             | `agents/po.md`           | `.team/03-backlog.md`      |
+| UX Tasarımcısı | `agents/ux.md`           | `.team/04-ux.md`           |
+| Marka          | `agents/brand.md`        | `.team/05-brand.md`        |
+| Mimar          | `agents/architect.md`    | `.team/06-architecture.md` |
+| Frontend       | `agents/fe.md`           | `.team/07-build.md`        |
+| Backend        | `agents/be.md`           | `.team/07-build.md`        |
+| QA             | `agents/qa.md`           | `.team/08-qa.md`           |
+| Güvenlik       | `agents/security.md`     | `.team/09-security.md`     |
+| Doküman        | `agents/docs.md`         | `.team/10-docs.md`         |
+| DevOps         | `agents/devops.md`       | `.team/11-release.md`      |
+| Pazarlama      | `agents/marketing.md`    | `.team/12-launch.md`       |
 
 Tüm ajanlar `mode: all` ile tanımlıdır — böylece her birine üç yoldan ulaşabilirsiniz: **Tab / Shift+Tab** ile gezinme, **`@agent-adi`** ile bahsetme, **`/komut`** ile çağırma.
 
-Modeller OpenCode Zen'in ücretsiz katmanındandır. Varsayılanlar benchmark ile seçildi: `deepseek-v4.1-flash-free` test setinde tam çalışan kod üreten tek modeldi (9,5–10,5/10, görüntü desteği var), `beam-free` hızlı ve metin-only, `nemotron-3-ultra-free` en iyi Türkçe metni yazıyor. Ajan dosyasından istediğinizi değiştirebilirsiniz.
+Modeller OpenCode Zen'in ücretsiz katmanındandır. Ajan ön yüzünde artık model sabitlenmiyor — her ajan oturumun aktif modelini kullanır (`~/.config/opencode/opencode.json` dosyasındaki `default_model` ile ayarlanır). Tek bir ajana özel model atamak için o ajanın ön yüzüne `model:` alanı ekleyin, örneğin:
+
+```yaml
+---
+name: marketing
+model: opencode/nemotron-3-ultra-free
+---
+```
+
+Benchmark seçimi: `deepseek-v4.1-flash-free` (kod, görüntü girişi), `beam-free` (hızlı, sadece metin), `nemotron-3-ultra-free` (Türkçe metin).
 
 ## Çıktı konvansiyonu
 

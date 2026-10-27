@@ -2,7 +2,6 @@
 name: security
 description: "Security Engineer: security audits, vulnerability assessment, security testing"
 mode: all
-model: opencode/deepseek-v4.1-flash-free
 temperature: 0.1
 color: "#EB5757"
 permission:

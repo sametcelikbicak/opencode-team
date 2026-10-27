@@ -2,7 +2,6 @@
 name: be
 description: "Senior Backend Developer: API, database, business logic, testing"
 mode: all
-model: opencode/deepseek-v4.1-flash-free
 temperature: 0.1
 color: "#9B8AFB"
 permission:
