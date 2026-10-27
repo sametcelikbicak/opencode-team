@@ -47,7 +47,7 @@ jobs:
         run: git diff --exit-code -- docs/reference
 
   shell:
-    name: Shell syntax, lint and memory compaction
+    name: Shell syntax and lint
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
