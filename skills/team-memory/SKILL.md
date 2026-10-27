@@ -231,11 +231,11 @@ Example:
 
 ## Compaction
 
-Run at a gate, with no subagents running:
+Run at a gate, with no subagents running. The orchestrator runs `scripts/memory-compact.sh` to perform compaction:
 
-- **Log over 40 entries:** move old entries to `archive/<role>-YYYY-MM.md`, promote durable facts to `INDEX.md`, keep the last 10 entries. A compacted log is normally 10 entries; it grows again as new entries are appended. Do not pad it back to 40.
+- **Log over 40 entries:** the script moves old entries to `archive/<role>-YYYY-MM.md`, promotes durable facts to `INDEX.md`, keeps the last 10 entries. A compacted log is normally 10 entries; it grows again as new entries are appended. Do not pad it back to 40.
 - **What goes where:** the archive keeps the original line as the historical record; `INDEX.md` gets a concise fact, not a copy of the whole line.
-- **Index over 60 lines:** merge duplicates, move detail into a decision file, simplify `open`.
+- **Index over 60 lines:** the script merges duplicates, moves detail into a decision file, simplifies `open`.
 - **Decision files:** never delete; supersede.
 - **Archive:** never read automatically; search only when needed.
 - **Another session:** do not compact while another session may be writing memory. The orchestrator cannot detect a direct invocation in another terminal.
