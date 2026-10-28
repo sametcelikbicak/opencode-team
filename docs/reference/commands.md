@@ -9,7 +9,7 @@ The 19 slash commands defined in `commands/*.md`. Edit the command file, not thi
 | `/architecture` | Design the technical architecture. Write the output to .team/06-architecture.md. First read .team/02-prd.md and .team/04-ux.md. | `architect` |
 | `/backlog` | Break the PRD down into work items. Write the output to .team/03-backlog.md. First read .team/02-prd.md. | `po` |
 | `/brand` | With the team-brand skill: concept -> SVG -> test -> color -> favicon set -> guidelines. | `brand` |
-| `/build` | Run the build stage: call the frontend and backend agents according to the brief of the build stage in team.yaml, and write the output to .team/07-build.md. | `orchestrator` |
+| `/build` | Run the build stage: call the frontend and backend agents according to the brief in team.yaml. Each writes a specialist report; consolidate them into .team/07-build.md only after every requested specialist finishes successfully. | `orchestrator` |
 | `/docs` | Write technical documentation. Write the output to .team/10-docs.md. | `docs` |
 | `/launch` | Write the marketing and launch plan. Write the output to .team/12-launch.md. | `marketing` |
 | `/memory` | Inspect, seed, or compact project-local agent memory. | `orchestrator` |

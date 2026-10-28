@@ -126,7 +126,10 @@ stages:
     support: [be]
     brief: >
       Implement the approved architecture. Tests are written first. Frontend and
-      backend work can run in parallel; merge once both are done.
+      backend work can run in parallel. Each specialist writes its own report
+      (.team/07-build-fe.md, .team/07-build-be.md); the orchestrator consolidates
+      them into .team/07-build.md only after every requested specialist finishes
+      successfully.
 
   - id: qa
     title: Testing and quality assurance

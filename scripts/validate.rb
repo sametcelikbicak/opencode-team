@@ -65,6 +65,25 @@ files.each do |path|
   end
 end
 
+# --- one writer per stage artifact ---
+# Write paths live in prose. Flag two roles being told to write the same .team
+# artifact; parallel specialists would otherwise overwrite each other.
+writes = Hash.new { |h, k| h[k] = [] }
+Dir[File.join(ROOT, "agents/*.md")].sort.each do |path|
+  role = File.basename(path, ".md")
+  File.readlines(path).each do |line|
+    next if line.match?(/do not write/i)
+    next unless line.match?(/\bwrite\b/i)
+
+    line.scan(/\.team\/\d{2}-[a-z-]+\.md/i) { |artifact| writes[artifact] << role }
+  end
+end
+writes.each do |artifact, roles|
+  next if roles.uniq.size < 2
+
+  errors << "agents/*.md: #{roles.uniq.join(", ")} all write #{artifact}; use one writer per artifact"
+end
+
 # --- skills ---
 skills.each do |path|
   rel = path.sub("#{ROOT}/", "")

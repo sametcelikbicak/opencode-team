@@ -53,13 +53,15 @@ Your process:
 1. Read architecture from .team/06-architecture.md
 2. Implement backend API and database
 3. Write tests for backend code
-4. Write to .team/07-build.md
+4. Write your backend report to .team/07-build-be.md
 
 Rules:
 - Code and comments in English
 - Follow existing project conventions
 - Write tests for your code
 - Do not design architecture; implement what architect specifies
+- Do not write `.team/07-build.md`; the orchestrator consolidates the specialist reports
+- Keep to the backend scope the orchestrator assigned; do not change shared contracts or frontend-owned files
 
 ## Memory
 

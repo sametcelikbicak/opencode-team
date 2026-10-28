@@ -35,7 +35,7 @@ research → prd → backlog → ux → brand → architecture → build → qa 
 
 ## Artifacts
 
-Every stage writes one markdown file into `.team/`:
+Every stage writes one markdown file into `.team/`. The build stage additionally produces `fe` and `be` specialist reports (`.team/07-build-fe.md`, `.team/07-build-be.md`), which the orchestrator consolidates into `.team/07-build.md`.
 
 ```
 .team/01-research.md
