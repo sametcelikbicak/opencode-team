@@ -70,13 +70,25 @@ The orchestrator is the **default agent**. Open `opencode` anywhere, describe an
 
 Requires OpenCode 1.x (tested on 1.19.0). OpenCode 2 support is planned as a separate release. There is no tagged release yet; `main` is the development branch.
 
-Supported on macOS and Linux. Native Windows is **not supported yet**: `install.sh` is Bash and uses symlinks. WSL is untested.
+Supported on macOS, Linux, and native Windows (Windows PowerShell 5.1 or PowerShell 7; verified with OpenCode 1.19.4). WSL is untested.
+
+On macOS or Linux:
 
 ```bash
 git clone https://github.com/sametcelikbicak/opencode-team.git
 cd opencode-team
 ./install.sh
 ```
+
+On Windows, clone the repository and run the PowerShell installer from an **Administrator PowerShell**:
+
+```powershell
+git clone https://github.com/sametcelikbicak/opencode-team.git
+cd opencode-team
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+PowerShell 7 with Windows Developer Mode enabled can create the symlinks without elevation. The process-scoped `-ExecutionPolicy Bypass` does not change your machine policy. See the [Windows installation guide](docs/install.md#windows) for checks, optional OpenCode installation, and troubleshooting.
 
 If OpenCode is not on your PATH, install it first, or let the installer run the official OpenCode 1.x installer:
 
@@ -100,13 +112,20 @@ Restart opencode. That's it — the setup is global, so it works in every projec
 
 The repo stays in git; the config directory holds symlinks. Edit a file in the repo and it takes effect immediately.
 
-The installer never modifies `opencode.json`. If `default_agent` is not set to `orchestrator`, it prints the recommended snippet and leaves the file alone.
+Neither installer modifies `opencode.json`. If `default_agent` is not set to `orchestrator`, it prints the recommended snippet and leaves the file alone. On Windows the default directory is `%USERPROFILE%\.config\opencode`; both installers honor `OPENCODE_CONFIG_DIR`.
 
 Check or remove the install:
 
 ```bash
 ./install.sh --check
 ./install.sh --uninstall
+```
+
+Windows equivalents (use the same elevated shell or Developer Mode setup):
+
+```powershell
+.\install.ps1 -Check
+.\install.ps1 -Uninstall
 ```
 
 `--check` exits non-zero when a symlink is missing. A missing `default_agent` setting is shown as a hint, not a failure. `--uninstall` removes only symlinks that point into this repo.

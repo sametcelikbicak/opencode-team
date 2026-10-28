@@ -79,3 +79,23 @@ jobs:
       - name: install / check / uninstall
         shell: bash
         run: ./scripts/smoke-install.sh
+
+  smoke-windows:
+    name: Windows smoke (${{ matrix.shell }})
+    runs-on: windows-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        shell: [powershell, pwsh]
+    defaults:
+      run:
+        shell: ${{ matrix.shell }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: install / check / uninstall
+        run: ./scripts/smoke-install.ps1
+      - name: Native memory compaction
+        run: ./scripts/test-memory-compact.ps1

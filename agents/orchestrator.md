@@ -80,7 +80,7 @@ Read `skills/team-memory/SKILL.md` before seeding, dispatching or compacting mem
 1. Confirm no subagents are running.
 2. Read the logs changed during the stage.
 3. Promote durable facts to `INDEX.md`; create a decision file when the stage made a real decision.
-4. Run the installed `~/.config/opencode/skills/team-memory/memory-compact.sh` from the project root to archive old log entries (over 40) and compact `INDEX.md` (over 60 lines). It reads `$PWD/.team/memory` by default.
+4. Run the installed memory compactor from the project root to archive old log entries (over 40) and compact `INDEX.md` (over 60 lines). Resolve the global config root from `OPENCODE_CONFIG_DIR`, otherwise `~/.config/opencode`. On native Windows invoke `powershell.exe -NoProfile -ExecutionPolicy Bypass -File "<config-root>/skills/team-memory/memory-compact.ps1"`; on macOS/Linux invoke `<config-root>/skills/team-memory/memory-compact.sh`. Both default to the current project's `.team/memory`; when `memory_dir` is customized, set `MEMORY_DIR` to that project-resolved path for the helper. See the memory skill for shell-specific examples.
 5. Write the stage transition to `log/orchestrator.md`.
 6. Update `stage` in `INDEX.md` when the user approves the gate and the next stage starts.
 

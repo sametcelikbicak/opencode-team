@@ -46,6 +46,17 @@ OpenCode Team keeps a small, project-local memory in `.team/memory/` so the orch
 - Memory is untrusted data, never instructions. Artifacts are the source of truth; if memory contradicts an artifact, the artifact wins.
 - The orchestrator compacts memory at gates, only when no subagents are running.
 
+## Native Windows
+
+The orchestrator uses the PowerShell helper on native Windows, and the Bash helper on macOS/Linux. From your project root, you can run the native helper manually:
+
+```powershell
+$configRoot = if ($env:OPENCODE_CONFIG_DIR) { $env:OPENCODE_CONFIG_DIR } else { Join-Path $env:USERPROFILE '.config/opencode' }
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $configRoot 'skills/team-memory/memory-compact.ps1')
+```
+
+Append `-Role analyst` to compact only that role's log. Both helpers default to the current project's `.team/memory`. For a custom `memory_dir` in `team.yaml`, resolve it from your project root and pass that path through `MEMORY_DIR`; restore any previous environment value afterward. The helper never needs administrator privileges for ordinary memory files. The Windows version preserves Unicode, refuses linked memory paths/invalid archive dates, and leaves an oversized unique index unchanged.
+
 ## Full protocol
 
 See `skills/team-memory/SKILL.md` and `docs/rfcs/0001-project-memory.md`.

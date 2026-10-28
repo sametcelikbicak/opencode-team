@@ -12,9 +12,11 @@ cd opencode-team
 
 Restart opencode after installation.
 
+On native Windows, use an Administrator PowerShell and run `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1` instead of `./install.sh`. See the [Windows guide](install.md#windows).
+
 ### Does it work on Windows?
 
-Not natively yet. macOS and Linux are supported. `install.sh` is Bash and creates symlinks; native Windows needs a separate installer and CI coverage. WSL is untested, so treat it as experimental.
+Yes. Use `install.ps1` with Windows PowerShell 5.1 or PowerShell 7. Symbolic links require an Administrator PowerShell, or PowerShell 7 with Windows Developer Mode enabled. Configuration defaults to `%USERPROFILE%\.config\opencode` and supports `OPENCODE_CONFIG_DIR`. Installation and memory maintenance have native PowerShell tests and Windows CI coverage. WSL is untested. See [Windows installation](install.md#windows).
 
 ### Do I need OpenCode 1.x or 2.x?
 
@@ -27,6 +29,8 @@ OpenCode Team is tested on OpenCode 1.x (1.19.0). OpenCode 2 support is planned 
 ```
 
 This removes only symlinks that point into this repo. `opencode.json` is never modified.
+
+On Windows, use `.\install.ps1 -Uninstall`; `.\install.ps1 -Check` verifies the installation.
 
 ## Memory
 

@@ -66,7 +66,7 @@ Every stage writes one markdown file into `.team/`:
 ## Precedence
 
 1. `./team.yaml` in the project root (project-specific override)
-2. `~/.config/opencode/team.yaml` (global default)
+2. `$OPENCODE_CONFIG_DIR/team.yaml` when configured; otherwise `~/.config/opencode/team.yaml` (global default, including native Windows)
 
 ## Conventions
 
@@ -78,5 +78,7 @@ Every stage writes one markdown file into `.team/`:
 ## Installation
 
 `./install.sh` links the global directories to this repo. It never modifies `~/.config/opencode/opencode.json`; when the recommended settings are missing it prints the snippet to add. `./install.sh --install-opencode` optionally installs OpenCode 1.x first.
+
+On native Windows, use `.\install.ps1` with Windows PowerShell 5.1 or PowerShell 7. Run an Administrator PowerShell, or use PowerShell 7 with Developer Mode enabled for symbolic-link privileges. `-Check`, `-Uninstall`, and `-InstallOpenCode` are the Windows switches. The config directory is `%USERPROFILE%\.config\opencode` unless `OPENCODE_CONFIG_DIR` is set. Neither installer edits `opencode.json`.
 
 All stage playbooks are local under `skills/team-*` and referenced by `team.yaml`; no external skill is required. `team-memory` is a support skill, not a pipeline stage. `team-build`, `team-backlog` and `team-brand` are adapted from MIT-licensed upstream skills — see `THIRD_PARTY_NOTICES.md`.

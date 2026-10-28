@@ -231,7 +231,16 @@ Example:
 
 ## Compaction
 
-Run at a gate, with no subagents running. From the project root, the orchestrator runs the installed `~/.config/opencode/skills/team-memory/memory-compact.sh` for the mechanical parts (repo contributors can run `skills/team-memory/memory-compact.sh`).
+Run at a gate, with no subagents running, from the target project root. Resolve the installed config root from `OPENCODE_CONFIG_DIR`, otherwise `~/.config/opencode`. Native Windows uses `skills/team-memory/memory-compact.ps1` under that config root; macOS/Linux use `skills/team-memory/memory-compact.sh`. Repo contributors can use the corresponding helper directly from this checkout.
+
+Native Windows, from a PowerShell session:
+
+```powershell
+$configRoot = if ($env:OPENCODE_CONFIG_DIR) { $env:OPENCODE_CONFIG_DIR } else { Join-Path $env:USERPROFILE '.config/opencode' }
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $configRoot 'skills/team-memory/memory-compact.ps1')
+```
+
+Both helpers default to the current project's `.team/memory`, not the installation repo. If `memory_dir` in the project/global `team.yaml` is customized, resolve it from the project root and pass it via `MEMORY_DIR` (PowerShell: `$env:MEMORY_DIR = '<resolved-memory-path>'`; Bash: `MEMORY_DIR='<resolved-memory-path>' <helper.sh>`). Preserve/restore any previous environment value after invocation. An optional role argument restricts log compaction to that role while still checking the index. The Windows helper rejects linked memory paths and malformed archive dates instead of writing through them.
 
 - **Log over 40 entries:** the script moves old entries to `archive/<role>-YYYY-MM.md` and keeps the last 10 entries. A compacted log is normally 10 entries; it grows again as new entries are appended. Do not pad it back to 40. The script does not promote facts; the orchestrator does that.
 - **What goes where:** the archive keeps the original line as the historical record; `INDEX.md` gets a concise fact, not a copy of the whole line.
@@ -240,7 +249,7 @@ Run at a gate, with no subagents running. From the project root, the orchestrato
 - **Archive:** never read automatically; search only when needed.
 - **Another session:** do not compact while another session may be writing memory. The orchestrator cannot detect a direct invocation in another terminal.
 
-`scripts/test-memory-compact.sh` covers the empty-log, repeated-archive, index-cap and default-project-path cases.
+`scripts/test-memory-compact.sh` and the native Windows `scripts/test-memory-compact.ps1` cover empty logs, repeated archives, index caps and default project paths. The Windows suite also checks role filtering, Unicode, monthly archives and unsafe input/link protection.
 
 ## Content rules
 

@@ -22,6 +22,8 @@ npm run docs:dev     # http://localhost:5173/opencode-team/
 
 `install.sh` never edits `opencode.json`. Set `default_agent` and `instructions` yourself (see README).
 
+On native Windows, use `install.ps1` instead of `install.sh`, with `-Check`, `-Uninstall`, or `-InstallOpenCode` as needed. Run in Administrator PowerShell (Windows PowerShell 5.1 or PowerShell 7), or use PowerShell 7 with Developer Mode enabled. If local execution policy blocks scripts, invoke `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1`. Neither installer changes your JSON configuration or machine policy. See [Windows installation](docs/install.md#windows).
+
 ## What you can change
 
 | Area    | Path                     | Frontmatter                          |
@@ -80,6 +82,15 @@ bash -n install.sh scripts/*.sh skills/team-memory/*.sh
 The validator checks frontmatter, filename/name matches, agent and command references, local-only skills, and the required `team.yaml` stage fields. The smoke test installs into a throwaway config directory and covers install, check, uninstall and local-skill collisions. The memory test covers empty logs, repeated archive runs and the `INDEX.md` cap.
 
 CI also runs `shellcheck --severity=error`. It is preinstalled on `ubuntu-latest`; locally, install it with your package manager if you want the same result.
+
+Native Windows tests need symbolic-link privileges and run offline against temporary directories, with fake OpenCode/npm commands:
+
+```powershell
+.\scripts\smoke-install.ps1
+.\scripts\test-memory-compact.ps1
+```
+
+Run both under Windows PowerShell 5.1 and PowerShell 7 when changing native scripts. The `windows-latest` job tests both shells. Ruby is still needed for manifest validation/reference generation, and Node 22+ for the docs build; these are contributor tools, not dependencies of the team installer.
 
 Build the docs before opening a PR that touches `docs/`:
 

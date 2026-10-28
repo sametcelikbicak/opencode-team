@@ -70,13 +70,25 @@ Orkestratör **varsayılan ajandır**. Herhangi bir dizinde `opencode` açın, f
 
 OpenCode 1.x gerektirir (1.19.0 ile test edildi). OpenCode 2 desteği ayrı bir sürüm olarak planlanıyor. Henüz etiketli sürüm yok; geliştirme `main` üzerinde devam ediyor.
 
-macOS ve Linux desteklenir. Yerel Windows **henüz desteklenmiyor**: `install.sh` Bash kullanır ve symlink oluşturur. WSL test edilmedi.
+macOS, Linux ve yerel Windows desteklenir (Windows PowerShell 5.1 veya PowerShell 7; OpenCode 1.19.4 ile doğrulandı). WSL test edilmedi.
+
+macOS veya Linux:
 
 ```bash
 git clone https://github.com/sametcelikbicak/opencode-team
 cd opencode-team
 ./install.sh
 ```
+
+Windows'ta repoyu klonlayın ve kurucuyu **yönetici PowerShell** üzerinden çalıştırın:
+
+```powershell
+git clone https://github.com/sametcelikbicak/opencode-team.git
+cd opencode-team
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+Windows Geliştirici Modu açıkken PowerShell 7 ile yönetici yetkisi olmadan da symlink oluşturulabilir. `-ExecutionPolicy Bypass` yalnızca bu işlem için geçerlidir; makinenin kalıcı politikasını değiştirmez. Kontrol, isteğe bağlı OpenCode kurulumu ve sorun giderme için [Windows kurulum kılavuzuna](docs/install.md#windows) bakın.
 
 OpenCode PATH'te yoksa önce kurun veya kurulum betiğinin resmî OpenCode 1.x kurucusunu çalıştırmasına izin verin:
 
@@ -100,13 +112,20 @@ opencode'u yeniden başlatın. Hepsi bu — kurulum global'dir, her proje dizini
 
 Repo git'te kalır, yapılandırma dizininde symlink bulunur. Repoda bir dosyayı düzenlediğinizde etkisi anında olur.
 
-Kurulum betiği `opencode.json` dosyasını hiçbir zaman değiştirmez. `default_agent` `orchestrator` olarak ayarlı değilse önerilen snippet'i yazdırır, dosyayı olduğu gibi bırakır.
+İki kurucu da `opencode.json` dosyasını hiçbir zaman değiştirmez. `default_agent` `orchestrator` olarak ayarlı değilse önerilen snippet'i yazdırır, dosyayı olduğu gibi bırakır. Windows'ta varsayılan dizin `%USERPROFILE%\.config\opencode` yoludur; iki kurucu da `OPENCODE_CONFIG_DIR` değişkenini kullanabilir.
 
 Kurulumu kontrol etmek veya kaldırmak için:
 
 ```bash
 ./install.sh --check
 ./install.sh --uninstall
+```
+
+Windows karşılıkları (aynı yönetici veya Geliştirici Modu oturumunda):
+
+```powershell
+.\install.ps1 -Check
+.\install.ps1 -Uninstall
 ```
 
 `--check`, bir symlink eksikse sıfır dışı kodla çıkar. Eksik `default_agent` ayarı hata değil, öneri olarak gösterilir. `--uninstall` yalnızca bu repoya işaret eden symlink'leri kaldırır.
