@@ -80,6 +80,7 @@ const config = withMermaid(
             text: 'Memory',
             items: [
               { text: 'Project-Local Memory', link: '/memory' },
+              { text: 'Run Checkpoints', link: '/runs' },
             ],
           },
         ],

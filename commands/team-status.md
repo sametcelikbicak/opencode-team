@@ -8,6 +8,16 @@ Report the status of the software team: which stages are done, which outputs exi
 
 Read team.yaml and the .team/ directory.
 
+## Run checkpoint
+
+Read `.team/runs/` before the artifacts. From the project root, run the helper with `python3` (macOS/Linux) or `python` (Windows):
+
+```bash
+python3 <config-root>/skills/team-memory/run_state.py status
+```
+
+Report running or uncertain attempts, valid or stale approvals, warnings and the next action. If no checkpoint exists, print "no run checkpoint" and do not fail.
+
 ## Memory summary
 
 - `INDEX.md` line count.

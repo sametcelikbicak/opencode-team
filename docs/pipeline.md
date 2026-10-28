@@ -102,3 +102,20 @@ List roles:
 ```bash
 /role
 ```
+
+## Resume after compaction or interruption
+
+The orchestrator keeps a run checkpoint in `.team/runs/`. At session start or after compaction it runs:
+
+```bash
+python3 <config-root>/skills/team-memory/run_state.py status
+```
+
+It reads the run id, stage, task attempts and approvals before planning:
+
+- A running attempt is uncertain; reconcile it against artifacts before retrying.
+- A completed attempt is not rerun because the conversation was shortened.
+- A failed or interrupted attempt is retried explicitly with `retry`.
+- An artifact on disk is not approval; a gate is approved only after `approve` records its hash.
+
+See [Run checkpoints](./runs).

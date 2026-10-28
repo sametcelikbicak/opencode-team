@@ -63,6 +63,15 @@ Every stage writes one markdown file into `.team/`. The build stage additionally
 - If memory is missing, continue; only the orchestrator creates `INDEX.md`.
 - Formats, archiving and thresholds: `skills/team-memory/SKILL.md`.
 
+## Run checkpoints
+
+- The orchestrator records each run and task attempt in `.team/runs/` with `skills/team-memory/run_state.py`.
+- At session start or after compaction, run `run_state.py status` before planning or dispatching.
+- Do not rerun completed attempts. Reconcile running attempts against artifacts; retry failed or interrupted attempts explicitly.
+- Record human approval with `approve`; an artifact on disk is not approval.
+- Never store secrets, transcripts or full tool output in run state.
+- Schema, concurrency and limits: `skills/team-memory/SKILL.md`.
+
 ## Precedence
 
 1. `./team.yaml` in the project root (project-specific override)

@@ -262,6 +262,17 @@ Project-local agent memory also lives under `.team/`:
     <role>-YYYY-MM.md            # compacted old log lines
 ```
 
+Run state sits next to memory:
+
+```
+.team/runs/
+  current                         # latest run id
+  <run_id>/
+    run.json                      # run id, profile, stage, session ids
+    events/                       # append-only task start/finish events
+    approvals/                    # human gates tied to artifact hashes
+```
+
 Plain files in a folder. No database, no framework, fully diffable in git, and a human can step in at any stage.
 
 ## Design notes
@@ -308,6 +319,18 @@ OpenCode Team keeps a small, project-local memory in `.team/memory/` so the orch
 
 Full protocol: `skills/team-memory/SKILL.md` and `docs/rfcs/0001-project-memory.md`.
 
+## Run checkpoints
+
+The orchestrator records each run and task attempt in `.team/runs/`, so a compaction or restart does not repeat completed work or skip unfinished work.
+
+- `run.json` — unique run id, profile, stage and session ids.
+- `events/` — one append-only JSON file per start or finish event.
+- `approvals/` — human gate records tied to the artifact SHA-256.
+
+At session start or after compaction the orchestrator runs `run_state.py status` from `skills/team-memory/` and resolves running, failed or completed attempts before dispatching. A completed task is not rerun; an artifact on disk is not approval.
+
+Full protocol: [`docs/runs.md`](./docs/runs.md).
+
 ## Documentation
 
 The full documentation site is hosted at [sametcelikbicak.github.io/opencode-team/](https://sametcelikbicak.github.io/opencode-team/). It includes:
@@ -319,6 +342,7 @@ The full documentation site is hosted at [sametcelikbicak.github.io/opencode-tea
 - [Skill reference](./docs/reference/skills.md) — all 13 skills
 - [Stage reference](./docs/reference/stages.md) — all 12 pipeline stages
 - [Memory](./docs/memory.md) — project-local agent memory
+- [Run checkpoints](./docs/runs.md) — resume after compaction or interruption
 - [FAQ](./docs/faq.md) — common questions
 
 The site is built from this repository and deployed on every push to `main`.

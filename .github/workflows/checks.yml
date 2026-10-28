@@ -26,6 +26,9 @@ jobs:
       - name: Validate frontmatter and team.yaml
         shell: bash
         run: ruby scripts/validate.rb
+      - name: Run checkpoint tests
+        shell: bash
+        run: python3 scripts/test-run-state.py
 
   reference:
     name: Generated reference
@@ -99,3 +102,5 @@ jobs:
         run: ./scripts/smoke-install.ps1
       - name: Native memory compaction
         run: ./scripts/test-memory-compact.ps1
+      - name: Run checkpoint tests
+        run: python scripts/test-run-state.py

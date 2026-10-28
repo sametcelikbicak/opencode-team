@@ -74,12 +74,15 @@ Run these before opening a PR. CI runs the same:
 
 ```bash
 ruby scripts/validate.rb
+python3 scripts/test-run-state.py
 bash -n install.sh scripts/*.sh skills/team-memory/*.sh
 ./scripts/smoke-install.sh
 ./scripts/test-memory-compact.sh
 ```
 
-The validator checks frontmatter, filename/name matches, agent and command references, local-only skills, and the required `team.yaml` stage fields. The smoke test installs into a throwaway config directory and covers install, check, uninstall and local-skill collisions. The memory test covers empty logs, repeated archive runs and the `INDEX.md` cap.
+The validator checks frontmatter, filename/name matches, agent and command references, local-only skills, and the required `team.yaml` stage fields. The run-state test covers fresh projects, parallel tasks, interruption, retry, completed-task recovery, approval invalidation, malformed JSON and path/secret guards. The smoke test installs into a throwaway config directory and covers install, check, uninstall and local-skill collisions. The memory test covers empty logs, repeated archive runs and the `INDEX.md` cap.
+
+The run-state helper uses only the Python 3 standard library. Python 3 is a contributor/CI tool for this test; the team installer does not require it.
 
 CI also runs `shellcheck --severity=error`. It is preinstalled on `ubuntu-latest`; locally, install it with your package manager if you want the same result.
 
@@ -88,6 +91,7 @@ Native Windows tests need symbolic-link privileges and run offline against tempo
 ```powershell
 .\scripts\smoke-install.ps1
 .\scripts\test-memory-compact.ps1
+python scripts/test-run-state.py
 ```
 
 Run both under Windows PowerShell 5.1 and PowerShell 7 when changing native scripts. The `windows-latest` job tests both shells. Ruby is still needed for manifest validation/reference generation, and Node 22+ for the docs build; these are contributor tools, not dependencies of the team installer.
