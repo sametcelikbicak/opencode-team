@@ -6,7 +6,7 @@ OpenCode Team defines 14 agent roles in `agents/*.md`. Every role uses `mode: al
 - **`@agent-name`** to mention one directly
 - the orchestrator can launch it as a subagent through the `task` tool
 
-The orchestrator is the default agent. It routes an idea through the pipeline and asks for approval at each gate. A specialist owns one stage and writes that stage's artifact.
+The orchestrator is the default agent. It routes an idea through the pipeline and asks for approval at each gate. A specialist owns one stage and writes that stage's artifact. In the build stage, `fe` and `be` write specialist reports and the orchestrator consolidates them into `.team/07-build.md`.
 
 ## Direct invocation
 

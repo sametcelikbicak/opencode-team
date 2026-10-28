@@ -56,6 +56,25 @@ Communication rules:
 
 Current pipeline stages: research → prd → backlog → ux → brand → architecture → build → qa → security → docs → release → launch
 
+## Build stage
+
+Frontend and backend can run in parallel. Give each specialist a disjoint file scope; shared contracts and types stay with the architect's contract and get a single owner.
+
+Each specialist writes its own report:
+- `fe` → `.team/07-build-fe.md`
+- `be` → `.team/07-build-be.md`
+
+Wait for every specialist requested for the build. If one fails, is cancelled, or does not produce a report, the build stage is incomplete: say what remains and do not write `.team/07-build.md` as complete.
+
+When all requested specialists finish successfully, read their reports and write the consolidated `.team/07-build.md`:
+- what was built, per ticket and acceptance criterion;
+- tests and evidence from each specialist;
+- links to the source reports;
+- known gaps, shortcuts and risks;
+- an explicit statement that every requested specialist completed.
+
+Aggregation must be idempotent: rerunning it must not duplicate sections or drop a specialist.
+
 ## Memory lifecycle
 
 Read `skills/team-memory/SKILL.md` before seeding, dispatching or compacting memory.

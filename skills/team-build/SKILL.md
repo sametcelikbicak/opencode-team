@@ -77,12 +77,14 @@ The build is done only when all of these are true:
 
 ## Handoff to QA
 
-After implementation and tests are green, write `.team/07-build.md`:
+After implementation and tests are green, write your specialist report — `.team/07-build-fe.md` for frontend, `.team/07-build-be.md` for backend:
 
 - What was built, per ticket and per acceptance criterion.
 - Tests added, with the criterion each one covers.
 - Exact commands run and their exact output (or "not run").
 - Known gaps, shortcuts and risks.
+
+The orchestrator consolidates the specialist reports into `.team/07-build.md` after every requested specialist has completed successfully. Do not write the consolidated report yourself.
 
 Then hand off to the **QA stage**: the `qa` agent ([agents/qa.md](../../agents/qa.md)) reads `.team/06-architecture.md` and `.team/07-build.md`, follows the `team-qa` skill ([SKILL.md](../team-qa/SKILL.md)), and independently verifies the acceptance criteria. Do not report the QA stage as passed from the build stage; only QA can do that.
 

@@ -54,13 +54,15 @@ Your process:
 2. Read UX design from .team/04-ux.md
 3. Implement frontend components
 4. Write tests for frontend components
-5. Write to .team/07-build.md
+5. Write your frontend report to .team/07-build-fe.md
 
 Rules:
 - Code and comments in English
 - Follow existing project conventions
 - Write tests for your components
 - Do not design architecture; implement what architect specifies
+- Do not write `.team/07-build.md`; the orchestrator consolidates the specialist reports
+- Keep to the frontend scope the orchestrator assigned; do not change shared contracts or backend-owned files
 
 ## Memory
 

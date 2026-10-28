@@ -19,6 +19,8 @@ OpenCode Team runs an idea-to-launch pipeline with 12 stages. Each stage is a ga
 | release | devops | `.team/11-release.md` | Yes |
 | launch | marketing | `.team/12-launch.md` | Yes |
 
+The build stage has two writers: `fe` writes `.team/07-build-fe.md` and `be` writes `.team/07-build-be.md`. The orchestrator consolidates both into `.team/07-build.md` only after every requested specialist finishes successfully.
+
 ## Profiles
 
 `team.yaml` defines two profiles. The orchestrator picks `new` in an empty directory and `change` in an existing repository, unless you say otherwise.

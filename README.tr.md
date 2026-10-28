@@ -197,15 +197,15 @@ Boru hattı kontrolü:
 
 | Rol            | Ajan dosyası             | Yazdığı çıktı              |
 | -------------- | ------------------------ | -------------------------- |
-| Orkestratör    | `agents/orchestrator.md` | — (işi dağıtır)            |
+| Orkestratör    | `agents/orchestrator.md` | `.team/07-build.md` (birleştirme) |
 | Analist        | `agents/analyst.md`      | `.team/01-research.md`     |
 | PM             | `agents/pm.md`           | `.team/02-prd.md`          |
 | PO             | `agents/po.md`           | `.team/03-backlog.md`      |
 | UX Tasarımcısı | `agents/ux.md`           | `.team/04-ux.md`           |
 | Marka          | `agents/brand.md`        | `.team/05-brand.md`        |
 | Mimar          | `agents/architect.md`    | `.team/06-architecture.md` |
-| Frontend       | `agents/fe.md`           | `.team/07-build.md`        |
-| Backend        | `agents/be.md`           | `.team/07-build.md`        |
+| Frontend       | `agents/fe.md`           | `.team/07-build-fe.md`     |
+| Backend        | `agents/be.md`           | `.team/07-build-be.md`     |
 | QA             | `agents/qa.md`           | `.team/08-qa.md`           |
 | Güvenlik       | `agents/security.md`     | `.team/09-security.md`     |
 | Doküman        | `agents/docs.md`         | `.team/10-docs.md`         |
@@ -244,6 +244,8 @@ Her aşama bir markdown artefaktı yazar:
   11-release.md
   12-launch.md
 ```
+
+Build aşaması ayrıca ara çıktı olarak `.team/07-build-fe.md` ve `.team/07-build-be.md` üretir; orkestratör bunları `07-build.md` içinde birleştirir.
 
 Proje-yerel ajan hafızası da `.team/` altında bulunur:
 
