@@ -76,6 +76,7 @@ opencode
 - [Skill reference](./reference/skills) — all 13 skills
 - [Stage reference](./reference/stages) — all 12 pipeline stages
 - [Memory](./memory) — project-local agent memory
+- [Run checkpoints](./runs) — resume after compaction or interruption
 - [FAQ](./faq) — common questions
 
 ## License

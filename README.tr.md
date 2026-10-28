@@ -262,6 +262,17 @@ Proje-yerel ajan hafızası da `.team/` altında bulunur:
     <rol>-YYYY-MM.md             # sıkıştırılmış eski günlük satırları
 ```
 
+Çalıştırma durumu hafızanın yanında durur:
+
+```
+.team/runs/
+  current                         # son çalıştırma kimliği
+  <run_id>/
+    run.json                      # çalıştırma kimliği, profil, aşama, oturum kimlikleri
+    events/                       # ekleme-only görev başlangıç/bitiş olayları
+    approvals/                    # artefakt hash'ine bağlı insan kapıları
+```
+
 Klasör içinde düz dosyalar. Veritabanı yok, framework yok, git'te difflenebilir ve insan her aşamada devreye girebilir.
 
 ## Tasarım notları
@@ -308,6 +319,18 @@ OpenCode Team, orchestrator ve uzman ajanların oturumlar arası süreklilik sa�
 
 Tam protokol: `skills/team-memory/SKILL.md` ve `docs/rfcs/0001-project-memory.md`.
 
+## Çalıştırma kontrol noktaları
+
+Orkestratör her çalıştırmayı ve görev denemesini `.team/runs/` altında kaydeder; böylece sıkıştırma veya yeniden başlatma tamamlanan işi tekrar etmez veya yarım işi atlamaz.
+
+- `run.json` — benzersiz çalıştırma kimliği, profil, aşama ve oturum kimlikleri.
+- `events/` — her başlangıç veya bitiş olayı için ekleme-only JSON dosyası.
+- `approvals/` — artefakt SHA-256'sına bağlı insan kapısı kayıtları.
+
+Oturum başında veya sıkıştırmadan sonra orkestratör `skills/team-memory/` altındaki `run_state.py status` komutunu çalıştırır ve görev dağıtmadan önce çalışan, başarısız veya tamamlanmış denemeleri çözer. Tamamlanmış görev yeniden çalıştırılmaz; diskteki artefakt onay sayılmaz.
+
+Tam protokol: [`docs/runs.md`](./docs/runs.md).
+
 ## Dokümantasyon
 
 Tam dokümantasyon sitesi [sametcelikbicak.github.io/opencode-team/](https://sametcelikbicak.github.io/opencode-team/) adresinde yayınlanmaktadır. İçerisinde:
@@ -319,6 +342,7 @@ Tam dokümantasyon sitesi [sametcelikbicak.github.io/opencode-team/](https://sam
 - [Yetenek referansı](./docs/reference/skills.md) — tüm 13 yetenek
 - [Aşama referansı](./docs/reference/stages.md) — tüm 12 boru hattı aşaması
 - [Hafıza](./docs/memory.md) — proje-yerel ajan hafızası
+- [Çalıştırma kontrol noktaları](./docs/runs.md) — sıkıştırma veya kesintiden sonra devam
 - [SSS](./docs/faq.md) — sık sorulan sorular
 
 Site bu repodan derlenir ve her `main` içine push'unda yayınlanır.

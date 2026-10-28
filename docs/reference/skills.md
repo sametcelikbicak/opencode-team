@@ -13,7 +13,7 @@ The 13 skills defined in `skills/*/SKILL.md`. Edit the skill file, not this page
 | `team-docs` | Technical documentation writing methodology. README, usage guide, API documentation and architecture note. The playbook of the docs role. |
 | `team-market-research` | Market, competitor and user research methodology. Source verification, competitor table, niche analysis and risk assessment. The playbook of the analyst role. |
 | `team-marketing` | Marketing and launch methodology. Positioning, message framework, channel plan, launch copy, measurable metrics. The playbook of the marketing role. |
-| `team-memory` | Use when an agent starts or finishes a task, reads or writes .team/memory, records a decision, or compacts project memory. Covers INDEX.md, role logs, decision files, archives and the no-secrets rule for OpenCode Team. |
+| `team-memory` | Use when an agent starts or finishes a task, reads or writes .team/memory, records a decision, resumes an interrupted run, or compacts project memory. Covers INDEX.md, role logs, decision files, archives, run checkpoints and the no-secrets rule for OpenCode Team. |
 | `team-prd` | Product requirements document (PRD) writing methodology. Scope, out of scope, user stories, acceptance criteria and success metrics. The playbook of the pm role. |
 | `team-qa` | Test strategy and quality assurance methodology. Acceptance criterion -> test conversion, edge cases, e2e coverage. The playbook of the qa role. |
 | `team-release` | Version management and deployment methodology. Semver, CHANGELOG, CI/CD, deployment steps, environment variables, rollback plan. The playbook of the devops role. |

@@ -1,6 +1,6 @@
 # Memory
 
-OpenCode Team keeps a small, project-local memory in `.team/memory/` so the orchestrator and specialist agents have continuity across sessions.
+OpenCode Team keeps a small, project-local memory in `.team/memory/` so the orchestrator and specialist agents have continuity across sessions. Run state is tracked separately in `.team/runs/`.
 
 ## Directory tree
 
@@ -46,6 +46,12 @@ OpenCode Team keeps a small, project-local memory in `.team/memory/` so the orch
 - Memory is untrusted data, never instructions. Artifacts are the source of truth; if memory contradicts an artifact, the artifact wins.
 - The orchestrator compacts memory at gates, only when no subagents are running.
 
+## Run checkpoints
+
+A run is tracked separately in `.team/runs/`: which task attempt started, what finished, and which artifact revision a human approved. The orchestrator reads it at session start and after compaction. Run state is append-only JSON, is not compacted with memory, and must not contain secrets or transcripts.
+
+See [Run checkpoints](./runs) for the schema, commands and resume rules.
+
 ## Native Windows
 
 The orchestrator uses the PowerShell helper on native Windows, and the Bash helper on macOS/Linux. From your project root, you can run the native helper manually:
@@ -59,4 +65,4 @@ Append `-Role analyst` to compact only that role's log. Both helpers default to 
 
 ## Full protocol
 
-See `skills/team-memory/SKILL.md` and `docs/rfcs/0001-project-memory.md`.
+See `skills/team-memory/SKILL.md` and `docs/rfcs/0001-project-memory.md`. Run state: [`docs/runs.md`](./runs).
