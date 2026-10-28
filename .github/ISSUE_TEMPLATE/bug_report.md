@@ -18,11 +18,13 @@ assignees: ""
 ## Environment
 
 - opencode version (`opencode --version`):
-- OS:
-- Shell:
-- Install method: `./install.sh` / manual / other
+- OS and version (macOS / Linux / Windows):
+- Shell (bash, zsh, PowerShell 5.1, PowerShell 7):
+- Install method: `./install.sh` / `install.ps1` / manual / other
 
-## `./install.sh --check` output
+## Install check output
+
+macOS/Linux: `./install.sh --check` — Windows: `.\install.ps1 -Check`
 
 ```text
 paste the output here
