@@ -157,6 +157,44 @@ npm install --global @opencodeteam/cli@latest
 opencode-team install
 ```
 
+### Migrating from git-clone to npm package
+
+If you previously installed via `git clone` + `install.sh` (symlink mode), migrate to the npm package:
+
+1. **Uninstall the symlink-based installation:**
+
+   ```bash
+   ./install.sh --uninstall
+   ```
+
+   This removes only the symlinks managed by this repo. Your cloned repo directory and `opencode.json` are preserved.
+
+2. **Remove the cloned repo (optional):**
+
+   ```bash
+   cd ..
+   rm -rf opencode-team
+   ```
+
+   Keep it as a backup if you want.
+
+3. **Install via npm:**
+
+   ```bash
+   npm install --global @opencodeteam/cli
+   opencode-team install
+   ```
+
+   This copies files into your OpenCode config directory instead of symlinking.
+
+4. **Verify:**
+
+   ```bash
+   opencode-team check
+   ```
+
+   Restart OpenCode after migration.
+
 ### What the installer does
 
 The platform's installer symlinks or copies the repo into your OpenCode config:
