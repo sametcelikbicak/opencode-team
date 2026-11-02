@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.3] - 2026-11-02
+
+- No changes since previous release
+
+
+
 All notable changes to the OpenCode Team npm package are documented in this file.
 
 ## [v0.0.2] - 2026-11-02
