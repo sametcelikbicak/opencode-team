@@ -31,7 +31,7 @@ fi
 # --- Update CHANGELOG.md ---
 PREVIOUS_TAG=""
 if git tag --list | grep -q '^v'; then
-  PREVIOUS_TAG="$(git tag --list 'v*' --sort=-version:refname | head -n 1)"
+  PREVIOUS_TAG="$(git tag --list 'v*' --sort=-version:refname | grep -v "^${TAG}$" | head -n 1)"
 fi
 
 if [ -n "$PREVIOUS_TAG" ]; then
