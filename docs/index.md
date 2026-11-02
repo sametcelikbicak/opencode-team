@@ -15,40 +15,9 @@ The orchestrator is the **default agent**. Open `opencode` anywhere, describe an
 
 ## Pipeline
 
-```mermaid
-flowchart LR
-  classDef start fill:#0969da,stroke:#0969da,color:#ffffff
-  classDef disc fill:#e8f1fb,stroke:#4a9fd8,color:#1f2328
-  classDef design fill:#f3edff,stroke:#7c5cff,color:#1f2328
-  classDef build fill:#e9f9f1,stroke:#2f9e6e,color:#1f2328
-  classDef ship fill:#fff4e5,stroke:#e08a2e,color:#1f2328
-
-  idea([idea]):::start --> discover
-
-  subgraph discover[Discover]
-    direction TB
-    research:::disc --> prd:::disc --> backlog:::disc
-  end
-  subgraph design[Design]
-    direction TB
-    ux:::design --> brand:::design --> architecture:::design
-  end
-  subgraph build[Build]
-    direction TB
-    buildstage[build]:::build --> qa:::build --> security:::build
-  end
-  subgraph ship[Ship]
-    direction TB
-    docs:::ship --> release:::ship --> launch:::ship
-  end
-
-  discover --> design --> build --> ship
-
-  style discover fill:transparent,stroke:#d0d7de,stroke-width:1px
-  style design fill:transparent,stroke:#d0d7de,stroke-width:1px
-  style build fill:transparent,stroke:#d0d7de,stroke-width:1px
-  style ship fill:transparent,stroke:#d0d7de,stroke-width:1px
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/sametcelikbicak/opencode-team/main/assets/pipeline.svg" alt="OpenCode Team pipeline" width="1200">
+</p>
 
 <sub>Each arrow is a gate: the next stage starts after your approval.</sub>
 

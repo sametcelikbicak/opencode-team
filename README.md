@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/opencode-team.svg" alt="OpenCode Team">
+  <img src="https://raw.githubusercontent.com/sametcelikbicak/opencode-team/main/assets/opencode-team.svg" alt="OpenCode Team">
 </p>
 
 <h1 align="center">OpenCode Team</h1>
@@ -10,6 +10,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT"></a>
   <a href="https://github.com/sametcelikbicak/opencode-team/stargazers"><img src="https://img.shields.io/github/stars/sametcelikbicak/opencode-team?style=social" alt="Stars"></a>
   <a href="https://opencode.ai"><img src="https://img.shields.io/badge/OpenCode-1.x-blue?logo=opencode" alt="OpenCode 1.x"></a>
+  <a href="https://www.npmjs.com/package/@opencodeteam/cli"><img src="https://img.shields.io/npm/v/@opencodeteam/cli?logo=npm&label=&color=cb3837" alt="npm"></a>
 </p>
 
 A team of AI agents that takes an idea from research to launch — built on [opencode](https://opencode.ai), with no framework and no extra dependencies.
@@ -18,40 +19,9 @@ A team of AI agents that takes an idea from research to launch — built on [ope
   <em>Turkish: <a href="./README.tr.md">README.tr.md</a></em>
 </p>
 
-```mermaid
-flowchart LR
-  classDef start fill:#0969da,stroke:#0969da,color:#ffffff
-  classDef disc fill:#e8f1fb,stroke:#4a9fd8,color:#1f2328
-  classDef design fill:#f3edff,stroke:#7c5cff,color:#1f2328
-  classDef build fill:#e9f9f1,stroke:#2f9e6e,color:#1f2328
-  classDef ship fill:#fff4e5,stroke:#e08a2e,color:#1f2328
-
-  idea([idea]):::start --> discover
-
-  subgraph discover[Discover]
-    direction TB
-    research:::disc --> prd:::disc --> backlog:::disc
-  end
-  subgraph design[Design]
-    direction TB
-    ux:::design --> brand:::design --> architecture:::design
-  end
-  subgraph build[Build]
-    direction TB
-    buildstage[build]:::build --> qa:::build --> security:::build
-  end
-  subgraph ship[Ship]
-    direction TB
-    docs:::ship --> release:::ship --> launch:::ship
-  end
-
-  discover --> design --> build --> ship
-
-  style discover fill:transparent,stroke:#d0d7de,stroke-width:1px
-  style design fill:transparent,stroke:#d0d7de,stroke-width:1px
-  style build fill:transparent,stroke:#d0d7de,stroke-width:1px
-  style ship fill:transparent,stroke:#d0d7de,stroke-width:1px
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/sametcelikbicak/opencode-team/main/assets/pipeline.svg" alt="OpenCode Team pipeline" width="960">
+</p>
 
 <sub>Each arrow is a gate: the next stage starts after your approval.</sub>
 
@@ -195,22 +165,22 @@ Pipeline control:
 
 ## The team
 
-| Role         | Agent file               | Writes                     |
-| ------------ | ------------------------ | -------------------------- |
+| Role         | Agent file               | Writes                            |
+| ------------ | ------------------------ | --------------------------------- |
 | Orchestrator | `agents/orchestrator.md` | `.team/07-build.md` (aggregation) |
-| Analyst      | `agents/analyst.md`      | `.team/01-research.md`     |
-| PM           | `agents/pm.md`           | `.team/02-prd.md`          |
-| PO           | `agents/po.md`           | `.team/03-backlog.md`      |
-| UX Designer  | `agents/ux.md`           | `.team/04-ux.md`           |
-| Brand        | `agents/brand.md`        | `.team/05-brand.md`        |
-| Architect    | `agents/architect.md`    | `.team/06-architecture.md` |
-| Frontend     | `agents/fe.md`           | `.team/07-build-fe.md`     |
-| Backend      | `agents/be.md`           | `.team/07-build-be.md`     |
-| QA           | `agents/qa.md`           | `.team/08-qa.md`           |
-| Security     | `agents/security.md`     | `.team/09-security.md`     |
-| Docs         | `agents/docs.md`         | `.team/10-docs.md`         |
-| DevOps       | `agents/devops.md`       | `.team/11-release.md`      |
-| Marketing    | `agents/marketing.md`    | `.team/12-launch.md`       |
+| Analyst      | `agents/analyst.md`      | `.team/01-research.md`            |
+| PM           | `agents/pm.md`           | `.team/02-prd.md`                 |
+| PO           | `agents/po.md`           | `.team/03-backlog.md`             |
+| UX Designer  | `agents/ux.md`           | `.team/04-ux.md`                  |
+| Brand        | `agents/brand.md`        | `.team/05-brand.md`               |
+| Architect    | `agents/architect.md`    | `.team/06-architecture.md`        |
+| Frontend     | `agents/fe.md`           | `.team/07-build-fe.md`            |
+| Backend      | `agents/be.md`           | `.team/07-build-be.md`            |
+| QA           | `agents/qa.md`           | `.team/08-qa.md`                  |
+| Security     | `agents/security.md`     | `.team/09-security.md`            |
+| Docs         | `agents/docs.md`         | `.team/10-docs.md`                |
+| DevOps       | `agents/devops.md`       | `.team/11-release.md`             |
+| Marketing    | `agents/marketing.md`    | `.team/12-launch.md`              |
 
 All agents are `mode: all`, so each one is reachable three ways: **Tab / Shift+Tab** to cycle, **`@agent-name`** to mention, and the orchestrator can launch it as a subagent via the `task` tool.
 

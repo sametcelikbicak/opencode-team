@@ -1,11 +1,9 @@
 import { defineConfig } from 'vitepress'
-import { withMermaid } from 'vitepress-plugin-mermaid'
 
 const SITE = 'https://sametcelikbicak.github.io'
 const DESCRIPTION = 'A team of AI agents that takes an idea from research to launch — built on opencode, with no framework and no extra dependencies.'
 
-const config = withMermaid(
-  defineConfig({
+const config = defineConfig({
     title: 'OpenCode Team',
     description: DESCRIPTION,
     base: '/opencode-team/',
@@ -92,17 +90,9 @@ const config = withMermaid(
       },
       socialLinks: [
         { icon: 'github', link: 'https://github.com/sametcelikbicak/opencode-team' },
+        { icon: 'npm', link: 'https://www.npmjs.com/package/@opencodeteam/cli' },
       ],
     },
-  }),
-)
-
-// The plugin hardcodes `debug` (not installed) and misses elkjs, which mermaid
-// imports as CJS. Without prebundling, the dev server serves elkjs raw and the
-// browser throws "does not provide an export named default".
-config.vite.optimizeDeps.include = [
-  ...(config.vite.optimizeDeps.include || []).filter((dep) => dep !== 'debug'),
-  'elkjs/lib/elk.bundled.js',
-]
+  })
 
 export default config
