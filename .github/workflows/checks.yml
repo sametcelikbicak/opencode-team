@@ -125,6 +125,7 @@ jobs:
       - name: Pack the package
         run: npm pack
       - name: Extract to clean directory
+        shell: bash
         run: |
           rm -rf pack-test
           mkdir -p pack-test
