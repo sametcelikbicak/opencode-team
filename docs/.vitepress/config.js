@@ -92,6 +92,7 @@ const config = withMermaid(
       },
       socialLinks: [
         { icon: 'github', link: 'https://github.com/sametcelikbicak/opencode-team' },
+        { icon: 'npm', link: 'https://www.npmjs.com/package/@opencodeteam/cli' },
       ],
     },
   }),

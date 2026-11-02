@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+// OpenCode Team CLI — name-reservation publish (v0.0.1).
+// Real install/check/update/uninstall commands are implemented in a follow-up.
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+const pkg = require('../package.json');
+const args = process.argv.slice(2);
+
+if (args.includes('--version') || args.includes('-v')) {
+  console.log(pkg.version);
+  process.exit(0);
+}
+
+if (args.includes('--help') || args.includes('-h') || args.length === 0) {
+  console.log(`
+OpenCode Team CLI v${pkg.version}
+
+Usage: opencode-team <command> [options]
+
+Commands:
+  install    Install OpenCode Team into your OpenCode config
+  check      Verify installation status
+  update     Update to the latest version
+  uninstall  Remove OpenCode Team from your config
+
+Options:
+  --version, -v  Show version
+  --help, -h     Show help
+`);
+  process.exit(0);
+}
+
+const [command] = args;
+console.error(`opencode-team: "${command}" command is not yet implemented.`);
+console.error('Install via: npm install --global @opencode-team/cli');
+process.exit(1);

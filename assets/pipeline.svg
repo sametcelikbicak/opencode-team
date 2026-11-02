@@ -1,0 +1,747 @@
+<svg id="mermaid-1793615052660-ufxl1uzkx" width="100%" xmlns="http://www.w3.org/2000/svg" class="flowchart" style="max-width: 1050.53466796875px;" viewBox="0.0000019073486328125 0 1050.53466796875 403" role="graphics-document document" aria-roledescription="flowchart-v2">
+  <style>
+    #mermaid-1793615052660-ufxl1uzkx {
+      font-family: "trebuchet ms", verdana, arial, sans-serif;
+      font-size: 16px;
+      fill: #333;
+    }
+
+    @keyframes edge-animation-frame {
+      from {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes dash {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .edge-animation-slow {
+      stroke-dasharray: 9, 5 !important;
+      stroke-dashoffset: 900;
+      animation: dash 50s linear infinite;
+      stroke-linecap: round;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .edge-animation-fast {
+      stroke-dasharray: 9, 5 !important;
+      stroke-dashoffset: 900;
+      animation: dash 20s linear infinite;
+      stroke-linecap: round;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .error-icon {
+      fill: #552222;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .error-text {
+      fill: #552222;
+      stroke: #552222;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .edge-thickness-normal {
+      stroke-width: 1px;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .edge-thickness-thick {
+      stroke-width: 3.5px;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .edge-pattern-solid {
+      stroke-dasharray: 0;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .edge-thickness-invisible {
+      stroke-width: 0;
+      fill: none;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .edge-pattern-dashed {
+      stroke-dasharray: 3;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .edge-pattern-dotted {
+      stroke-dasharray: 2;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .marker {
+      fill: #333333;
+      stroke: #333333;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .marker.cross {
+      stroke: #333333;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx svg {
+      font-family: "trebuchet ms", verdana, arial, sans-serif;
+      font-size: 16px;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx p {
+      margin: 0;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .label {
+      font-family: "trebuchet ms", verdana, arial, sans-serif;
+      color: #333;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .cluster-label text {
+      fill: #333;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .cluster-label span {
+      color: #333;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .cluster-label span p {
+      background-color: transparent;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .label text,
+    #mermaid-1793615052660-ufxl1uzkx span {
+      fill: #333;
+      color: #333;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .node rect,
+    #mermaid-1793615052660-ufxl1uzkx .node circle,
+    #mermaid-1793615052660-ufxl1uzkx .node ellipse,
+    #mermaid-1793615052660-ufxl1uzkx .node polygon,
+    #mermaid-1793615052660-ufxl1uzkx .node path {
+      fill: #ECECFF;
+      stroke: #9370DB;
+      stroke-width: 1px;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .rough-node .label text,
+    #mermaid-1793615052660-ufxl1uzkx .node .label text,
+    #mermaid-1793615052660-ufxl1uzkx .image-shape .label,
+    #mermaid-1793615052660-ufxl1uzkx .icon-shape .label {
+      text-anchor: middle;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .node .katex path {
+      fill: #000;
+      stroke: #000;
+      stroke-width: 1px;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .rough-node .label,
+    #mermaid-1793615052660-ufxl1uzkx .node .label,
+    #mermaid-1793615052660-ufxl1uzkx .image-shape .label,
+    #mermaid-1793615052660-ufxl1uzkx .icon-shape .label {
+      text-align: center;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .node.clickable {
+      cursor: pointer;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .root .anchor path {
+      fill: #333333 !important;
+      stroke-width: 0;
+      stroke: #333333;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .arrowheadPath {
+      fill: #333333;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .edgePath .path {
+      stroke: #333333;
+      stroke-width: 2.0px;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .flowchart-link {
+      stroke: #333333;
+      fill: none;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .edgeLabel {
+      background-color: rgba(232, 232, 232, 0.8);
+      text-align: center;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .edgeLabel p {
+      background-color: rgba(232, 232, 232, 0.8);
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .edgeLabel rect {
+      opacity: 0.5;
+      background-color: rgba(232, 232, 232, 0.8);
+      fill: rgba(232, 232, 232, 0.8);
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .labelBkg {
+      background-color: rgba(232, 232, 232, 0.5);
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .cluster rect {
+      fill: #ffffde;
+      stroke: #aaaa33;
+      stroke-width: 1px;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .cluster text {
+      fill: #333;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .cluster span {
+      color: #333;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx div.mermaidTooltip {
+      position: absolute;
+      text-align: center;
+      max-width: 200px;
+      padding: 2px;
+      font-family: "trebuchet ms", verdana, arial, sans-serif;
+      font-size: 12px;
+      background: hsl(80, 100%, 96.2745098039%);
+      border: 1px solid #aaaa33;
+      border-radius: 2px;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .flowchartTitleText {
+      text-anchor: middle;
+      font-size: 18px;
+      fill: #333;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx rect.text {
+      fill: none;
+      stroke-width: 0;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .icon-shape,
+    #mermaid-1793615052660-ufxl1uzkx .image-shape {
+      background-color: rgba(232, 232, 232, 0.8);
+      text-align: center;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .icon-shape p,
+    #mermaid-1793615052660-ufxl1uzkx .image-shape p {
+      background-color: rgba(232, 232, 232, 0.8);
+      padding: 2px;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .icon-shape rect,
+    #mermaid-1793615052660-ufxl1uzkx .image-shape rect {
+      opacity: 0.5;
+      background-color: rgba(232, 232, 232, 0.8);
+      fill: rgba(232, 232, 232, 0.8);
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .label-icon {
+      display: inline-block;
+      height: 1em;
+      overflow: visible;
+      vertical-align: -0.125em;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .node .label-icon path {
+      fill: currentColor;
+      stroke: revert;
+      stroke-width: revert;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx :root {
+      --mermaid-font-family: "trebuchet ms", verdana, arial, sans-serif;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .start>* {
+      fill: #0969da !important;
+      stroke: #0969da !important;
+      color: #ffffff !important;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .start span {
+      fill: #0969da !important;
+      stroke: #0969da !important;
+      color: #ffffff !important;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .start tspan {
+      fill: #ffffff !important;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .disc>* {
+      fill: #e8f1fb !important;
+      stroke: #4a9fd8 !important;
+      color: #1f2328 !important;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .disc span {
+      fill: #e8f1fb !important;
+      stroke: #4a9fd8 !important;
+      color: #1f2328 !important;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .disc tspan {
+      fill: #1f2328 !important;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .design>* {
+      fill: #f3edff !important;
+      stroke: #7c5cff !important;
+      color: #1f2328 !important;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .design span {
+      fill: #f3edff !important;
+      stroke: #7c5cff !important;
+      color: #1f2328 !important;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .design tspan {
+      fill: #1f2328 !important;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .build>* {
+      fill: #e9f9f1 !important;
+      stroke: #2f9e6e !important;
+      color: #1f2328 !important;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .build span {
+      fill: #e9f9f1 !important;
+      stroke: #2f9e6e !important;
+      color: #1f2328 !important;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .build tspan {
+      fill: #1f2328 !important;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .ship>* {
+      fill: #fff4e5 !important;
+      stroke: #e08a2e !important;
+      color: #1f2328 !important;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .ship span {
+      fill: #fff4e5 !important;
+      stroke: #e08a2e !important;
+      color: #1f2328 !important;
+    }
+
+    #mermaid-1793615052660-ufxl1uzkx .ship tspan {
+      fill: #1f2328 !important;
+    }
+  </style>
+  <g>
+    <marker id="mermaid-1793615052660-ufxl1uzkx_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path>
+    </marker>
+    <marker id="mermaid-1793615052660-ufxl1uzkx_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path>
+    </marker>
+    <marker id="mermaid-1793615052660-ufxl1uzkx_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto">
+      <circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle>
+    </marker>
+    <marker id="mermaid-1793615052660-ufxl1uzkx_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto">
+      <circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle>
+    </marker>
+    <marker id="mermaid-1793615052660-ufxl1uzkx_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto">
+      <path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path>
+    </marker>
+    <marker id="mermaid-1793615052660-ufxl1uzkx_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto">
+      <path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path>
+    </marker>
+    <g class="root">
+      <g class="clusters"></g>
+      <g class="edgePaths">
+        <path d="M63.339,201.5L67.506,201.5C71.673,201.5,80.006,201.5,87.673,201.5C95.339,201.5,102.339,201.5,105.839,201.5L109.339,201.5" id="L_idea_discover_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1793615052660-ufxl1uzkx_flowchart-v2-pointEnd)"></path>
+        <path d="M304.777,201.5L308.944,201.5C313.11,201.5,321.444,201.5,329.11,201.5C336.777,201.5,343.777,201.5,347.277,201.5L350.777,201.5" id="L_discover_design_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1793615052660-ufxl1uzkx_flowchart-v2-pointEnd)"></path>
+        <path d="M573.652,201.5L577.819,201.5C581.985,201.5,590.319,201.5,597.985,201.5C605.652,201.5,612.652,201.5,616.152,201.5L619.652,201.5" id="L_design_build_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1793615052660-ufxl1uzkx_flowchart-v2-pointEnd)"></path>
+        <path d="M810.535,201.5L814.701,201.5C818.868,201.5,827.201,201.5,834.868,201.5C842.535,201.5,849.535,201.5,853.035,201.5L856.535,201.5" id="L_build_ship_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1793615052660-ufxl1uzkx_flowchart-v2-pointEnd)"></path>
+      </g>
+      <g class="edgeLabels">
+        <g class="edgeLabel">
+          <g class="label" transform="translate(0, 0)">
+            <foreignObject width="0" height="0">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                <span class="edgeLabel "></span>
+              </div>
+            </foreignObject>
+          </g>
+        </g>
+        <g class="edgeLabel">
+          <g class="label" transform="translate(0, 0)">
+            <foreignObject width="0" height="0">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                <span class="edgeLabel "></span>
+              </div>
+            </foreignObject>
+          </g>
+        </g>
+        <g class="edgeLabel">
+          <g class="label" transform="translate(0, 0)">
+            <foreignObject width="0" height="0">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                <span class="edgeLabel "></span>
+              </div>
+            </foreignObject>
+          </g>
+        </g>
+        <g class="edgeLabel">
+          <g class="label" transform="translate(0, 0)">
+            <foreignObject width="0" height="0">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                <span class="edgeLabel "></span>
+              </div>
+            </foreignObject>
+          </g>
+        </g>
+      </g>
+      <g class="nodes">
+        <g class="root" transform="translate(852.5346488952637, 0)">
+          <g class="clusters">
+            <g class="cluster " id="ship" data-look="classic">
+              <rect style="fill:transparent !important;stroke:#d0d7de !important;stroke-width:1px !important" x="8" y="8" width="182" height="387"></rect>
+              <g class="cluster-label " transform="translate(84.04296875, 8)">
+                <foreignObject width="29.9140625" height="24">
+                  <div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <span class="nodeLabel ">
+                      <p>Ship</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+          </g>
+          <g class="edgePaths">
+            <path d="M99,99.5L99,105.75C99,112,99,124.5,99,136.333C99,148.167,99,159.333,99,164.917L99,170.5" id="L_docs_release_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1793615052660-ufxl1uzkx_flowchart-v2-pointEnd)"></path>
+            <path d="M99,228.5L99,234.75C99,241,99,253.5,99,265.333C99,277.167,99,288.333,99,293.917L99,299.5" id="L_release_launch_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1793615052660-ufxl1uzkx_flowchart-v2-pointEnd)"></path>
+          </g>
+          <g class="edgeLabels">
+            <g class="edgeLabel">
+              <g class="label" transform="translate(0, 0)">
+                <foreignObject width="0" height="0">
+                  <div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <span class="edgeLabel "></span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+            <g class="edgeLabel">
+              <g class="label" transform="translate(0, 0)">
+                <foreignObject width="0" height="0">
+                  <div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <span class="edgeLabel "></span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+          </g>
+          <g class="nodes">
+            <g class="node default ship " id="flowchart-docs-11" transform="translate(99, 72.5)">
+              <rect class="basic label-container" style="fill:#fff4e5 !important;stroke:#e08a2e !important" x="-45.94921875" y="-27" width="91.8984375" height="54"></rect>
+              <g class="label" style="color:#1f2328 !important" transform="translate(-15.94921875, -12)">
+                <rect></rect>
+                <foreignObject width="31.8984375" height="24">
+                  <div style="color: rgb(31, 35, 40) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml">
+                    <span style="color:#1f2328 !important" class="nodeLabel ">
+                      <p>docs</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+            <g class="node default ship " id="flowchart-release-12" transform="translate(99, 201.5)">
+              <rect class="basic label-container" style="fill:#fff4e5 !important;stroke:#e08a2e !important" x="-56" y="-27" width="112" height="54"></rect>
+              <g class="label" style="color:#1f2328 !important" transform="translate(-26, -12)">
+                <rect></rect>
+                <foreignObject width="52" height="24">
+                  <div style="color: rgb(31, 35, 40) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml">
+                    <span style="color:#1f2328 !important" class="nodeLabel ">
+                      <p>release</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+            <g class="node default ship " id="flowchart-launch-13" transform="translate(99, 330.5)">
+              <rect class="basic label-container" style="fill:#fff4e5 !important;stroke:#e08a2e !important" x="-53.63671875" y="-27" width="107.2734375" height="54"></rect>
+              <g class="label" style="color:#1f2328 !important" transform="translate(-23.63671875, -12)">
+                <rect></rect>
+                <foreignObject width="47.2734375" height="24">
+                  <div style="color: rgb(31, 35, 40) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml">
+                    <span style="color:#1f2328 !important" class="nodeLabel ">
+                      <p>launch</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g class="root" transform="translate(615.6518363952637, 0)">
+          <g class="clusters">
+            <g class="cluster " id="build" data-look="classic">
+              <rect style="fill:transparent !important;stroke:#d0d7de !important;stroke-width:1px !important" x="8" y="8" width="186.8828125" height="387"></rect>
+              <g class="cluster-label " transform="translate(83.4453125, 8)">
+                <foreignObject width="35.9921875" height="24">
+                  <div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <span class="nodeLabel ">
+                      <p>Build</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+          </g>
+          <g class="edgePaths">
+            <path d="M101.441,99.5L101.441,105.75C101.441,112,101.441,124.5,101.441,136.333C101.441,148.167,101.441,159.333,101.441,164.917L101.441,170.5" id="L_buildstage_qa_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1793615052660-ufxl1uzkx_flowchart-v2-pointEnd)"></path>
+            <path d="M101.441,228.5L101.441,234.75C101.441,241,101.441,253.5,101.441,265.333C101.441,277.167,101.441,288.333,101.441,293.917L101.441,299.5" id="L_qa_security_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1793615052660-ufxl1uzkx_flowchart-v2-pointEnd)"></path>
+          </g>
+          <g class="edgeLabels">
+            <g class="edgeLabel">
+              <g class="label" transform="translate(0, 0)">
+                <foreignObject width="0" height="0">
+                  <div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <span class="edgeLabel "></span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+            <g class="edgeLabel">
+              <g class="label" transform="translate(0, 0)">
+                <foreignObject width="0" height="0">
+                  <div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <span class="edgeLabel "></span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+          </g>
+          <g class="nodes">
+            <g class="node default build " id="flowchart-buildstage-8" transform="translate(101.44140625, 72.5)">
+              <rect class="basic label-container" style="fill:#e9f9f1 !important;stroke:#2f9e6e !important" x="-47.92578125" y="-27" width="95.8515625" height="54"></rect>
+              <g class="label" style="color:#1f2328 !important" transform="translate(-17.92578125, -12)">
+                <rect></rect>
+                <foreignObject width="35.8515625" height="24">
+                  <div style="color: rgb(31, 35, 40) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml">
+                    <span style="color:#1f2328 !important" class="nodeLabel ">
+                      <p>build</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+            <g class="node default build " id="flowchart-qa-9" transform="translate(101.44140625, 201.5)">
+              <rect class="basic label-container" style="fill:#e9f9f1 !important;stroke:#2f9e6e !important" x="-38.66015625" y="-27" width="77.3203125" height="54"></rect>
+              <g class="label" style="color:#1f2328 !important" transform="translate(-8.66015625, -12)">
+                <rect></rect>
+                <foreignObject width="17.3203125" height="24">
+                  <div style="color: rgb(31, 35, 40) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml">
+                    <span style="color:#1f2328 !important" class="nodeLabel ">
+                      <p>qa</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+            <g class="node default build " id="flowchart-security-10" transform="translate(101.44140625, 330.5)">
+              <rect class="basic label-container" style="fill:#e9f9f1 !important;stroke:#2f9e6e !important" x="-58.44140625" y="-27" width="116.8828125" height="54"></rect>
+              <g class="label" style="color:#1f2328 !important" transform="translate(-28.44140625, -12)">
+                <rect></rect>
+                <foreignObject width="56.8828125" height="24">
+                  <div style="color: rgb(31, 35, 40) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml">
+                    <span style="color:#1f2328 !important" class="nodeLabel ">
+                      <p>security</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g class="root" transform="translate(346.7768363952637, 0)">
+          <g class="clusters">
+            <g class="cluster " id="design" data-look="classic">
+              <rect style="fill:transparent !important;stroke:#d0d7de !important;stroke-width:1px !important" x="8" y="8" width="218.875" height="387"></rect>
+              <g class="cluster-label " transform="translate(94.26171875, 8)">
+                <foreignObject width="46.3515625" height="24">
+                  <div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <span class="nodeLabel ">
+                      <p>Design</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+          </g>
+          <g class="edgePaths">
+            <path d="M117.438,99.5L117.438,105.75C117.438,112,117.438,124.5,117.438,136.333C117.438,148.167,117.438,159.333,117.438,164.917L117.438,170.5" id="L_ux_brand_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1793615052660-ufxl1uzkx_flowchart-v2-pointEnd)"></path>
+            <path d="M117.438,228.5L117.438,234.75C117.438,241,117.438,253.5,117.438,265.333C117.438,277.167,117.438,288.333,117.438,293.917L117.438,299.5" id="L_brand_architecture_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1793615052660-ufxl1uzkx_flowchart-v2-pointEnd)"></path>
+          </g>
+          <g class="edgeLabels">
+            <g class="edgeLabel">
+              <g class="label" transform="translate(0, 0)">
+                <foreignObject width="0" height="0">
+                  <div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <span class="edgeLabel "></span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+            <g class="edgeLabel">
+              <g class="label" transform="translate(0, 0)">
+                <foreignObject width="0" height="0">
+                  <div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <span class="edgeLabel "></span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+          </g>
+          <g class="nodes">
+            <g class="node default design " id="flowchart-ux-5" transform="translate(117.4375, 72.5)">
+              <rect class="basic label-container" style="fill:#f3edff !important;stroke:#7c5cff !important" x="-38.37890625" y="-27" width="76.7578125" height="54"></rect>
+              <g class="label" style="color:#1f2328 !important" transform="translate(-8.37890625, -12)">
+                <rect></rect>
+                <foreignObject width="16.7578125" height="24">
+                  <div style="color: rgb(31, 35, 40) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml">
+                    <span style="color:#1f2328 !important" class="nodeLabel ">
+                      <p>ux</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+            <g class="node default design " id="flowchart-brand-6" transform="translate(117.4375, 201.5)">
+              <rect class="basic label-container" style="fill:#f3edff !important;stroke:#7c5cff !important" x="-50.59765625" y="-27" width="101.1953125" height="54"></rect>
+              <g class="label" style="color:#1f2328 !important" transform="translate(-20.59765625, -12)">
+                <rect></rect>
+                <foreignObject width="41.1953125" height="24">
+                  <div style="color: rgb(31, 35, 40) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml">
+                    <span style="color:#1f2328 !important" class="nodeLabel ">
+                      <p>brand</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+            <g class="node default design " id="flowchart-architecture-7" transform="translate(117.4375, 330.5)">
+              <rect class="basic label-container" style="fill:#f3edff !important;stroke:#7c5cff !important" x="-74.4375" y="-27" width="148.875" height="54"></rect>
+              <g class="label" style="color:#1f2328 !important" transform="translate(-44.4375, -12)">
+                <rect></rect>
+                <foreignObject width="88.875" height="24">
+                  <div style="color: rgb(31, 35, 40) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml">
+                    <span style="color:#1f2328 !important" class="nodeLabel ">
+                      <p>architecture</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g class="root" transform="translate(105.33933639526367, 0)">
+          <g class="clusters">
+            <g class="cluster " id="discover" data-look="classic">
+              <rect style="fill:transparent !important;stroke:#d0d7de !important;stroke-width:1px !important" x="8" y="8" width="191.4375" height="387"></rect>
+              <g class="cluster-label " transform="translate(73.6484375, 8)">
+                <foreignObject width="60.140625" height="24">
+                  <div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <span class="nodeLabel ">
+                      <p>Discover</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+          </g>
+          <g class="edgePaths">
+            <path d="M103.719,99.5L103.719,105.75C103.719,112,103.719,124.5,103.719,136.333C103.719,148.167,103.719,159.333,103.719,164.917L103.719,170.5" id="L_research_prd_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1793615052660-ufxl1uzkx_flowchart-v2-pointEnd)"></path>
+            <path d="M103.719,228.5L103.719,234.75C103.719,241,103.719,253.5,103.719,265.333C103.719,277.167,103.719,288.333,103.719,293.917L103.719,299.5" id="L_prd_backlog_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaid-1793615052660-ufxl1uzkx_flowchart-v2-pointEnd)"></path>
+          </g>
+          <g class="edgeLabels">
+            <g class="edgeLabel">
+              <g class="label" transform="translate(0, 0)">
+                <foreignObject width="0" height="0">
+                  <div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <span class="edgeLabel "></span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+            <g class="edgeLabel">
+              <g class="label" transform="translate(0, 0)">
+                <foreignObject width="0" height="0">
+                  <div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <span class="edgeLabel "></span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+          </g>
+          <g class="nodes">
+            <g class="node default disc " id="flowchart-research-2" transform="translate(103.71875, 72.5)">
+              <rect class="basic label-container" style="fill:#e8f1fb !important;stroke:#4a9fd8 !important" x="-60.71875" y="-27" width="121.4375" height="54"></rect>
+              <g class="label" style="color:#1f2328 !important" transform="translate(-30.71875, -12)">
+                <rect></rect>
+                <foreignObject width="61.4375" height="24">
+                  <div style="color: rgb(31, 35, 40) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml">
+                    <span style="color:#1f2328 !important" class="nodeLabel ">
+                      <p>research</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+            <g class="node default disc " id="flowchart-prd-3" transform="translate(103.71875, 201.5)">
+              <rect class="basic label-container" style="fill:#e8f1fb !important;stroke:#4a9fd8 !important" x="-42.0234375" y="-27" width="84.046875" height="54"></rect>
+              <g class="label" style="color:#1f2328 !important" transform="translate(-12.0234375, -12)">
+                <rect></rect>
+                <foreignObject width="24.046875" height="24">
+                  <div style="color: rgb(31, 35, 40) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml">
+                    <span style="color:#1f2328 !important" class="nodeLabel ">
+                      <p>prd</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+            <g class="node default disc " id="flowchart-backlog-4" transform="translate(103.71875, 330.5)">
+              <rect class="basic label-container" style="fill:#e8f1fb !important;stroke:#4a9fd8 !important" x="-57.32421875" y="-27" width="114.6484375" height="54"></rect>
+              <g class="label" style="color:#1f2328 !important" transform="translate(-27.32421875, -12)">
+                <rect></rect>
+                <foreignObject width="54.6484375" height="24">
+                  <div style="color: rgb(31, 35, 40) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml">
+                    <span style="color:#1f2328 !important" class="nodeLabel ">
+                      <p>backlog</p>
+                    </span>
+                  </div>
+                </foreignObject>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g class="node default start " id="flowchart-idea-0" transform="translate(35.669668197631836, 201.5)">
+          <g class="basic label-container outer-path">
+            <path d="M-8.1796875 -19.5 C-1.9410849328552882 -19.5, 4.297517634289424 -19.5, 8.1796875 -19.5 C8.1796875 -19.5, 8.179687499999998 -19.5, 8.179687499999998 -19.5 C8.461019701410514 -19.490978223880674, 8.74235190282103 -19.481956447761352, 9.4290567896239 -19.45993515863156 C9.775167510584632 -19.42654627363952, 10.121278231545366 -19.39315738864748, 10.673292152847864 -19.3399052695533 C11.085589036687079 -19.273248306784264, 11.497885920526294 -19.206591344015226, 11.907280759676757 -19.140403561325776 C12.258580290338424 -19.06022173589593, 12.609879821000092 -18.98003991046608, 13.12595188623539 -18.862249829261074 C13.415397117019385 -18.776344004093406, 13.70484234780338 -18.690438178925735, 14.324297751460602 -18.50658706670804 C14.607616084055337 -18.40232330134722, 14.890934416650072 -18.2980595359864, 15.497394095147794 -18.074876768247425 C15.81579630409193 -17.9339295554138, 16.134198513036065 -17.792982342580174, 16.64042041279238 -17.568892924097174 C16.96958418907257 -17.39716839285126, 17.298747965352764 -17.225443861605346, 17.748679764076783 -16.990714730406097 C17.966011249719347 -16.858967106628, 18.18334273536191 -16.727219482849904, 18.817618073605697 -16.342718045390892 C19.04022679511252 -16.187435837843974, 19.26283551661934 -16.032153630297056, 19.842842844578712 -15.627565626425154 C20.18558619780281 -15.354236923012614, 20.528329551026907 -15.080908219600074, 20.82014120850187 -14.848196188198123 C21.123263185345433 -14.572908828996816, 21.426385162188996 -14.297621469795509, 21.745497236767985 -14.007812326905688 C22.08894205954402 -13.653177350045082, 22.432386882320053 -13.298542373184477, 22.615108442968648 -13.10986736009568 C22.853317486945844 -12.830053462561484, 23.091526530923037 -12.550239565027288, 23.425401408126582 -12.158051136245305 C23.643743829834236 -11.86549218256087, 23.862086251541893 -11.572933228876431, 24.173046464640635 -11.156274872382312 C24.445300326171477 -10.738019830672695, 24.717554187702323 -10.319764788963077, 24.854971378604247 -10.108655082055241 C25.048092249430553 -9.765749420294426, 25.24121312025686 -9.422843758533611, 25.4683739742735 -9.019496659696287 C25.654529235421947 -8.632941276837027, 25.840684496570393 -8.246385893977768, 26.01073364880834 -7.893275190886684 C26.11794465569614 -7.628461931090012, 26.22515566258394 -7.3636486712933396, 26.479821729970325 -6.734618561215508 C26.63688207944477 -6.261577812766816, 26.793942428919216 -5.788537064318123, 26.87371063421488 -5.548287939305138 C26.942426287309633 -5.286245372502401, 27.01114194040439 -5.024202805699663, 27.19078178754556 -4.339158212148133 C27.25036192045315 -4.033226821933197, 27.309942053360746 -3.72729543171826, 27.429732276581777 -3.1121979531509023 C27.490628699568187 -2.639897321827174, 27.5515251225546 -2.1675966905034456, 27.589580202509367 -1.872449005199798 C27.6118082966636 -1.5262284965529374, 27.634036390817833 -1.1800079879060767, 27.669668715913414 -0.6250057626472757 C27.669668715913414 -0.2247627437715609, 27.669668715913414 0.17548027510415387, 27.669668715913414 0.625005762647271 C27.650828292056914 0.9184605719286674, 27.631987868200415 1.2119153812100636, 27.589580202509367 1.8724490051997846 C27.553064876865186 2.1556546601294193, 27.516549551221004 2.4388603150590535, 27.429732276581777 3.1121979531508885 C27.352404410918624 3.5092602000809934, 27.27507654525547 3.906322447011098, 27.19078178754556 4.339158212148129 C27.093151798944227 4.711463671789728, 26.995521810342897 5.083769131431327, 26.873710634214884 5.548287939305125 C26.77638197725421 5.841426346855111, 26.679053320293534 6.134564754405098, 26.47982172997033 6.734618561215495 C26.33787746622477 7.085223636972671, 26.195933202479214 7.4358287127298475, 26.010733648808344 7.893275190886679 C25.827018428221386 8.274763777311506, 25.643303207634425 8.656252363736334, 25.468373974273504 9.019496659696284 C25.28822116916399 9.339376207617885, 25.108068364054475 9.659255755539489, 24.85497137860425 10.108655082055236 C24.697926544182614 10.349918120169608, 24.54088170976098 10.59118115828398, 24.17304646464064 11.156274872382301 C23.996005079578794 11.3934941995632, 23.818963694516942 11.6307135267441, 23.425401408126582 12.158051136245302 C23.10609624815875 12.533125146121826, 22.786791088190917 12.90819915599835, 22.61510844296866 13.10986736009567 C22.391825932603105 13.34042488388313, 22.16854342223755 13.570982407670591, 21.74549723676799 14.007812326905684 C21.553625431217498 14.182065224056858, 21.361753625667006 14.356318121208032, 20.820141208501887 14.848196188198111 C20.49703808633422 15.105862329991647, 20.173934964166552 15.363528471785182, 19.842842844578715 15.627565626425152 C19.480212096169957 15.880521138483012, 19.1175813477612 16.13347665054087, 18.817618073605708 16.34271804539089 C18.441898140442266 16.570481676849976, 18.066178207278828 16.79824530830906, 17.748679764076787 16.990714730406093 C17.427195949695886 17.1584326304484, 17.105712135314985 17.326150530490704, 16.640420412792388 17.56889292409717 C16.29493902978098 17.721827284015216, 15.949457646769574 17.874761643933265, 15.497394095147804 18.07487676824742 C15.123821800130889 18.212354826078084, 14.750249505113976 18.34983288390875, 14.324297751460616 18.506587066708033 C14.037880913425795 18.591594080804107, 13.751464075390972 18.67660109490018, 13.125951886235413 18.86224982926107 C12.807206258396711 18.935001438805646, 12.48846063055801 19.00775304835022, 11.907280759676766 19.140403561325773 C11.54202068146163 19.199455978137383, 11.176760603246494 19.258508394948997, 10.673292152847878 19.3399052695533 C10.367867563905248 19.369369212321786, 10.062442974962618 19.39883315509027, 9.4290567896239 19.45993515863156 C9.040517573056555 19.472394855061168, 8.65197835648921 19.484854551490777, 8.179687500000004 19.5 C8.179687500000002 19.5, 8.179687500000002 19.5, 8.1796875 19.5 C4.310666526129617 19.5, 0.4416455522592333 19.5, -8.179687499999996 19.5 C-8.438944723614853 19.491686125452244, -8.69820194722971 19.483372250904488, -9.429056789623893 19.45993515863156 C-9.785502902956598 19.425549230767523, -10.141949016289303 19.39116330290349, -10.673292152847871 19.3399052695533 C-11.062139267842065 19.277039483555452, -11.450986382836259 19.2141736975576, -11.907280759676759 19.140403561325773 C-12.314550283132107 19.047446950279102, -12.721819806587455 18.954490339232436, -13.125951886235388 18.862249829261074 C-13.448460839845483 18.76653086471364, -13.770969793455578 18.67081190016621, -14.324297751460593 18.506587066708043 C-14.670511091045084 18.379177357379923, -15.016724430629575 18.251767648051803, -15.497394095147797 18.074876768247425 C-15.835031624805737 17.925414649529316, -16.172669154463676 17.775952530811203, -16.64042041279238 17.568892924097174 C-16.95777337379727 17.403330087615196, -17.27512633480216 17.237767251133217, -17.74867976407678 16.990714730406097 C-18.10639478165246 16.773865784584938, -18.464109799228144 16.55701683876378, -18.817618073605686 16.3427180453909 C-19.023358592696923 16.19920236563638, -19.229099111788155 16.055686685881863, -19.842842844578712 15.627565626425156 C-20.1403339504772 15.390324386041915, -20.437825056375686 15.153083145658673, -20.82014120850187 14.848196188198125 C-21.101785765205072 14.592414053706893, -21.38343032190828 14.336631919215662, -21.745497236767974 14.007812326905697 C-21.987428410000174 13.757998527624729, -22.229359583232373 13.508184728343762, -22.615108442968655 13.109867360095677 C-22.918459519894256 12.753533923973603, -23.221810596819854 12.397200487851528, -23.42540140812658 12.158051136245307 C-23.62590595209669 11.889393313665087, -23.826410496066803 11.620735491084867, -24.173046464640635 11.156274872382316 C-24.34285463242608 10.895403926786237, -24.512662800211523 10.634532981190159, -24.854971378604244 10.108655082055249 C-25.03705194855783 9.785352592445637, -25.21913251851142 9.462050102836024, -25.4683739742735 9.019496659696289 C-25.644332441543902 8.65411513750123, -25.8202909088143 8.288733615306171, -26.01073364880834 7.893275190886686 C-26.196363791263693 7.4347651501073155, -26.381993933719045 6.976255109327945, -26.479821729970325 6.73461856121551 C-26.575424024665008 6.44667968175222, -26.671026319359687 6.158740802288929, -26.87371063421488 5.5482879393051325 C-26.980911521997225 5.139484493032388, -27.08811240977957 4.730681046759642, -27.190781787545557 4.339158212148136 C-27.280406319040335 3.878955185073905, -27.37003085053511 3.4187521579996742, -27.429732276581777 3.112197953150904 C-27.47523032903856 2.759324042902788, -27.520728381495342 2.4064501326546717, -27.589580202509364 1.872449005199809 C-27.61929274335115 1.4096521980577068, -27.649005284192935 0.9468553909156047, -27.669668715913414 0.6250057626472781 C-27.669668715913414 0.22761633215261762, -27.669668715913414 -0.1697730983420429, -27.669668715913414 -0.6250057626472687 C-27.65256519396721 -0.8914069226738561, -27.635461672021002 -1.1578080827004436, -27.589580202509367 -1.8724490051997822 C-27.54405089097542 -2.225565354677596, -27.498521579441473 -2.57868170415541, -27.429732276581777 -3.112197953150895 C-27.37871088541574 -3.374182013413661, -27.3276894942497 -3.636166073676427, -27.19078178754556 -4.339158212148126 C-27.11047346951927 -4.645408634627575, -27.03016515149298 -4.951659057107025, -26.873710634214884 -5.548287939305123 C-26.745756243555334 -5.93366617720811, -26.617801852895788 -6.3190444151110965, -26.479821729970332 -6.734618561215485 C-26.38237127600396 -6.975323066588783, -26.284920822037584 -7.21602757196208, -26.010733648808344 -7.893275190886676 C-25.823957196976263 -8.281120489491856, -25.63718074514418 -8.668965788097037, -25.468373974273504 -9.019496659696282 C-25.233841339253296 -9.435933102179213, -24.999308704233087 -9.852369544662144, -24.854971378604247 -10.108655082055243 C-24.632995507727745 -10.449669628588913, -24.41101963685124 -10.790684175122582, -24.17304646464064 -11.156274872382308 C-23.962086459220476 -11.438942060793467, -23.751126453800314 -11.721609249204624, -23.425401408126586 -12.158051136245302 C-23.138186906812194 -12.495429632457284, -22.850972405497807 -12.832808128669267, -22.615108442968662 -13.10986736009567 C-22.28176962924701 -13.454067052888853, -21.948430815525352 -13.798266745682035, -21.745497236767996 -14.007812326905677 C-21.494815045484373 -14.235475260342142, -21.24413285420075 -14.463138193778608, -20.820141208501887 -14.848196188198107 C-20.498987979070527 -15.104307342423263, -20.177834749639167 -15.36041849664842, -19.84284284457872 -15.627565626425149 C-19.594940216407892 -15.800491768305307, -19.347037588237065 -15.973417910185464, -18.81761807360571 -16.342718045390885 C-18.432895162078875 -16.575939335241234, -18.048172250552042 -16.809160625091582, -17.74867976407679 -16.99071473040609 C-17.451571401774565 -17.14571597271217, -17.154463039472343 -17.300717215018253, -16.640420412792388 -17.56889292409717 C-16.31924814449514 -17.711066360035527, -15.998075876197895 -17.85323979597388, -15.497394095147806 -18.07487676824742 C-15.239731188773453 -18.16969909960298, -14.9820682823991 -18.26452143095854, -14.324297751460618 -18.506587066708033 C-14.033872756348217 -18.592783680785484, -13.743447761235817 -18.67898029486294, -13.125951886235413 -18.862249829261067 C-12.66456522907198 -18.967558322929307, -12.203178571908547 -19.072866816597546, -11.907280759676768 -19.140403561325773 C-11.486994528079887 -19.208352179881953, -11.066708296483005 -19.276300798438132, -10.67329215284788 -19.3399052695533 C-10.402001453134163 -19.36607635707988, -10.130710753420447 -19.392247444606458, -9.429056789623903 -19.45993515863156 C-9.11930360553265 -19.469868340347368, -8.809550421441395 -19.479801522063177, -8.179687500000005 -19.5 C-8.179687500000004 -19.5, -8.179687500000002 -19.5, -8.1796875 -19.5" stroke="none" stroke-width="0" fill="#0969da" style="fill:#0969da !important;stroke:#0969da !important"></path>
+            <path d="M-8.1796875 -19.5 C-1.6821068633647087 -19.5, 4.815473773270583 -19.5, 8.1796875 -19.5 M-8.1796875 -19.5 C-4.564880098549121 -19.5, -0.9500726970982436 -19.5, 8.1796875 -19.5 M8.1796875 -19.5 C8.1796875 -19.5, 8.179687499999998 -19.5, 8.179687499999998 -19.5 M8.1796875 -19.5 C8.1796875 -19.5, 8.179687499999998 -19.5, 8.179687499999998 -19.5 M8.179687499999998 -19.5 C8.535305764856455 -19.488596014415016, 8.890924029712913 -19.47719202883003, 9.4290567896239 -19.45993515863156 M8.179687499999998 -19.5 C8.511654429131301 -19.489354466717188, 8.843621358262606 -19.478708933434376, 9.4290567896239 -19.45993515863156 M9.4290567896239 -19.45993515863156 C9.794318774003303 -19.424698774290285, 10.159580758382704 -19.38946238994901, 10.673292152847864 -19.3399052695533 M9.4290567896239 -19.45993515863156 C9.841392655387633 -19.420157613567763, 10.253728521151366 -19.380380068503968, 10.673292152847864 -19.3399052695533 M10.673292152847864 -19.3399052695533 C10.957250196938295 -19.293997135112278, 11.241208241028728 -19.24808900067126, 11.907280759676757 -19.140403561325776 M10.673292152847864 -19.3399052695533 C11.028251391280197 -19.282518212633565, 11.38321062971253 -19.225131155713836, 11.907280759676757 -19.140403561325776 M11.907280759676757 -19.140403561325776 C12.273409723347083 -19.056837014582797, 12.639538687017408 -18.973270467839814, 13.12595188623539 -18.862249829261074 M11.907280759676757 -19.140403561325776 C12.24726394168712 -19.06280461862951, 12.587247123697482 -18.985205675933248, 13.12595188623539 -18.862249829261074 M13.12595188623539 -18.862249829261074 C13.552891502055518 -18.735536392337437, 13.979831117875646 -18.608822955413796, 14.324297751460602 -18.50658706670804 M13.12595188623539 -18.862249829261074 C13.573350194462902 -18.729464359820792, 14.020748502690413 -18.59667889038051, 14.324297751460602 -18.50658706670804 M14.324297751460602 -18.50658706670804 C14.57634994365315 -18.413829530036256, 14.8284021358457 -18.321071993364477, 15.497394095147794 -18.074876768247425 M14.324297751460602 -18.50658706670804 C14.675101489414477 -18.37748804834681, 15.02590522736835 -18.248389029985578, 15.497394095147794 -18.074876768247425 M15.497394095147794 -18.074876768247425 C15.933960494647634 -17.88162177347096, 16.370526894147474 -17.6883667786945, 16.64042041279238 -17.568892924097174 M15.497394095147794 -18.074876768247425 C15.86108934918617 -17.913879667921027, 16.224784603224546 -17.75288256759463, 16.64042041279238 -17.568892924097174 M16.64042041279238 -17.568892924097174 C16.963156747278198 -17.400521585118412, 17.285893081764016 -17.23215024613965, 17.748679764076783 -16.990714730406097 M16.64042041279238 -17.568892924097174 C17.022670830010824 -17.36947312627739, 17.404921247229268 -17.170053328457605, 17.748679764076783 -16.990714730406097 M17.748679764076783 -16.990714730406097 C17.990069498665147 -16.84438285473509, 18.23145923325351 -16.698050979064085, 18.817618073605697 -16.342718045390892 M17.748679764076783 -16.990714730406097 C18.054991546897313 -16.80502672757245, 18.361303329717842 -16.6193387247388, 18.817618073605697 -16.342718045390892 M18.817618073605697 -16.342718045390892 C19.11379737291424 -16.136116187588474, 19.40997667222279 -15.929514329786056, 19.842842844578712 -15.627565626425154 M18.817618073605697 -16.342718045390892 C19.098089183963385 -16.14707354020405, 19.378560294321073 -15.951429035017213, 19.842842844578712 -15.627565626425154 M19.842842844578712 -15.627565626425154 C20.070304886856633 -15.446170700727668, 20.297766929134553 -15.26477577503018, 20.82014120850187 -14.848196188198123 M19.842842844578712 -15.627565626425154 C20.194965720379983 -15.346757003356895, 20.547088596181258 -15.065948380288637, 20.82014120850187 -14.848196188198123 M20.82014120850187 -14.848196188198123 C21.163694797508626 -14.53618990859204, 21.507248386515382 -14.224183628985957, 21.745497236767985 -14.007812326905688 M20.82014120850187 -14.848196188198123 C21.08798878931005 -14.604944102166774, 21.35583637011823 -14.361692016135427, 21.745497236767985 -14.007812326905688 M21.745497236767985 -14.007812326905688 C21.981406429024915 -13.764216717395517, 22.21731562128185 -13.520621107885345, 22.615108442968648 -13.10986736009568 M21.745497236767985 -14.007812326905688 C22.06779051841788 -13.675018052831643, 22.390083800067774 -13.3422237787576, 22.615108442968648 -13.10986736009568 M22.615108442968648 -13.10986736009568 C22.83527179705138 -12.851250956740367, 23.05543515113411 -12.592634553385052, 23.425401408126582 -12.158051136245305 M22.615108442968648 -13.10986736009568 C22.86617558152475 -12.814949613022794, 23.11724272008085 -12.520031865949907, 23.425401408126582 -12.158051136245305 M23.425401408126582 -12.158051136245305 C23.637596797995403 -11.873728645218787, 23.84979218786422 -11.589406154192268, 24.173046464640635 -11.156274872382312 M23.425401408126582 -12.158051136245305 C23.60969649711473 -11.911112506629191, 23.793991586102873 -11.664173877013075, 24.173046464640635 -11.156274872382312 M24.173046464640635 -11.156274872382312 C24.41364277492401 -10.7866543306316, 24.65423908520739 -10.417033788880888, 24.854971378604247 -10.108655082055241 M24.173046464640635 -11.156274872382312 C24.358209002487847 -10.871815491145693, 24.54337154033506 -10.587356109909074, 24.854971378604247 -10.108655082055241 M24.854971378604247 -10.108655082055241 C25.032280920445118 -9.793824035978744, 25.209590462285984 -9.478992989902245, 25.4683739742735 -9.019496659696287 M24.854971378604247 -10.108655082055241 C25.006287687950188 -9.839977652373697, 25.157603997296125 -9.571300222692152, 25.4683739742735 -9.019496659696287 M25.4683739742735 -9.019496659696287 C25.663621585007576 -8.614060818377355, 25.85886919574165 -8.208624977058424, 26.01073364880834 -7.893275190886684 M25.4683739742735 -9.019496659696287 C25.67635069595542 -8.587628547134813, 25.88432741763734 -8.155760434573336, 26.01073364880834 -7.893275190886684 M26.01073364880834 -7.893275190886684 C26.14683058784808 -7.557113120203213, 26.28292752688782 -7.220951049519742, 26.479821729970325 -6.734618561215508 M26.01073364880834 -7.893275190886684 C26.17032934600487 -7.499070733238361, 26.3299250432014 -7.104866275590037, 26.479821729970325 -6.734618561215508 M26.479821729970325 -6.734618561215508 C26.578684398372413 -6.436859955615514, 26.6775470667745 -6.139101350015519, 26.87371063421488 -5.548287939305138 M26.479821729970325 -6.734618561215508 C26.610820743055708 -6.340070405660617, 26.74181975614109 -5.945522250105726, 26.87371063421488 -5.548287939305138 M26.87371063421488 -5.548287939305138 C26.99748782458712 -5.076271867042132, 27.121265014959363 -4.604255794779125, 27.19078178754556 -4.339158212148133 M26.87371063421488 -5.548287939305138 C26.977619051830306 -5.152040108744456, 27.08152746944573 -4.7557922781837725, 27.19078178754556 -4.339158212148133 M27.19078178754556 -4.339158212148133 C27.24312236454458 -4.070400411443043, 27.295462941543597 -3.8016426107379546, 27.429732276581777 -3.1121979531509023 M27.19078178754556 -4.339158212148133 C27.259385084930372 -3.9868947793891722, 27.32798838231518 -3.634631346630211, 27.429732276581777 -3.1121979531509023 M27.429732276581777 -3.1121979531509023 C27.479464704884798 -2.7264830600114602, 27.529197133187814 -2.340768166872018, 27.589580202509367 -1.872449005199798 M27.429732276581777 -3.1121979531509023 C27.487361136086072 -2.66523989894109, 27.544989995590363 -2.2182818447312784, 27.589580202509367 -1.872449005199798 M27.589580202509367 -1.872449005199798 C27.61028760431597 -1.5499145073480194, 27.63099500612258 -1.2273800094962406, 27.669668715913414 -0.6250057626472757 M27.589580202509367 -1.872449005199798 C27.620152218876644 -1.3962651729920177, 27.650724235243917 -0.9200813407842372, 27.669668715913414 -0.6250057626472757 M27.669668715913414 -0.6250057626472757 C27.669668715913414 -0.16203457597352966, 27.669668715913414 0.3009366107002164, 27.669668715913414 0.625005762647271 M27.669668715913414 -0.6250057626472757 C27.669668715913414 -0.19328347013014535, 27.669668715913414 0.238438822386985, 27.669668715913414 0.625005762647271 M27.669668715913414 0.625005762647271 C27.64116480949854 1.068977112998081, 27.612660903083665 1.5129484633488908, 27.589580202509367 1.8724490051997846 M27.669668715913414 0.625005762647271 C27.643142487911938 1.0381731753561434, 27.616616259910458 1.4513405880650159, 27.589580202509367 1.8724490051997846 M27.589580202509367 1.8724490051997846 C27.546453432662233 2.2069317157901898, 27.5033266628151 2.541414426380595, 27.429732276581777 3.1121979531508885 M27.589580202509367 1.8724490051997846 C27.540399193172462 2.2538872017280305, 27.49121818383556 2.635325398256276, 27.429732276581777 3.1121979531508885 M27.429732276581777 3.1121979531508885 C27.372965092302298 3.403685446677371, 27.31619790802282 3.6951729402038533, 27.19078178754556 4.339158212148129 M27.429732276581777 3.1121979531508885 C27.37993498910459 3.367896499685812, 27.330137701627404 3.6235950462207356, 27.19078178754556 4.339158212148129 M27.19078178754556 4.339158212148129 C27.107652009197754 4.656168085662157, 27.024522230849946 4.973177959176184, 26.873710634214884 5.548287939305125 M27.19078178754556 4.339158212148129 C27.082290573811495 4.752882230505586, 26.973799360077432 5.166606248863042, 26.873710634214884 5.548287939305125 M26.873710634214884 5.548287939305125 C26.762830952634353 5.8822398739475545, 26.65195127105382 6.216191808589984, 26.47982172997033 6.734618561215495 M26.873710634214884 5.548287939305125 C26.791043823186776 5.797267202954131, 26.708377012158667 6.046246466603136, 26.47982172997033 6.734618561215495 M26.47982172997033 6.734618561215495 C26.308968635153587 7.156629008632718, 26.138115540336848 7.578639456049942, 26.010733648808344 7.893275190886679 M26.47982172997033 6.734618561215495 C26.382264384081292 6.975587091704384, 26.28470703819226 7.2165556221932725, 26.010733648808344 7.893275190886679 M26.010733648808344 7.893275190886679 C25.863176308716884 8.199681164807899, 25.71561896862542 8.506087138729118, 25.468373974273504 9.019496659696284 M26.010733648808344 7.893275190886679 C25.891771860137894 8.140301890435385, 25.772810071467443 8.38732858998409, 25.468373974273504 9.019496659696284 M25.468373974273504 9.019496659696284 C25.300508703568813 9.317558446034345, 25.132643432864118 9.61562023237241, 24.85497137860425 10.108655082055236 M25.468373974273504 9.019496659696284 C25.272757109683536 9.366834211131255, 25.077140245093567 9.714171762566227, 24.85497137860425 10.108655082055236 M24.85497137860425 10.108655082055236 C24.630204069535154 10.453958027258835, 24.40543676046606 10.799260972462433, 24.17304646464064 11.156274872382301 M24.85497137860425 10.108655082055236 C24.61537545990636 10.476738753687886, 24.37577954120847 10.844822425320539, 24.17304646464064 11.156274872382301 M24.17304646464064 11.156274872382301 C23.90282847250633 11.51834236447677, 23.63261048037202 11.880409856571239, 23.425401408126582 12.158051136245302 M24.17304646464064 11.156274872382301 C23.927244652445605 11.485626907717894, 23.681442840250565 11.814978943053488, 23.425401408126582 12.158051136245302 M23.425401408126582 12.158051136245302 C23.186071992935325 12.439181085558463, 22.94674257774407 12.720311034871624, 22.61510844296866 13.10986736009567 M23.425401408126582 12.158051136245302 C23.128426296068394 12.506895001231433, 22.83145118401021 12.855738866217566, 22.61510844296866 13.10986736009567 M22.61510844296866 13.10986736009567 C22.38148450589215 13.351103256009116, 22.14786056881564 13.59233915192256, 21.74549723676799 14.007812326905684 M22.61510844296866 13.10986736009567 C22.362686809924597 13.370513420415152, 22.11026517688054 13.631159480734636, 21.74549723676799 14.007812326905684 M21.74549723676799 14.007812326905684 C21.429052829962636 14.29519876450611, 21.112608423157287 14.582585202106532, 20.820141208501887 14.848196188198111 M21.74549723676799 14.007812326905684 C21.41469104417592 14.308241758365574, 21.083884851583857 14.608671189825465, 20.820141208501887 14.848196188198111 M20.820141208501887 14.848196188198111 C20.515273898513527 15.091319755053991, 20.210406588525167 15.334443321909873, 19.842842844578715 15.627565626425152 M20.820141208501887 14.848196188198111 C20.549475849825786 15.064044609034612, 20.278810491149684 15.279893029871115, 19.842842844578715 15.627565626425152 M19.842842844578715 15.627565626425152 C19.596348134717914 15.799509665440038, 19.349853424857113 15.971453704454923, 18.817618073605708 16.34271804539089 M19.842842844578715 15.627565626425152 C19.435191189459232 15.911925774080773, 19.027539534339752 16.196285921736393, 18.817618073605708 16.34271804539089 M18.817618073605708 16.34271804539089 C18.58817143992387 16.481809943106907, 18.358724806242027 16.620901840822924, 17.748679764076787 16.990714730406093 M18.817618073605708 16.34271804539089 C18.56633735835225 16.495045891666926, 18.315056643098792 16.647373737942967, 17.748679764076787 16.990714730406093 M17.748679764076787 16.990714730406093 C17.401352955650637 17.171914903888577, 17.054026147224487 17.35311507737106, 16.640420412792388 17.56889292409717 M17.748679764076787 16.990714730406093 C17.45244603417766 17.145259677547706, 17.15621230427854 17.29980462468932, 16.640420412792388 17.56889292409717 M16.640420412792388 17.56889292409717 C16.385041094261883 17.6819417728523, 16.129661775731375 17.794990621607433, 15.497394095147804 18.07487676824742 M16.640420412792388 17.56889292409717 C16.31525568182443 17.712833704827652, 15.990090950856473 17.856774485558134, 15.497394095147804 18.07487676824742 M15.497394095147804 18.07487676824742 C15.100340253870952 18.220996252162777, 14.7032864125941 18.36711573607813, 14.324297751460616 18.506587066708033 M15.497394095147804 18.07487676824742 C15.23562392624789 18.171210610179504, 14.973853757347973 18.26754445211159, 14.324297751460616 18.506587066708033 M14.324297751460616 18.506587066708033 C14.015525978810475 18.598228908054487, 13.706754206160335 18.689870749400942, 13.125951886235413 18.86224982926107 M14.324297751460616 18.506587066708033 C13.964521104033626 18.613366887158204, 13.604744456606635 18.72014670760838, 13.125951886235413 18.86224982926107 M13.125951886235413 18.86224982926107 C12.803104091650589 18.935937731596308, 12.480256297065763 19.009625633931545, 11.907280759676766 19.140403561325773 M13.125951886235413 18.86224982926107 C12.806340924323472 18.93519894566103, 12.48672996241153 19.00814806206099, 11.907280759676766 19.140403561325773 M11.907280759676766 19.140403561325773 C11.43540322804046 19.216693061175818, 10.963525696404153 19.292982561025866, 10.673292152847878 19.3399052695533 M11.907280759676766 19.140403561325773 C11.562184727496591 19.196196011548963, 11.217088695316416 19.251988461772157, 10.673292152847878 19.3399052695533 M10.673292152847878 19.3399052695533 C10.294060200444555 19.376489319908497, 9.914828248041234 19.413073370263692, 9.4290567896239 19.45993515863156 M10.673292152847878 19.3399052695533 C10.384810366327802 19.36773476054878, 10.096328579807725 19.395564251544265, 9.4290567896239 19.45993515863156 M9.4290567896239 19.45993515863156 C9.08687750533274 19.470908182267205, 8.74469822104158 19.481881205902848, 8.179687500000004 19.5 M9.4290567896239 19.45993515863156 C9.076726752916137 19.471233697139965, 8.724396716208377 19.482532235648367, 8.179687500000004 19.5 M8.179687500000004 19.5 C8.179687500000002 19.5, 8.179687500000002 19.5, 8.1796875 19.5 M8.179687500000004 19.5 C8.179687500000004 19.5, 8.179687500000002 19.5, 8.1796875 19.5 M8.1796875 19.5 C2.2219754901640965 19.5, -3.735736519671807 19.5, -8.179687499999996 19.5 M8.1796875 19.5 C4.740249214301317 19.5, 1.3008109286026341 19.5, -8.179687499999996 19.5 M-8.179687499999996 19.5 C-8.637561451219021 19.485316873581986, -9.095435402438046 19.470633747163973, -9.429056789623893 19.45993515863156 M-8.179687499999996 19.5 C-8.504040240538957 19.489598638925226, -8.828392981077918 19.479197277850453, -9.429056789623893 19.45993515863156 M-9.429056789623893 19.45993515863156 C-9.716658476443863 19.432190569795672, -10.004260163263833 19.404445980959782, -10.673292152847871 19.3399052695533 M-9.429056789623893 19.45993515863156 C-9.810636332430471 19.42312463905355, -10.192215875237052 19.386314119475543, -10.673292152847871 19.3399052695533 M-10.673292152847871 19.3399052695533 C-11.044129397797782 19.27995117967558, -11.414966642747691 19.219997089797868, -11.907280759676759 19.140403561325773 M-10.673292152847871 19.3399052695533 C-11.055766388456593 19.278069801272075, -11.438240624065315 19.216234332990854, -11.907280759676759 19.140403561325773 M-11.907280759676759 19.140403561325773 C-12.242755009141822 19.063833753059438, -12.578229258606886 18.987263944793106, -13.125951886235388 18.862249829261074 M-11.907280759676759 19.140403561325773 C-12.221803246726244 19.06861585610777, -12.53632573377573 18.996828150889762, -13.125951886235388 18.862249829261074 M-13.125951886235388 18.862249829261074 C-13.550526694429218 18.736238254827793, -13.975101502623046 18.61022668039451, -14.324297751460593 18.506587066708043 M-13.125951886235388 18.862249829261074 C-13.48468382339916 18.75578007333323, -13.843415760562932 18.649310317405387, -14.324297751460593 18.506587066708043 M-14.324297751460593 18.506587066708043 C-14.563208585747157 18.418665671223046, -14.802119420033721 18.33074427573805, -15.497394095147797 18.074876768247425 M-14.324297751460593 18.506587066708043 C-14.774157793276121 18.341034412859287, -15.22401783509165 18.175481759010534, -15.497394095147797 18.074876768247425 M-15.497394095147797 18.074876768247425 C-15.879581782807639 17.905693616115357, -16.26176947046748 17.736510463983286, -16.64042041279238 17.568892924097174 M-15.497394095147797 18.074876768247425 C-15.785178180526682 17.947483290461772, -16.072962265905566 17.82008981267612, -16.64042041279238 17.568892924097174 M-16.64042041279238 17.568892924097174 C-16.918845298574375 17.423638839524358, -17.197270184356366 17.278384754951542, -17.74867976407678 16.990714730406097 M-16.64042041279238 17.568892924097174 C-17.05252639262675 17.35389749838406, -17.46463237246112 17.13890207267095, -17.74867976407678 16.990714730406097 M-17.74867976407678 16.990714730406097 C-18.077363780073174 16.791464548347403, -18.40604779606957 16.59221436628871, -18.817618073605686 16.3427180453909 M-17.74867976407678 16.990714730406097 C-18.117101883656456 16.767375076428202, -18.485524003236133 16.544035422450303, -18.817618073605686 16.3427180453909 M-18.817618073605686 16.3427180453909 C-19.14873183218826 16.111747421087287, -19.479845590770832 15.880776796783676, -19.842842844578712 15.627565626425156 M-18.817618073605686 16.3427180453909 C-19.059082989960565 16.174282572589497, -19.300547906315444 16.00584709978809, -19.842842844578712 15.627565626425156 M-19.842842844578712 15.627565626425156 C-20.062376759784286 15.452493171091543, -20.281910674989863 15.277420715757932, -20.82014120850187 14.848196188198125 M-19.842842844578712 15.627565626425156 C-20.224423222286525 15.32326542948348, -20.606003599994338 15.018965232541802, -20.82014120850187 14.848196188198125 M-20.82014120850187 14.848196188198125 C-21.086787225688685 14.606035330456068, -21.353433242875504 14.36387447271401, -21.745497236767974 14.007812326905697 M-20.82014120850187 14.848196188198125 C-21.063503870913983 14.627180657218641, -21.306866533326097 14.40616512623916, -21.745497236767974 14.007812326905697 M-21.745497236767974 14.007812326905697 C-21.97923334140663 13.766460608775208, -22.212969446045285 13.52510889064472, -22.615108442968655 13.109867360095677 M-21.745497236767974 14.007812326905697 C-21.9568943213231 13.789527481079109, -22.168291405878232 13.571242635252519, -22.615108442968655 13.109867360095677 M-22.615108442968655 13.109867360095677 C-22.85322898936306 12.830157416857878, -23.09134953575747 12.550447473620078, -23.42540140812658 12.158051136245307 M-22.615108442968655 13.109867360095677 C-22.93569521851624 12.733287891633184, -23.256281994063826 12.356708423170689, -23.42540140812658 12.158051136245307 M-23.42540140812658 12.158051136245307 C-23.632501977139427 11.880555241018065, -23.839602546152275 11.603059345790822, -24.173046464640635 11.156274872382316 M-23.42540140812658 12.158051136245307 C-23.709462887980735 11.777434631773925, -23.99352436783489 11.396818127302543, -24.173046464640635 11.156274872382316 M-24.173046464640635 11.156274872382316 C-24.327126046249557 10.91956725887014, -24.48120562785848 10.682859645357965, -24.854971378604244 10.108655082055249 M-24.173046464640635 11.156274872382316 C-24.434893479427966 10.754007541900366, -24.6967404942153 10.351740211418415, -24.854971378604244 10.108655082055249 M-24.854971378604244 10.108655082055249 C-25.058362967462678 9.74751272040541, -25.261754556321115 9.386370358755574, -25.4683739742735 9.019496659696289 M-24.854971378604244 10.108655082055249 C-25.09952371796698 9.674427639907076, -25.34407605732972 9.240200197758902, -25.4683739742735 9.019496659696289 M-25.4683739742735 9.019496659696289 C-25.57734415911354 8.793217739287504, -25.68631434395358 8.566938818878718, -26.01073364880834 7.893275190886686 M-25.4683739742735 9.019496659696289 C-25.678552794985833 8.583055841380789, -25.888731615698166 8.146615023065289, -26.01073364880834 7.893275190886686 M-26.01073364880834 7.893275190886686 C-26.122368036707936 7.6175360944706245, -26.23400242460753 7.341796998054564, -26.479821729970325 6.73461856121551 M-26.01073364880834 7.893275190886686 C-26.142130245331447 7.568723057094235, -26.273526841854558 7.244170923301786, -26.479821729970325 6.73461856121551 M-26.479821729970325 6.73461856121551 C-26.589780857422426 6.403439188937526, -26.69973998487453 6.072259816659542, -26.87371063421488 5.5482879393051325 M-26.479821729970325 6.73461856121551 C-26.571005677245324 6.4599870402122415, -26.662189624520323 6.185355519208974, -26.87371063421488 5.5482879393051325 M-26.87371063421488 5.5482879393051325 C-26.946226848501006 5.27175218550606, -27.01874306278713 4.995216431706987, -27.190781787545557 4.339158212148136 M-26.87371063421488 5.5482879393051325 C-26.963326903954396 5.206542262851367, -27.05294317369391 4.864796586397602, -27.190781787545557 4.339158212148136 M-27.190781787545557 4.339158212148136 C-27.244468576190584 4.063487899162718, -27.298155364835612 3.7878175861773005, -27.429732276581777 3.112197953150904 M-27.190781787545557 4.339158212148136 C-27.285822509842735 3.851144190015901, -27.380863232139916 3.3631301678836656, -27.429732276581777 3.112197953150904 M-27.429732276581777 3.112197953150904 C-27.4741262806273 2.767886824361505, -27.51852028467282 2.423575695572106, -27.589580202509364 1.872449005199809 M-27.429732276581777 3.112197953150904 C-27.476157581584506 2.7521324552631556, -27.522582886587234 2.392066957375407, -27.589580202509364 1.872449005199809 M-27.589580202509364 1.872449005199809 C-27.612136449015647 1.5211172587899615, -27.63469269552193 1.169785512380114, -27.669668715913414 0.6250057626472781 M-27.589580202509364 1.872449005199809 C-27.61424441984484 1.4882839116018731, -27.638908637180315 1.1041188180039372, -27.669668715913414 0.6250057626472781 M-27.669668715913414 0.6250057626472781 C-27.669668715913414 0.3099017959182789, -27.669668715913414 -0.005202170810720386, -27.669668715913414 -0.6250057626472687 M-27.669668715913414 0.6250057626472781 C-27.669668715913414 0.14494231038862365, -27.669668715913414 -0.33512114187003084, -27.669668715913414 -0.6250057626472687 M-27.669668715913414 -0.6250057626472687 C-27.641180572547047 -1.0687315907938917, -27.61269242918068 -1.5124574189405147, -27.589580202509367 -1.8724490051997822 M-27.669668715913414 -0.6250057626472687 C-27.6484151556759 -0.9560471189116024, -27.627161595438384 -1.2870884751759362, -27.589580202509367 -1.8724490051997822 M-27.589580202509367 -1.8724490051997822 C-27.539763850166487 -2.258814796619702, -27.48994749782361 -2.6451805880396217, -27.429732276581777 -3.112197953150895 M-27.589580202509367 -1.8724490051997822 C-27.548408869662733 -2.191765732559024, -27.5072375368161 -2.5110824599182657, -27.429732276581777 -3.112197953150895 M-27.429732276581777 -3.112197953150895 C-27.372539028171804 -3.4058731959387782, -27.31534577976183 -3.6995484387266613, -27.19078178754556 -4.339158212148126 M-27.429732276581777 -3.112197953150895 C-27.339657130370586 -3.5747147915564637, -27.2495819841594 -4.037231629962032, -27.19078178754556 -4.339158212148126 M-27.19078178754556 -4.339158212148126 C-27.072069656390234 -4.791859018406487, -26.953357525234907 -5.244559824664847, -26.873710634214884 -5.548287939305123 M-27.19078178754556 -4.339158212148126 C-27.115017302320133 -4.628081030848289, -27.039252817094706 -4.917003849548451, -26.873710634214884 -5.548287939305123 M-26.873710634214884 -5.548287939305123 C-26.788248586311468 -5.805686011062036, -26.702786538408056 -6.06308408281895, -26.479821729970332 -6.734618561215485 M-26.873710634214884 -5.548287939305123 C-26.791470425694886 -5.795982344169576, -26.70923021717489 -6.043676749034029, -26.479821729970332 -6.734618561215485 M-26.479821729970332 -6.734618561215485 C-26.370992298571966 -7.003429360843365, -26.2621628671736 -7.272240160471245, -26.010733648808344 -7.893275190886676 M-26.479821729970332 -6.734618561215485 C-26.38439750038427 -6.97031825319503, -26.28897327079821 -7.206017945174574, -26.010733648808344 -7.893275190886676 M-26.010733648808344 -7.893275190886676 C-25.860646908447624 -8.20493351858751, -25.710560168086904 -8.51659184628834, -25.468373974273504 -9.019496659696282 M-26.010733648808344 -7.893275190886676 C-25.87542232842256 -8.174252042866213, -25.740111008036774 -8.45522889484575, -25.468373974273504 -9.019496659696282 M-25.468373974273504 -9.019496659696282 C-25.24667430187695 -9.413146877562538, -25.024974629480397 -9.806797095428793, -24.854971378604247 -10.108655082055243 M-25.468373974273504 -9.019496659696282 C-25.233300635174412 -9.436893177023496, -24.998227296075317 -9.85428969435071, -24.854971378604247 -10.108655082055243 M-24.854971378604247 -10.108655082055243 C-24.65790245622686 -10.411405867242125, -24.460833533849474 -10.714156652429008, -24.17304646464064 -11.156274872382308 M-24.854971378604247 -10.108655082055243 C-24.61234714647183 -10.481391056339344, -24.369722914339416 -10.854127030623447, -24.17304646464064 -11.156274872382308 M-24.17304646464064 -11.156274872382308 C-23.91408078020346 -11.503265297268943, -23.655115095766273 -11.850255722155579, -23.425401408126586 -12.158051136245302 M-24.17304646464064 -11.156274872382308 C-23.89411041101591 -11.530023772642199, -23.615174357391176 -11.90377267290209, -23.425401408126586 -12.158051136245302 M-23.425401408126586 -12.158051136245302 C-23.194525326152696 -12.429251319353057, -22.963649244178807 -12.700451502460812, -22.615108442968662 -13.10986736009567 M-23.425401408126586 -12.158051136245302 C-23.135792222029547 -12.49824256546441, -22.846183035932505 -12.838433994683518, -22.615108442968662 -13.10986736009567 M-22.615108442968662 -13.10986736009567 C-22.309739754902647 -13.425185601759381, -22.004371066836633 -13.74050384342309, -21.745497236767996 -14.007812326905677 M-22.615108442968662 -13.10986736009567 C-22.39009397616648 -13.342213271100219, -22.165079509364297 -13.574559182104766, -21.745497236767996 -14.007812326905677 M-21.745497236767996 -14.007812326905677 C-21.41470185326464 -14.308231941837194, -21.083906469761278 -14.608651556768713, -20.820141208501887 -14.848196188198107 M-21.745497236767996 -14.007812326905677 C-21.531198885284944 -14.202432419698914, -21.31690053380189 -14.397052512492149, -20.820141208501887 -14.848196188198107 M-20.820141208501887 -14.848196188198107 C-20.491131183581636 -15.110572927747546, -20.16212115866138 -15.372949667296986, -19.84284284457872 -15.627565626425149 M-20.820141208501887 -14.848196188198107 C-20.455007076719028 -15.13938094166762, -20.089872944936168 -15.430565695137133, -19.84284284457872 -15.627565626425149 M-19.84284284457872 -15.627565626425149 C-19.43486292059236 -15.912154760231774, -19.026882996605995 -16.1967438940384, -18.81761807360571 -16.342718045390885 M-19.84284284457872 -15.627565626425149 C-19.614759986453105 -15.786666354705783, -19.38667712832749 -15.945767082986416, -18.81761807360571 -16.342718045390885 M-18.81761807360571 -16.342718045390885 C-18.506482570773883 -16.531330215642708, -18.195347067942055 -16.71994238589453, -17.74867976407679 -16.99071473040609 M-18.81761807360571 -16.342718045390885 C-18.546203539614595 -16.507251130905143, -18.274789005623482 -16.671784216419404, -17.74867976407679 -16.99071473040609 M-17.74867976407679 -16.99071473040609 C-17.460498247054677 -17.141058843247457, -17.172316730032566 -17.29140295608882, -16.640420412792388 -17.56889292409717 M-17.74867976407679 -16.99071473040609 C-17.48600349447586 -17.127752772004715, -17.22332722487493 -17.26479081360334, -16.640420412792388 -17.56889292409717 M-16.640420412792388 -17.56889292409717 C-16.293779025937866 -17.722340783306272, -15.947137639083342 -17.875788642515378, -15.497394095147806 -18.07487676824742 M-16.640420412792388 -17.56889292409717 C-16.38219036113808 -17.683203707842214, -16.12396030948377 -17.79751449158726, -15.497394095147806 -18.07487676824742 M-15.497394095147806 -18.07487676824742 C-15.075139332068796 -18.230270424340738, -14.652884568989784 -18.385664080434054, -14.324297751460618 -18.506587066708033 M-15.497394095147806 -18.07487676824742 C-15.156074333620335 -18.20048559561482, -14.814754572092864 -18.326094422982216, -14.324297751460618 -18.506587066708033 M-14.324297751460618 -18.506587066708033 C-14.049317952307788 -18.588199627698174, -13.77433815315496 -18.66981218868831, -13.125951886235413 -18.862249829261067 M-14.324297751460618 -18.506587066708033 C-14.077615874785733 -18.579800952845545, -13.830933998110849 -18.653014838983058, -13.125951886235413 -18.862249829261067 M-13.125951886235413 -18.862249829261067 C-12.645322754653144 -18.971950292146527, -12.164693623070875 -19.081650755031983, -11.907280759676768 -19.140403561325773 M-13.125951886235413 -18.862249829261067 C-12.861555846389514 -18.922596500010492, -12.597159806543615 -18.982943170759917, -11.907280759676768 -19.140403561325773 M-11.907280759676768 -19.140403561325773 C-11.642739569455088 -19.183172529413245, -11.378198379233407 -19.225941497500717, -10.67329215284788 -19.3399052695533 M-11.907280759676768 -19.140403561325773 C-11.545842014267995 -19.19883817468413, -11.184403268859223 -19.25727278804249, -10.67329215284788 -19.3399052695533 M-10.67329215284788 -19.3399052695533 C-10.256895564895924 -19.38007454760286, -9.84049897694397 -19.42024382565242, -9.429056789623903 -19.45993515863156 M-10.67329215284788 -19.3399052695533 C-10.333302385654699 -19.372703673496908, -9.993312618461518 -19.405502077440513, -9.429056789623903 -19.45993515863156 M-9.429056789623903 -19.45993515863156 C-9.016394067219974 -19.47316844893979, -8.603731344816046 -19.486401739248024, -8.179687500000005 -19.5 M-9.429056789623903 -19.45993515863156 C-8.99761306293617 -19.473770719192164, -8.566169336248437 -19.48760627975277, -8.179687500000005 -19.5 M-8.179687500000005 -19.5 C-8.179687500000004 -19.5, -8.179687500000002 -19.5, -8.1796875 -19.5 M-8.179687500000005 -19.5 C-8.179687500000004 -19.5, -8.179687500000002 -19.5, -8.1796875 -19.5" stroke="#0969da" stroke-width="1.3" fill="none" stroke-dasharray="0 0" style="fill:#0969da !important;stroke:#0969da !important"></path>
+          </g>
+          <g class="label" style="color:#ffffff !important" transform="translate(-15.3046875, -12)">
+            <rect></rect>
+            <foreignObject width="30.609375" height="24">
+              <div style="color: rgb(255, 255, 255) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml">
+                <span style="color:#ffffff !important" class="nodeLabel ">
+                  <p>idea</p>
+                </span>
+              </div>
+            </foreignObject>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+node_modules/
+docs/
+scripts/
+.team/
+.git/
+*.md
+!README.md
+!LICENSE
+*.log
+.DS_Store

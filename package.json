@@ -1,14 +1,68 @@
 {
-  "name": "opencode-team",
-  "version": "0.1.0",
+  "name": "@opencodeteam/cli",
+  "version": "0.0.1",
   "description": "A team of AI agents that takes an idea from research to launch — built on opencode, with no framework and no extra dependencies.",
-  "private": true,
   "type": "module",
+  "bin": {
+    "opencode-team": "bin/opencode-team"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "assets/",
+    "agents/",
+    "commands/",
+    "skills/",
+    "team.yaml",
+    "team/AGENTS.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "author": "Samet ÇELİKBIÇAK",
+  "license": "MIT",
+  "keywords": [
+    "opencode",
+    "ai-agents",
+    "pipeline",
+    "cli",
+    "software-team",
+    "research",
+    "prd",
+    "backlog",
+    "ux",
+    "brand",
+    "architecture",
+    "build",
+    "qa",
+    "security",
+    "docs",
+    "release",
+    "launch"
+  ],
+  "preferGlobal": true,
+  "exports": {
+    ".": {
+      "import": "./lib/opencode-team.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sametcelikbicak/opencode-team.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sametcelikbicak/opencode-team/issues"
+  },
+  "homepage": "https://sametcelikbicak.github.io/opencode-team/",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "allowScripts": {},
   "scripts": {
     "generate:reference": "ruby scripts/generate-reference.rb",
     "docs:dev": "npm run generate:reference && vitepress dev docs",
     "docs:build": "npm run generate:reference && vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "npm run generate:reference && vitepress preview docs"
   },
   "devDependencies": {
     "mermaid": "^12.2.0",

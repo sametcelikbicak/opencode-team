@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/opencode-team.svg" alt="OpenCode Team">
+    <img src="https://raw.githubusercontent.com/sametcelikbicak/opencode-team/main/assets/opencode-team.svg" alt="OpenCode Team">
 </p>
 
 <h1 align="center">OpenCode Team</h1>
@@ -18,40 +18,9 @@ Fikri araştırmadan lansmana kadar götüren bir yapay zekâ ajan ekibi — [op
   <em>English: <a href="./README.md">README.md</a></em>
 </p>
 
-```mermaid
-flowchart LR
-  classDef start fill:#0969da,stroke:#0969da,color:#ffffff
-  classDef disc fill:#e8f1fb,stroke:#4a9fd8,color:#1f2328
-  classDef design fill:#f3edff,stroke:#7c5cff,color:#1f2328
-  classDef build fill:#e9f9f1,stroke:#2f9e6e,color:#1f2328
-  classDef ship fill:#fff4e5,stroke:#e08a2e,color:#1f2328
-
-  idea([fikir]):::start --> discover
-
-  subgraph discover[Keşif]
-    direction TB
-    research[araştırma]:::disc --> prd[prd]:::disc --> backlog:::disc
-  end
-  subgraph design[Tasarım]
-    direction TB
-    ux[ux]:::design --> brand[marka]:::design --> architecture[mimari]:::design
-  end
-  subgraph build[Geliştirme]
-    direction TB
-    buildstage[kod]:::build --> qa[qa]:::build --> security[güvenlik]:::build
-  end
-  subgraph ship[Yayın]
-    direction TB
-    docs[doküman]:::ship --> release[sürüm]:::ship --> launch[lansman]:::ship
-  end
-
-  discover --> design --> build --> ship
-
-  style discover fill:transparent,stroke:#d0d7de,stroke-width:1px
-  style design fill:transparent,stroke:#d0d7de,stroke-width:1px
-  style build fill:transparent,stroke:#d0d7de,stroke-width:1px
-  style ship fill:transparent,stroke:#d0d7de,stroke-width:1px
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/sametcelikbicak/opencode-team/main/assets/pipeline.svg" alt="OpenCode Team pipeline" width="960">
+</p>
 
 <sub>Her ok bir kapı: sonraki aşama onayınızdan sonra başlar.</sub>
 
@@ -195,22 +164,22 @@ Boru hattı kontrolü:
 
 ## Ekip
 
-| Rol            | Ajan dosyası             | Yazdığı çıktı              |
-| -------------- | ------------------------ | -------------------------- |
+| Rol            | Ajan dosyası             | Yazdığı çıktı                     |
+| -------------- | ------------------------ | --------------------------------- |
 | Orkestratör    | `agents/orchestrator.md` | `.team/07-build.md` (birleştirme) |
-| Analist        | `agents/analyst.md`      | `.team/01-research.md`     |
-| PM             | `agents/pm.md`           | `.team/02-prd.md`          |
-| PO             | `agents/po.md`           | `.team/03-backlog.md`      |
-| UX Tasarımcısı | `agents/ux.md`           | `.team/04-ux.md`           |
-| Marka          | `agents/brand.md`        | `.team/05-brand.md`        |
-| Mimar          | `agents/architect.md`    | `.team/06-architecture.md` |
-| Frontend       | `agents/fe.md`           | `.team/07-build-fe.md`     |
-| Backend        | `agents/be.md`           | `.team/07-build-be.md`     |
-| QA             | `agents/qa.md`           | `.team/08-qa.md`           |
-| Güvenlik       | `agents/security.md`     | `.team/09-security.md`     |
-| Doküman        | `agents/docs.md`         | `.team/10-docs.md`         |
-| DevOps         | `agents/devops.md`       | `.team/11-release.md`      |
-| Pazarlama      | `agents/marketing.md`    | `.team/12-launch.md`       |
+| Analist        | `agents/analyst.md`      | `.team/01-research.md`            |
+| PM             | `agents/pm.md`           | `.team/02-prd.md`                 |
+| PO             | `agents/po.md`           | `.team/03-backlog.md`             |
+| UX Tasarımcısı | `agents/ux.md`           | `.team/04-ux.md`                  |
+| Marka          | `agents/brand.md`        | `.team/05-brand.md`               |
+| Mimar          | `agents/architect.md`    | `.team/06-architecture.md`        |
+| Frontend       | `agents/fe.md`           | `.team/07-build-fe.md`            |
+| Backend        | `agents/be.md`           | `.team/07-build-be.md`            |
+| QA             | `agents/qa.md`           | `.team/08-qa.md`                  |
+| Güvenlik       | `agents/security.md`     | `.team/09-security.md`            |
+| Doküman        | `agents/docs.md`         | `.team/10-docs.md`                |
+| DevOps         | `agents/devops.md`       | `.team/11-release.md`             |
+| Pazarlama      | `agents/marketing.md`    | `.team/12-launch.md`              |
 
 Tüm ajanlar `mode: all` ile tanımlıdır — böylece her birine üç yoldan ulaşabilirsiniz: **Tab / Shift+Tab** ile gezinme, **`@agent-adi`** ile bahsetme, **`/komut`** ile çağırma.
 
