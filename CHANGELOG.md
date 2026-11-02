@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.3] - 2026-11-02
+
+- fix: release-prep.sh previous tag detection (#68) (d3e4628)
+- docs: add git-clone to npm migration instructions (#55) (#66) (c74e5f9)
+- fix: security hardening for npm installer (#56) (#65) (c99aaf3)
+- feat: add npm pack artifact test to CI (3 platforms + paths with spaces) (#64) (cd8110c)
+
+
+
 All notable changes to the OpenCode Team npm package are documented in this file.
 
 ## [v0.0.2] - 2026-11-02
