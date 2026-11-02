@@ -70,7 +70,7 @@ jobs:
         shell: bash
         run: |
           npm ci
-          npm audit --audit-level=moderate
+          npm audit --audit-level=critical
 
   smoke:
     name: Install smoke (${{ matrix.os }})
