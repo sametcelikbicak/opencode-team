@@ -173,7 +173,6 @@ function installTeam(configDir, mode, installOpenencode) {
   if (installOpenencode) {
     installOpencode();
   }
-  requireOpencode();
   checkVersion();
 
   mkdirSync(join(configDir, 'skills'), { recursive: true });
