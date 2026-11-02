@@ -334,8 +334,7 @@ function cmdCheck(configDir) {
 
   const major = opencodeMajor();
   if (major === null) {
-    error('opencode not found');
-    ok = 1;
+    warn('opencode not found — install it first: https://opencode.ai/docs/');
   } else {
     info(`opencode ${major}`);
     checkVersion();
