@@ -66,6 +66,11 @@ jobs:
       - name: memory compaction
         shell: bash
         run: ./scripts/test-memory-compact.sh
+      - name: npm audit
+        shell: bash
+        run: |
+          npm ci
+          npm audit --audit-level=critical
 
   smoke:
     name: Install smoke (${{ matrix.os }})
