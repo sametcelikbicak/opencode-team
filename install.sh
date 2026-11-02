@@ -77,7 +77,10 @@ install_opencode() {
     echo "  ✗ curl not found. Install OpenCode 1.x manually: https://opencode.ai/docs/" >&2
     exit 1
   fi
-  echo "  ! Running the official OpenCode 1.x installer."
+  echo "  ! SECURITY: This downloads and executes the official OpenCode installer from https://opencode.ai/install"
+  echo "  ! The --install-opencode flag is opt-in; you can install OpenCode 1.x manually instead:"
+  echo "  !   curl -fsSL https://opencode.ai/install | bash   (review the script first)"
+  echo "  !   or: https://opencode.ai/docs/"
   echo "  ! OpenCode 1 and 2 cannot coexist; an existing OpenCode 2 binary will be replaced."
   curl -fsSL https://opencode.ai/install | bash
   if ! command -v opencode >/dev/null 2>&1; then
