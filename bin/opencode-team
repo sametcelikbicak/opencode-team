@@ -1,20 +1,461 @@
 #!/usr/bin/env node
-// OpenCode Team CLI — name-reservation publish (v0.0.1).
-// Real install/check/update/uninstall commands are implemented in a follow-up.
+// OpenCode Team CLI — install, check, update, uninstall.
+// Zero-dependency ESM CLI using only Node.js standard library.
 import { createRequire } from 'module';
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  writeFileSync,
+  readdirSync,
+  statSync,
+  unlinkSync,
+  symlinkSync,
+  copyFileSync,
+  rmSync,
+  readlinkSync,
+} from 'fs';
+import { join, resolve, dirname, basename, relative, sep } from 'path';
+import { execSync } from 'child_process';
 
 const require = createRequire(import.meta.url);
+const crypto = require('crypto');
 const pkg = require('../package.json');
-const args = process.argv.slice(2);
+const VERSION = pkg.version;
+const REPO = dirname(require.resolve('../package.json'));
 
-if (args.includes('--version') || args.includes('-v')) {
-  console.log(pkg.version);
+const TARGET_MAJOR = 1;
+
+function fail(message, code = 1) {
+  console.error(`opencode-team: ${message}`);
+  process.exit(code);
+}
+
+function info(message) {
+  console.log(`  ✓ ${message}`);
+}
+
+function warn(message) {
+  console.log(`  ○ ${message}`);
+}
+
+function error(message) {
+  console.error(`  ✗ ${message}`);
+}
+
+function defaultConfigDir() {
+  if (process.platform === 'win32') {
+    return resolve(process.env.USERPROFILE || '', '.config', 'opencode');
+  }
+  return resolve(process.env.HOME || '', '.config', 'opencode');
+}
+
+function resolveConfigDir(flagValue) {
+  if (flagValue) return resolve(flagValue);
+  return resolve(process.env.OPENCODE_CONFIG_DIR || defaultConfigDir());
+}
+
+function opencodeMajor() {
+  try {
+    const ver = execSync('opencode --version', { stdio: 'pipe' }).toString().trim();
+    const m = ver.match(/[^0-9]*([0-9]+)/);
+    return m ? parseInt(m[1], 10) : null;
+  } catch {
+    return null;
+  }
+}
+
+function checkVersion() {
+  const major = opencodeMajor();
+  if (major === null) {
+    warn('could not determine opencode version; the team targets OpenCode 1.x.');
+    return;
+  }
+  if (major !== TARGET_MAJOR) {
+    warn(`opencode ${major} detected; the team targets OpenCode 1.x. OpenCode 2 support is not available yet.`);
+  }
+}
+
+function requireOpencode() {
+  try {
+    execSync('opencode --version', { stdio: 'ignore' });
+    return;
+  } catch {
+    fail(
+      'OpenCode 1.x is required.\n' +
+        '  Install: https://opencode.ai/docs/\n' +
+        '  Or rerun: opencode-team install --install-opencode\n' +
+        '  OpenCode 2 support is not available yet.'
+    );
+  }
+}
+
+function installOpencode() {
+  if (process.platform === 'win32') {
+    try {
+      execSync('npm install --global opencode-ai@1', { stdio: 'inherit' });
+    } catch {
+      fail('Failed to install OpenCode via npm. Install manually: https://opencode.ai/docs/');
+    }
+  } else {
+    try {
+      execSync('curl -fsSL https://opencode.ai/install | bash', { stdio: 'inherit' });
+    } catch {
+      fail('Failed to install OpenCode. Install manually: https://opencode.ai/docs/');
+    }
+  }
+  try {
+    execSync('opencode --version', { stdio: 'ignore' });
+  } catch {
+    fail('opencode is still not on PATH. See https://opencode.ai/docs/');
+  }
+}
+
+function targetInRepo(target, repo) {
+  try {
+    const resolved = resolve(target);
+    return resolved === repo || resolved.startsWith(repo + sep);
+  } catch {
+    return false;
+  }
+}
+
+function hashFile(filePath) {
+  try {
+    const data = readFileSync(filePath);
+    return crypto.createHash('sha256').update(data).digest('hex');
+  } catch {
+    return '';
+  }
+}
+
+function loadManifest(configDir) {
+  const manifestPath = join(configDir, '.opencode-team-manifest.json');
+  if (!existsSync(manifestPath)) return { version: VERSION, files: [] };
+  try {
+    return JSON.parse(readFileSync(manifestPath, 'utf-8'));
+  } catch {
+    return { version: VERSION, files: [] };
+  }
+}
+
+function saveManifest(configDir, manifest) {
+  const manifestPath = join(configDir, '.opencode-team-manifest.json');
+  mkdirSync(dirname(manifestPath), { recursive: true });
+  writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n', 'utf-8');
+}
+
+function printConfigSnippet() {
+  console.log(`
+Add this to ${join(resolveConfigDir(), 'opencode.json')}:
+
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "orchestrator",
+  "instructions": [
+    "~/.config/opencode/team/AGENTS.md",
+    "~/.config/opencode/team.yaml"
+  ]
+}
+`);
+}
+
+function hasDefaultAgent(configDir) {
+  try {
+    const content = readFileSync(join(configDir, 'opencode.json'), 'utf-8');
+    return /"default_agent"\s*:\s*"orchestrator"/.test(content);
+  } catch {
+    return false;
+  }
+}
+
+function installTeam(configDir, mode, installOpenencode) {
+  if (installOpenencode) {
+    installOpencode();
+  }
+  requireOpencode();
+  checkVersion();
+
+  mkdirSync(join(configDir, 'skills'), { recursive: true });
+  mkdirSync(join(configDir, 'team'), { recursive: true });
+
+  const manifest = loadManifest(configDir);
+  manifest.mode = mode;
+  manifest.installedAt = new Date().toISOString();
+  manifest.files = [];
+
+  const installItem = (repoPath, configName) => {
+    const configPath = join(configDir, configName);
+    const repoResolved = resolve(repoPath);
+    const repoStat = statSync(repoResolved);
+
+    if (existsSync(configPath) && !isManaged(configPath, manifest)) {
+      error(`${configName} already exists (not managed) — left untouched: ${configPath}`);
+      return false;
+    }
+
+    if (mode === 'symlink') {
+      try {
+        if (existsSync(configPath)) unlinkSync(configPath);
+        symlinkSync(repoResolved, configPath);
+      } catch (err) {
+        error(`Failed to symlink ${configName}: ${err.message}`);
+        return false;
+      }
+    } else {
+      // copy mode
+      if (existsSync(configPath)) rmSync(configPath, { recursive: true, force: true });
+      try {
+        if (repoStat.isDirectory()) {
+          copyDirSync(repoResolved, configPath);
+        } else {
+          mkdirSync(dirname(configPath), { recursive: true });
+          copyFileSync(repoResolved, configPath);
+        }
+      } catch (err) {
+        error(`Failed to copy ${configName}: ${err.message}`);
+        return false;
+      }
+    }
+
+    manifest.files.push({
+      configPath,
+      repoPath: repoResolved,
+      type: mode,
+      hash: mode === 'copy' ? (repoStat.isDirectory() ? hashDir(repoResolved) : hashFile(repoResolved)) : '',
+    });
+    info(`${configName} → ${repoResolved}`);
+    return true;
+  };
+
+  const installSkill = (skillName) => {
+    const repoPath = join(REPO, 'skills', skillName);
+    const configPath = join(configDir, 'skills', skillName);
+    const repoResolved = resolve(repoPath);
+    const repoStat = statSync(repoResolved);
+
+    if (existsSync(configPath) && !isManaged(configPath, manifest)) {
+      warn(`skills/${skillName} → skipped (not managed: ${configPath})`);
+      return;
+    }
+
+    if (mode === 'symlink') {
+      try {
+        if (existsSync(configPath)) unlinkSync(configPath);
+        symlinkSync(repoResolved, configPath);
+      } catch (err) {
+        error(`Failed to symlink skills/${skillName}: ${err.message}`);
+        return;
+      }
+    } else {
+      if (existsSync(configPath)) rmSync(configPath, { recursive: true, force: true });
+      try {
+        if (repoStat.isDirectory()) {
+          copyDirSync(repoResolved, configPath);
+        } else {
+          mkdirSync(dirname(configPath), { recursive: true });
+          copyFileSync(repoResolved, configPath);
+        }
+      } catch (err) {
+        error(`Failed to copy skills/${skillName}: ${err.message}`);
+        return;
+      }
+    }
+
+    manifest.files.push({
+      configPath,
+      repoPath: repoResolved,
+      type: mode,
+      hash: mode === 'copy' ? (repoStat.isDirectory() ? hashDir(repoResolved) : hashFile(repoResolved)) : '',
+    });
+    info(`skills/${skillName} → ${repoResolved}`);
+  };
+
+  installItem(join(REPO, 'agents'), 'agents');
+  installItem(join(REPO, 'commands'), 'commands');
+  installItem(join(REPO, 'team.yaml'), 'team.yaml');
+  installItem(join(REPO, 'team', 'AGENTS.md'), 'team/AGENTS.md');
+
+  const skillsDir = join(REPO, 'skills');
+  if (existsSync(skillsDir)) {
+    for (const entry of readdirSync(skillsDir)) {
+      if (entry.startsWith('team-') && existsSync(join(skillsDir, entry))) {
+        installSkill(entry);
+      }
+    }
+  }
+
+  saveManifest(configDir, manifest);
+
+  console.log();
+  if (hasDefaultAgent(configDir)) {
+    info('opencode.json: default_agent is orchestrator');
+  } else {
+    console.log(`Add this to ${join(configDir, 'opencode.json')}:`);
+    printConfigSnippet();
+  }
+  console.log('Restart opencode.');
+}
+
+function isManaged(configPath, manifest) {
+  return manifest.files.some((f) => f.configPath === configPath);
+}
+
+function copyDirSync(src, dest) {
+  mkdirSync(dest, { recursive: true });
+  for (const entry of readdirSync(src, { withFileTypes: true })) {
+    const srcPath = join(src, entry.name);
+    const destPath = join(dest, entry.name);
+    if (entry.isDirectory()) {
+      copyDirSync(srcPath, destPath);
+    } else {
+      copyFileSync(srcPath, destPath);
+    }
+  }
+}
+
+function hashDir(dirPath) {
+  let result = '';
+  const walk = (dir) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(full);
+      } else {
+        result += hashFile(full);
+      }
+    }
+  };
+  walk(dirPath);
+  return crypto.createHash('sha256').update(result).digest('hex');
+}
+
+function cmdCheck(configDir) {
+  let ok = 0;
+
+  const major = opencodeMajor();
+  if (major === null) {
+    error('opencode not found');
+    ok = 1;
+  } else {
+    info(`opencode ${major}`);
+    checkVersion();
+  }
+
+  const manifest = loadManifest(configDir);
+  const mode = manifest.mode || 'symlink';
+
+  const items = [
+    ['agents', 'agents'],
+    ['commands', 'commands'],
+    ['team.yaml', 'team.yaml'],
+    ['team/AGENTS.md', 'team/AGENTS.md'],
+  ];
+
+  for (const [repoName, configName] of items) {
+    const configPath = join(configDir, configName);
+    const managed = isManaged(configPath, manifest);
+    if (!existsSync(configPath)) {
+      error(`${configName} not installed`);
+      ok = 1;
+    } else if (mode === 'symlink') {
+      try {
+        const target = readlinkSync(configPath);
+        if (targetInRepo(target, REPO)) {
+          info(`${configName} → ${target}`);
+        } else {
+          warn(`${configName} → not managed: ${target}`);
+        }
+      } catch {
+        error(`${configName} is not a symlink`);
+        ok = 1;
+      }
+    } else {
+      info(`${configName} → copied`);
+    }
+  }
+
+  const skillsDir = join(configDir, 'skills');
+  if (existsSync(skillsDir)) {
+    for (const entry of readdirSync(skillsDir)) {
+      if (!entry.startsWith('team-')) continue;
+      const configPath = join(skillsDir, entry);
+      const managed = isManaged(configPath, manifest);
+      if (!existsSync(configPath)) {
+        error(`skills/${entry} not installed`);
+        ok = 1;
+      } else if (mode === 'symlink') {
+        try {
+          const target = readlinkSync(configPath);
+          if (targetInRepo(target, REPO)) {
+            info(`skills/${entry} → ${target}`);
+          } else {
+            warn(`skills/${entry} → not managed: ${target}`);
+          }
+        } catch {
+          error(`skills/${entry} is not a symlink`);
+          ok = 1;
+        }
+      } else {
+        info(`skills/${entry} → copied`);
+      }
+    }
+  }
+
+  if (hasDefaultAgent(configDir)) {
+    info('opencode.json: default_agent is orchestrator');
+  } else {
+    warn('opencode.json: recommended settings not found');
+    console.log(`    Add to ${join(configDir, 'opencode.json')}:`);
+    printConfigSnippet();
+  }
+
+  process.exit(ok);
+}
+
+function cmdUninstall(configDir) {
+  const manifest = loadManifest(configDir);
+
+  for (const file of manifest.files) {
+    if (!existsSync(file.configPath)) continue;
+    try {
+      const stat = statSync(file.configPath);
+      if (stat.isDirectory() && !stat.isSymbolicLink()) {
+        // Only remove if it's a copy we made and hash matches (unmodified)
+        if (file.type === 'copy' && file.hash) {
+          const currentHash = hashDir(file.configPath);
+          if (currentHash !== file.hash) {
+            warn(`${file.configPath} skipped (modified by user)`);
+            continue;
+          }
+        }
+        rmSync(file.configPath, { recursive: true, force: true });
+      } else {
+        unlinkSync(file.configPath);
+      }
+      info(`${file.configPath} removed`);
+    } catch (err) {
+      warn(`${file.configPath} skipped: ${err.message}`);
+    }
+  }
+
+  console.log();
+  console.log('opencode.json was not modified.');
   process.exit(0);
 }
 
-if (args.includes('--help') || args.includes('-h') || args.length === 0) {
+function cmdUpdate(configDir, mode, installOpenencode) {
+  try {
+    execSync('npm install --global @opencodeteam/cli@latest', { stdio: 'inherit' });
+  } catch {
+    fail('Failed to update @opencodeteam/cli via npm.');
+  }
+  installTeam(configDir, mode, installOpenencode);
+}
+
+function printHelp() {
   console.log(`
-OpenCode Team CLI v${pkg.version}
+OpenCode Team CLI v${VERSION}
 
 Usage: opencode-team <command> [options]
 
@@ -25,13 +466,80 @@ Commands:
   uninstall  Remove OpenCode Team from your config
 
 Options:
-  --version, -v  Show version
-  --help, -h     Show help
+  --version, -v          Show version
+  --help, -h             Show help
+  --config-dir <path>    OpenCode config directory (default: OPENCODE_CONFIG_DIR or ~/.config/opencode)
+  --copy                 Copy files instead of symlinking (default: symlink)
+  --dev                  Link mode (same as default, explicit for development)
+  --install-opencode     Install OpenCode 1.x runtime before installing the team
 `);
-  process.exit(0);
 }
 
-const [command] = args;
-console.error(`opencode-team: "${command}" command is not yet implemented.`);
-console.error('Install via: npm install --global @opencode-team/cli');
-process.exit(1);
+function parseArgs(argv) {
+  const result = {
+    command: null,
+    configDir: null,
+    copy: false,
+    dev: false,
+    installOpenencode: false,
+  };
+
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i];
+    if (arg === '--version' || arg === '-v') {
+      result.command = 'version';
+    } else if (arg === '--help' || arg === '-h') {
+      result.command = 'help';
+    } else if (arg === 'install' || arg === 'check' || arg === 'update' || arg === 'uninstall') {
+      result.command = arg;
+    } else if (arg === '--config-dir') {
+      result.configDir = argv[++i];
+    } else if (arg === '--copy') {
+      result.copy = true;
+    } else if (arg === '--dev') {
+      result.dev = true;
+    } else if (arg === '--install-opencode') {
+      result.installOpenencode = true;
+    } else {
+      fail(`Unknown argument: ${arg}`);
+    }
+  }
+
+  return result;
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+
+  if (args.command === 'version') {
+    console.log(VERSION);
+    return;
+  }
+
+  if (args.command === 'help' || !args.command) {
+    printHelp();
+    return;
+  }
+
+  const configDir = resolveConfigDir(args.configDir);
+  const mode = args.copy ? 'copy' : 'symlink';
+
+  switch (args.command) {
+    case 'install':
+      installTeam(configDir, mode, args.installOpenencode);
+      break;
+    case 'check':
+      cmdCheck(configDir);
+      break;
+    case 'update':
+      cmdUpdate(configDir, mode, args.installOpenencode);
+      break;
+    case 'uninstall':
+      cmdUninstall(configDir);
+      break;
+    default:
+      fail(`Unknown command: ${args.command}`);
+  }
+}
+
+main();
