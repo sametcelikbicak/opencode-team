@@ -40,10 +40,53 @@ else
   LOG_RANGE="${TAG}"
 fi
 
-CHANGELOG_ENTRY=$(git log --format='- %s (%h)' "$LOG_RANGE" -- . ':!package-lock.json' ':!docs/.vitepress/cache' ':!docs/.vitepress/dist' 2>/dev/null || true)
+# Build changelog entries from merged PRs between previous tag and current tag.
+# Format: - PR title (#PR) by @author in [#PR](url)
+CHANGELOG_ENTRY=""
+if [ -n "$PREVIOUS_TAG" ]; then
+  # Get all commit messages between previous tag and current tag
+  COMMITS=$(git log --format='%s' "${PREVIOUS_TAG}..${TAG}" -- . ':!package-lock.json' ':!docs/.vitepress/cache' ':!docs/.vitepress/dist' 2>/dev/null || true)
+  while IFS= read -r commit_msg; do
+    # Extract PR number from commit message like "chore: release v0.0.3 (#69)"
+    PR_NUMBER=$(echo "$commit_msg" | grep -oE '#[0-9]+' | head -1 | tr -d '#')
+    if [ -n "$PR_NUMBER" ]; then
+      # Get PR details from GitHub API
+      PR_TITLE=$(gh pr view "$PR_NUMBER" --json title --jq '.title' 2>/dev/null || echo "$commit_msg")
+      PR_AUTHOR=$(gh pr view "$PR_NUMBER" --json author --jq '.author.login' 2>/dev/null || echo "unknown")
+      PR_URL=$(gh pr view "$PR_NUMBER" --json url --jq '.url' 2>/dev/null || echo "")
+      if [ -n "$PR_TITLE" ] && [ -n "$PR_AUTHOR" ] && [ -n "$PR_URL" ]; then
+        CHANGELOG_ENTRY="${CHANGELOG_ENTRY}- ${PR_TITLE} (#${PR_NUMBER}) by @${PR_AUTHOR} in [#${PR_NUMBER}](${PR_URL})
+"
+      else
+        # Fallback to commit message
+        CHANGELOG_ENTRY="${CHANGELOG_ENTRY}- ${commit_msg}
+"
+      fi
+    fi
+  done <<< "$COMMITS"
+else
+  # First release: include all commits
+  COMMITS=$(git log --format='%s' "${TAG}" -- . ':!package-lock.json' ':!docs/.vitepress/cache' ':!docs/.vitepress/dist' 2>/dev/null || true)
+  while IFS= read -r commit_msg; do
+    PR_NUMBER=$(echo "$commit_msg" | grep -oE '#[0-9]+' | head -1 | tr -d '#')
+    if [ -n "$PR_NUMBER" ]; then
+      PR_TITLE=$(gh pr view "$PR_NUMBER" --json title --jq '.title' 2>/dev/null || echo "$commit_msg")
+      PR_AUTHOR=$(gh pr view "$PR_NUMBER" --json author --jq '.author.login' 2>/dev/null || echo "unknown")
+      PR_URL=$(gh pr view "$PR_NUMBER" --json url --jq '.url' 2>/dev/null || echo "")
+      if [ -n "$PR_TITLE" ] && [ -n "$PR_AUTHOR" ] && [ -n "$PR_URL" ]; then
+        CHANGELOG_ENTRY="${CHANGELOG_ENTRY}- ${PR_TITLE} (#${PR_NUMBER}) by @${PR_AUTHOR} in [#${PR_NUMBER}](${PR_URL})
+"
+      else
+        CHANGELOG_ENTRY="${CHANGELOG_ENTRY}- ${commit_msg}
+"
+      fi
+    fi
+  done <<< "$COMMITS"
+fi
 
 if [ -z "$CHANGELOG_ENTRY" ]; then
-  CHANGELOG_ENTRY="- No changes since previous release"
+  CHANGELOG_ENTRY="- No changes since previous release
+"
 fi
 
 TODAY="$(date +%Y-%m-%d)"
