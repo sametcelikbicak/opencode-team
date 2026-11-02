@@ -104,3 +104,48 @@ jobs:
         run: ./scripts/test-memory-compact.ps1
       - name: Run checkpoint tests
         run: python scripts/test-run-state.py
+
+  pack-test:
+    name: npm pack artifact test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Pack the package
+        run: npm pack
+      - name: Extract to clean directory
+        run: |
+          rm -rf pack-test
+          mkdir -p pack-test
+          tar -xzf opencodeteam-cli-*.tgz -C pack-test
+      - name: Test install/check/uninstall from packed artifact
+        shell: bash
+        run: |
+          cd pack-test/package
+          TEST_CONFIG="$RUNNER_TEMP/pack-test-config"
+          rm -rf "$TEST_CONFIG"
+          mkdir -p "$TEST_CONFIG"
+          node bin/opencode-team install --config-dir "$TEST_CONFIG"
+          node bin/opencode-team check --config-dir "$TEST_CONFIG"
+          node bin/opencode-team uninstall --config-dir "$TEST_CONFIG"
+      - name: Test with path containing spaces
+        shell: bash
+        run: |
+          cd pack-test/package
+          TEST_CONFIG="$RUNNER_TEMP/pack test config"
+          rm -rf "$TEST_CONFIG"
+          mkdir -p "$TEST_CONFIG"
+          node bin/opencode-team install --config-dir "$TEST_CONFIG"
+          node bin/opencode-team check --config-dir "$TEST_CONFIG"
+          node bin/opencode-team uninstall --config-dir "$TEST_CONFIG"
