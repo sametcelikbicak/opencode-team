@@ -20,7 +20,12 @@ Use `install.sh` on macOS/Linux and `install.ps1` on native Windows. Both create
 
 ## Install
 
-### macOS and Linux
+Two installation methods are available:
+
+1. **Git clone** (symlink) — edit files in the repo and changes take effect immediately. Best for contributors and developers.
+2. **npm package** (copy) — versioned, cross-platform, one command. Best for end users.
+
+### Method 1: Git clone (symlink) — macOS and Linux
 
 Clone the repository and run the installer:
 
@@ -40,7 +45,7 @@ If OpenCode is not on your PATH, install it first:
 
 Restart opencode after installation. The setup is global, so it works in every project directory.
 
-### Windows
+### Method 1: Git clone (symlink) — Windows
 
 Open an **Administrator PowerShell**, then run:
 
@@ -91,6 +96,127 @@ Verify or uninstall from the same elevated shell (or PowerShell 7 with Developer
 Repeat installation is safe. Local/external skills are preserved; conflicting core entries are reported and preserved. Check fails for missing/wrong core links, missing skills, or an unavailable/incompatible OpenCode. A missing `default_agent` is a hint. Uninstall removes only this repository's links, without deleting their targets, ordinary files, or your configuration. Linked config containers are rejected to avoid modifying another directory through a parent link.
 
 Native Windows memory maintenance uses `memory-compact.ps1`, so the team's memory helper does not require Bash. See [Memory](memory.md#native-windows).
+
+### Method 2: npm package (copy) — all platforms
+
+Install the published npm package globally:
+
+```bash
+npm install --global @opencodeteam/cli
+```
+
+Then run the install command:
+
+```bash
+opencode-team install
+```
+
+This copies `agents/`, `commands/`, `team.yaml`, `team/AGENTS.md`, and `skills/team-*` into your OpenCode config directory (`~/.config/opencode` on macOS/Linux, `%USERPROFILE%\.config\opencode` on Windows).
+
+To use a different config directory:
+
+```bash
+opencode-team install --config-dir /path/to/your/opencode/config
+```
+
+Or set `OPENCODE_CONFIG_DIR` before running:
+
+```bash
+export OPENCODE_CONFIG_DIR=/path/to/your/opencode/config
+opencode-team install
+```
+
+#### Copy vs symlink
+
+By default, `opencode-team install` creates symbolic links (same behavior as `install.sh`). Use `--copy` to copy files instead, which avoids Windows symlink privilege requirements:
+
+```bash
+opencode-team install --copy
+```
+
+#### Verify
+
+```bash
+opencode-team check
+```
+
+#### Uninstall
+
+```bash
+opencode-team uninstall
+```
+
+`opencode.json` is never modified by the npm installer.
+
+#### Update
+
+```bash
+npm install --global @opencodeteam/cli@latest
+opencode-team install
+```
+
+### What the installer does
+
+The platform's installer symlinks or copies the repo into your OpenCode config:
+
+| Path                                | Target                         |
+|-------------------------------------|--------------------------------|
+| `~/.config/opencode/agents`         | `opencode-team/agents`         |
+| `~/.config/opencode/commands`       | `opencode-team/commands`       |
+| `~/.config/opencode/skills/team-*`  | `opencode-team/skills/team-*`  |
+| `~/.config/opencode/team.yaml`      | `opencode-team/team.yaml`      |
+| `~/.config/opencode/team/AGENTS.md` | `opencode-team/team/AGENTS.md` |
+
+With symlink mode, the repo stays in git and the config directory holds symlinks. Edit a file in the repo and it takes effect immediately. With copy mode, files are copied into the config directory.
+
+## Manual setup
+
+If you prefer to wire it up manually, add to `~/.config/opencode/opencode.json`:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "orchestrator",
+  "instructions": [
+    "~/.config/opencode/team/AGENTS.md",
+    "~/.config/opencode/team.yaml"
+  ]
+}
+```
+
+and place the agent, command and skill files in the matching directories under `~/.config/opencode/`.
+
+## Check
+
+Verify the installation:
+
+```bash
+./install.sh --check
+```
+
+or with npm:
+
+```bash
+opencode-team check
+```
+
+This exits non-zero when a symlink is missing. A missing `default_agent` is shown as a hint, not a failure.
+
+## Uninstall
+
+Remove only symlinks that point into this repo:
+
+```bash
+./install.sh --uninstall
+```
+
+or with npm:
+
+```bash
+opencode-team uninstall
+```
+
+`opencode.json` is never modified by either installer. For Windows commands, see [Windows](#windows).
 
 ## What the installer does
 
