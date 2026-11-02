@@ -42,13 +42,27 @@ Requires OpenCode 1.x (tested on 1.19.0). OpenCode 2 support is planned as a sep
 
 Supported on macOS, Linux, and native Windows (Windows PowerShell 5.1 or PowerShell 7; verified with OpenCode 1.19.4). WSL is untested.
 
-On macOS or Linux:
+### Method 1: Git clone (symlink) — macOS and Linux
+
+Clone the repository and run the installer:
 
 ```bash
 git clone https://github.com/sametcelikbicak/opencode-team.git
 cd opencode-team
 ./install.sh
 ```
+
+If OpenCode is not on your PATH, install it first:
+
+```bash
+./install.sh --install-opencode
+```
+
+`--install-opencode` runs `curl -fsSL https://opencode.ai/install | bash`. OpenCode 1 and 2 cannot coexist: an existing OpenCode 2 binary is replaced. Without the flag, the installer never installs OpenCode and leaves an existing binary untouched.
+
+Restart opencode. That's it — the setup is global, so it works in every project directory.
+
+### Method 1: Git clone (symlink) — Windows
 
 On Windows, clone the repository and run the PowerShell installer from an **Administrator PowerShell**:
 
@@ -60,15 +74,61 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
 
 PowerShell 7 with Windows Developer Mode enabled can create the symlinks without elevation. The process-scoped `-ExecutionPolicy Bypass` does not change your machine policy. See the [Windows installation guide](docs/install.md#windows) for checks, optional OpenCode installation, and troubleshooting.
 
-If OpenCode is not on your PATH, install it first, or let the installer run the official OpenCode 1.x installer:
+### Method 2: npm package (copy) — all platforms
+
+Install the published npm package globally:
 
 ```bash
-./install.sh --install-opencode
+npm install --global @opencodeteam/cli
 ```
 
-`--install-opencode` runs `curl -fsSL https://opencode.ai/install | bash`. OpenCode 1 and 2 cannot coexist: an existing OpenCode 2 binary is replaced. Without the flag, the installer never installs OpenCode and leaves an existing binary untouched.
+Then run the install command:
 
-Restart opencode. That's it — the setup is global, so it works in every project directory.
+```bash
+opencode-team install
+```
+
+This copies `agents/`, `commands/`, `team.yaml`, `team/AGENTS.md`, and `skills/team-*` into your OpenCode config directory (`~/.config/opencode` on macOS/Linux, `%USERPROFILE%\.config\opencode` on Windows).
+
+To use a different config directory:
+
+```bash
+opencode-team install --config-dir /path/to/your/opencode/config
+```
+
+Or set `OPENCODE_CONFIG_DIR` before running:
+
+```bash
+export OPENCODE_CONFIG_DIR=/path/to/your/opencode/config
+opencode-team install
+```
+
+#### Copy vs symlink
+
+By default, `opencode-team install` creates symbolic links (same behavior as `install.sh`). Use `--copy` to copy files instead, which avoids Windows symlink privilege requirements:
+
+```bash
+opencode-team install --copy
+```
+
+#### Verify
+
+```bash
+opencode-team check
+```
+
+#### Uninstall
+
+```bash
+opencode-team uninstall
+```
+
+#### Update
+
+```bash
+npm install --global @opencodeteam/cli@latest
+opencode-team install
+```
 
 `install.sh` symlinks the repo into your opencode config:
 
