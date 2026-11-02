@@ -8,7 +8,6 @@
   },
   "files": [
     "bin/",
-    "lib/",
     "assets/",
     "agents/",
     "commands/",
@@ -40,11 +39,6 @@
     "launch"
   ],
   "preferGlobal": true,
-  "exports": {
-    ".": {
-      "import": "./lib/opencode-team.js"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sametcelikbicak/opencode-team.git"
