@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.0.3] - 2026-11-02
+
+- fix: release-prep.sh changelog format uses PR titles (#70) by @sametcelikbicak in [#70](https://github.com/sametcelikbicak/opencode-team/pull/70)
+- fix: release-prep.sh previous tag detection (#68) by @sametcelikbicak in [#68](https://github.com/sametcelikbicak/opencode-team/pull/68)
+- docs: add git-clone to npm migration instructions (#55) (#66)
+- fix: security hardening for npm installer (#56) (#65)
+- feat: add npm pack artifact test to CI (3 platforms + paths with spaces) (#64) by @sametcelikbicak in [#64](https://github.com/sametcelikbicak/opencode-team/pull/64)
+
+
+
+
 All notable changes to the OpenCode Team npm package are documented in this file.
 
 ## [v0.0.2] - 2026-11-02
