@@ -165,8 +165,14 @@ remove_managed() {
   fi
 }
 
-has_default_agent() {
-  grep -q '"default_agent"[[:space:]]*:[[:space:]]*"orchestrator"' "$CONFIG/opencode.json" 2>/dev/null
+find_config_file() {
+  for f in "$CONFIG/opencode.json" "$CONFIG/opencode.jsonc"; do
+    if [ -f "$f" ] && grep -q '"default_agent"[[:space:]]*:[[:space:]]*"orchestrator"' "$f" 2>/dev/null; then
+      basename "$f"
+      return 0
+    fi
+  done
+  return 1
 }
 
 print_config_snippet() {
@@ -224,8 +230,9 @@ check() {
   done
   [ "$missing" -eq 0 ] || ok=1
 
-  if has_default_agent; then
-    echo "  ✓ opencode.json: default_agent is orchestrator"
+  config_file=$(find_config_file)
+  if [ -n "$config_file" ]; then
+    echo "  ✓ $config_file: default_agent is orchestrator"
   else
     echo "  ○ opencode.json: recommended settings not found"
     echo "    Add to $CONFIG/opencode.json:"

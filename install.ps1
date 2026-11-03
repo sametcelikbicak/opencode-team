@@ -94,10 +94,18 @@ function Require-OpenCode {
 }
 function Show-ConfigHint {
     $jsonPath = Join-Path $config 'opencode.json'
+    $jsoncPath = Join-Path $config 'opencode.jsonc'
+    $configFile = $null
     if ([IO.File]::Exists($jsonPath) -and [IO.File]::ReadAllText($jsonPath) -match '"default_agent"\s*:\s*"orchestrator"') {
-        Write-Host '  OK opencode.json: default_agent is orchestrator'
+        $configFile = 'opencode.json'
+    } elseif ([IO.File]::Exists($jsoncPath) -and [IO.File]::ReadAllText($jsoncPath) -match '"default_agent"\s*:\s*"orchestrator"') {
+        $configFile = 'opencode.jsonc'
+    }
+    if ($configFile) {
+        Write-Host "  OK $configFile: default_agent is orchestrator"
         return
     }
+    $jsonPath = Join-Path $config 'opencode.json'
     Write-Host "Add these recommended settings to $jsonPath (merge with your existing configuration):"
     [ordered]@{
         '$schema' = 'https://opencode.ai/config.json'
