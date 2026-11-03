@@ -309,7 +309,7 @@ This RFC is design-only. Implementation is split into issues:
 | Orchestrator | Seed, dispatch and gate compaction | [#10](https://github.com/sametcelikbicak/opencode-team/issues/10) |
 | Specialists | Start/end memory step in 13 agents | [#11](https://github.com/sametcelikbicak/opencode-team/issues/11) |
 | Commands | `/memory`, `/remember`, `/team-status` summary | [#12](https://github.com/sametcelikbicak/opencode-team/issues/12) |
-| Config and docs | `memory_dir`, README and README.tr | [#13](https://github.com/sametcelikbicak/opencode-team/issues/13) |
+| Config and docs | `memory_dir`, README and docs pages | [#13](https://github.com/sametcelikbicak/opencode-team/issues/13) |
 | Install | `team-memory` smoke assertion | [#14](https://github.com/sametcelikbicak/opencode-team/issues/14) |
 | Verification | Eight manual scenarios with evidence | [#15](https://github.com/sametcelikbicak/opencode-team/issues/15) |
 

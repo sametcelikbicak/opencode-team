@@ -2,7 +2,7 @@
 
 # Skill reference
 
-The 13 skills defined in `skills/*/SKILL.md`. Edit the skill file, not this page.
+The 14 skills defined in `skills/*/SKILL.md`. Edit the skill file, not this page.
 
 | Skill | Description |
 | --- | --- |
@@ -10,6 +10,7 @@ The 13 skills defined in `skills/*/SKILL.md`. Edit the skill file, not this page
 | `team-backlog` | Break the PRD into tracer-bullet tickets, vertical slices with acceptance criteria and blocking edges, ordered into .team/03-backlog.md. The playbook of the po role. |
 | `team-brand` | Brand and logo design methodology for this team. Brief, research, concepts, mark types, geometric SVG construction, optical refinement, small-size and one-colour testing, colour, typography, lockups, favicon and app-icon set, brand guide and presentation. The playbook of the brand role. |
 | `team-build` | The build and TDD playbook for this team. Red-green-refactor, test-first vertical slices, seams, test pyramid, mocking at boundaries, deterministic tests and definition of done. |
+| `team-discipline` | Use on every coding task to apply the team's default engineering discipline: understand before changing, YAGNI, the smallest complete change, test-first, evidence before claims, and a short report. This is default behavior, not an optional mode. |
 | `team-docs` | Technical documentation writing methodology. README, usage guide, API documentation and architecture note. The playbook of the docs role. |
 | `team-market-research` | Market, competitor and user research methodology. Source verification, competitor table, niche analysis and risk assessment. The playbook of the analyst role. |
 | `team-marketing` | Marketing and launch methodology. Positioning, message framework, channel plan, launch copy, measurable metrics. The playbook of the marketing role. |

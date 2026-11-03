@@ -84,6 +84,21 @@ Every stage writes one markdown file into `.team/`. The build stage additionally
 - **Evidence**: no invented command output, no invented metrics, no invented test results. If it was not run, write "not run".
 - **Secrets**: API keys, passwords and tokens never go into a file. Write the name and the type only.
 
+## Engineering discipline
+
+Default behavior for every agent that writes or reviews code. Full playbook: `skills/team-discipline/SKILL.md`.
+
+- **Understand first.** Read the task and the code it touches; trace callers, tests, fixtures, config and data risk. That is the scope.
+- **YAGNI ladder.** Does it need to exist? Already in this repo? Standard library? Platform feature? Installed dependency? One clear line? Only then write the minimum.
+- **Smallest complete change.** No unrequested abstraction, option or dependency. Finish the callers, tests and fixtures your change breaks. Deletion beats addition.
+- **Bug fix = root cause.** Grep every caller and fix the shared function once.
+- **Test-first.** Make the smallest test fail for the right reason, then pass. Non-trivial logic leaves one runnable check. Trivial one-liners need none.
+- **Evidence.** Run the command before claiming it passes; quote the result. If it was not run, write "not run". Never invent output.
+- **Design gate.** For a large or risky change, state files, approach, verification and rollback before editing. Ask when the request is destructive or ambiguous.
+- **Report.** What changed, what works, evidence, gaps and risks, one next action.
+- **Not lazy about:** validation at trust boundaries, error handling that prevents data loss, security, accessibility, hardware calibration, anything explicitly requested.
+- **Shortcuts.** Mark a deliberate limit with `shortcut: <limit>, <when to upgrade>`.
+
 ## Installation
 
 `./install.sh` links the global directories to this repo. It never modifies `~/.config/opencode/opencode.json`; when the recommended settings are missing it prints the snippet to add. `./install.sh --install-opencode` optionally installs OpenCode 1.x first.
