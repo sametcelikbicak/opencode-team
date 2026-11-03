@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import * as assert from 'node:assert';
 import { execSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, rmSync, readlinkSync, symlinkSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, rmSync, readlinkSync, symlinkSync, readdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -202,4 +202,52 @@ test('install does not clobber non-managed files', (t) => {
 test('unknown command fails', (t) => {
   const result = run(['bogus']);
   assert.strictEqual(result.code, 1);
+});
+
+test('install --config-dir with no value exits non-zero', (t) => {
+  const configDir = freshConfigDir();
+  try {
+    const result = run(['install', '--config-dir'], { OPENCODE_CONFIG_DIR: configDir });
+    assert.strictEqual(result.code, 1, `expected exit 1, got ${result.code}: ${result.stderr}`);
+    // Default dir must not be touched: it should still be empty
+    const entries = readdirSync(configDir);
+    assert.strictEqual(entries.length, 0, 'default config dir must not be touched');
+  } finally {
+    rmSync(configDir, { recursive: true, force: true });
+  }
+});
+
+test('install exits non-zero when a link/copy fails', (t) => {
+  const configDir = freshConfigDir();
+  try {
+    // Make the skills dir read-only so symlinking into it fails
+    mkdirSync(join(configDir, 'skills'), { recursive: true });
+    try {
+      // chmod 0o555: read+execute, no write
+      execSync(`chmod 555 "${configDir}/skills"`);
+    } catch {
+      // chmod may not be available everywhere; skip the failure assertion if so
+    }
+    const result = run(['install', '--config-dir', configDir]);
+    assert.notStrictEqual(result.code, 0, `expected non-zero exit, got ${result.code}`);
+  } finally {
+    try { execSync(`chmod 755 "${configDir}/skills"`); } catch {}
+    rmSync(configDir, { recursive: true, force: true });
+  }
+});
+
+test('check snippet reflects the resolved config dir', (t) => {
+  const configDir = freshConfigDir();
+  try {
+    assert.strictEqual(run(['install', '--config-dir', configDir]).code, 0);
+    const result = run(['check', '--config-dir', configDir]);
+    assert.strictEqual(result.code, 0, result.stderr);
+    assert.ok(result.stdout.includes(join(configDir, 'opencode.json')), 'snippet must name the resolved config dir');
+    // Printed once: count occurrences of the snippet header line
+    const snippetHeader = `Add this to ${join(configDir, 'opencode.json')}:`;
+    const count = (result.stdout.match(new RegExp(snippetHeader.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length;
+    assert.strictEqual(count, 1, 'snippet must be printed once');
+  } finally {
+    rmSync(configDir, { recursive: true, force: true });
+  }
 });
