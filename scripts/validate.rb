@@ -172,6 +172,35 @@ if profiles.is_a?(Hash) && stages.is_a?(Array)
   end
 end
 
+# --- command.agent == stage.agent cross-check ---
+# Every stage command's agent must match its stage's agent, so the dispatch
+# path and team.yaml agree on who owns each stage. The build stage is the
+# documented exception: its agent is orchestrator (consolidating fe/be
+# specialist reports), which matches commands/build.md.
+if stages.is_a?(Array)
+  stage_agents = {}
+  stages.each do |s|
+    stage_agents[s["id"]] = s["agent"] if s["id"] && s["agent"]
+  end
+
+  Dir[File.join(ROOT, "commands", "*.md")].sort.each do |path|
+    rel = path.sub("#{ROOT}/", "")
+    begin
+      fm = parse_frontmatter(path)
+    rescue StandardError => e
+      next
+    end
+    next unless fm && fm["agent"]
+
+    cmd_name = File.basename(path, ".md")
+    stage_agent = stage_agents[cmd_name]
+    next unless stage_agent
+
+    check(errors, rel, fm["agent"] == stage_agent,
+          "command agent #{fm["agent"].inspect} != stage #{cmd_name} agent #{stage_agent.inspect}")
+  end
+end
+
 # --- dispatch path references each stage skill ---
 orchestrator = File.join(ROOT, "agents", "orchestrator.md")
 orch_source = File.exist?(orchestrator) ? File.read(orchestrator) : ""

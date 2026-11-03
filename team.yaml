@@ -119,11 +119,11 @@ stages:
 
   - id: build
     title: Implementation
-    agent: fe
+    agent: orchestrator
     skill: team-build
     gate: true
     output: .team/07-build.md
-    support: [be]
+    support: [fe, be]
     brief: >
       Implement the approved architecture. Tests are written first. Frontend and
       backend work can run in parallel. Each specialist writes its own report
