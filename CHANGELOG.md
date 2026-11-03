@@ -33,7 +33,7 @@ All notable changes to the OpenCode Team npm package are documented in this file
 - npm install instructions in README and docs/install.md by @sametcelikbicak in [#59](https://github.com/sametcelikbicak/opencode-team/pull/59)
 - Decision files: package name, version policy, copy/link by @sametcelikbicak in [#59](https://github.com/sametcelikbicak/opencode-team/pull/59)
 
-## [v0.0.1] - 2026-11-02
+## [v0.0.1] - 2026-10-23
 
 ### Added
 - Initial npm package publication (@opencodeteam/cli) by @sametcelikbicak in [#57](https://github.com/sametcelikbicak/opencode-team/pull/57)
