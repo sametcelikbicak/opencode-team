@@ -159,9 +159,9 @@ function saveManifest(configDir, manifest) {
   writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n', 'utf-8');
 }
 
-function printConfigSnippet(configDir) {
+function printConfigSnippet(configDir, configFile = 'opencode.json') {
   console.log(`
-Add this to ${join(configDir, 'opencode.json')}:
+Add this to ${join(configDir, configFile)}:
 
 {
   "$schema": "https://opencode.ai/config.json",
@@ -174,13 +174,18 @@ Add this to ${join(configDir, 'opencode.json')}:
 `);
 }
 
-function hasDefaultAgent(configDir) {
-  try {
-    const content = readFileSync(join(configDir, 'opencode.json'), 'utf-8');
-    return /"default_agent"\s*:\s*"orchestrator"/.test(content);
-  } catch {
-    return false;
+function findConfigFile(configDir) {
+  for (const ext of ['json', 'jsonc']) {
+    try {
+      const content = readFileSync(join(configDir, `opencode.${ext}`), 'utf-8');
+      if (/"default_agent"\s*:\s*"orchestrator"/.test(content)) {
+        return `opencode.${ext}`;
+      }
+    } catch {
+      // file doesn't exist, try next extension
+    }
   }
+  return null;
 }
 
 function installTeam(configDir, mode, installOpenencode) {
@@ -308,8 +313,9 @@ function installTeam(configDir, mode, installOpenencode) {
   saveManifest(configDir, manifest);
 
   console.log();
-  if (hasDefaultAgent(configDir)) {
-    info('opencode.json: default_agent is orchestrator');
+  const configFile = findConfigFile(configDir);
+  if (configFile) {
+    info(`${configFile}: default_agent is orchestrator`);
   } else {
     printConfigSnippet(configDir);
   }
@@ -426,8 +432,9 @@ function cmdCheck(configDir) {
     }
   }
 
-  if (hasDefaultAgent(configDir)) {
-    info('opencode.json: default_agent is orchestrator');
+  const configFile = findConfigFile(configDir);
+  if (configFile) {
+    info(`${configFile}: default_agent is orchestrator`);
   } else {
     warn('opencode.json: recommended settings not found');
     console.log(`    Add to ${join(configDir, 'opencode.json')}:`);
