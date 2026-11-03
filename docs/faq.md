@@ -78,9 +78,6 @@ Yes. Create `agents/<role>.md` with frontmatter, reference it in `team.yaml`, an
 
 ### What models do agents use?
 
-Defaults are free-tier OpenCode Zen models:
-- `deepseek-v4.1-flash-free` — architect, brand, fe, be, qa, security, docs, devops, orchestrator
-- `beam-free` — analyst, pm, po, ux
-- `nemotron-3-ultra-free` — marketing
+Agents inherit the session's active model (set in `~/.config/opencode/opencode.json` via `model`). No agent pins a `model:` in its frontmatter, so all agents use the same session model unless you add `model:` to an individual agent file.
 
 Override any model in the agent file.

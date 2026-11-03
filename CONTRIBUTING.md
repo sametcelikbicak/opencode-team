@@ -128,6 +128,6 @@ The docs build runs the generator first. CI regenerates the pages and fails when
 
 ## Style
 
-- Code, comments and documentation in English. Turkish only in `README.tr.md` and `.team/` artifacts.
+- Code, comments and documentation in English. Turkish only in `.team/` artifacts.
 - No new dependency for a few lines. The validator uses Ruby stdlib only.
 - Quote YAML values that contain `: `.

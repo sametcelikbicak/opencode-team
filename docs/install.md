@@ -23,7 +23,7 @@ Use `install.sh` on macOS/Linux and `install.ps1` on native Windows. Both create
 Two installation methods are available:
 
 1. **Git clone** (symlink) — edit files in the repo and changes take effect immediately. Best for contributors and developers.
-2. **npm package** (copy) — versioned, cross-platform, one command. Best for end users.
+2. **npm package** (symlink) — versioned, cross-platform, one command. Best for end users.
 
 ### Method 1: Git clone (symlink) — macOS and Linux
 
@@ -99,7 +99,7 @@ Repeat installation is safe. Local/external skills are preserved; conflicting co
 
 Native Windows memory maintenance uses `memory-compact.ps1`, so the team's memory helper does not require Bash. See [Memory](memory.md#native-windows).
 
-### Method 2: npm package (copy) — all platforms
+### Method 2: npm package (symlink) — all platforms
 
 Install the published npm package globally:
 
@@ -113,7 +113,7 @@ Then run the install command:
 opencode-team install
 ```
 
-This copies `agents/`, `commands/`, `team.yaml`, `team/AGENTS.md`, and `skills/team-*` into your OpenCode config directory (`~/.config/opencode` on macOS/Linux, `%USERPROFILE%\.config\opencode` on Windows).
+This symlinks `agents/`, `commands/`, `team.yaml`, `team/AGENTS.md`, and `skills/team-*` into your OpenCode config directory (`~/.config/opencode` on macOS/Linux, `%USERPROFILE%\.config\opencode` on Windows). Use `--copy` to copy files instead.
 
 To use a different config directory:
 
