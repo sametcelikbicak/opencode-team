@@ -32,7 +32,7 @@ Directly invoked agents follow the same memory protocol as subagents: read `.tea
 
 ## Adding a role
 
-1. Create `agents/<role>.md` with frontmatter (`name`, `description`, `mode: all`, `model`, `permission`).
+1. Create `agents/<role>.md` with frontmatter (`name`, `description`, `mode: all`, `model` (optional), `permission`).
 2. Reference it in `team.yaml` as `agent: <role>`.
 3. Add a command in `commands/<role>.md` if you want a direct entry point.
 
