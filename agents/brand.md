@@ -5,18 +5,20 @@ mode: all
 temperature: 0.4
 color: "#E056A0"
 permission:
-  read: allow
+  read:
+    "*": allow
+    "*.env": ask
+    "*.env.*": ask
   glob: allow
   grep: allow
   list: allow
   websearch: allow
   webfetch: allow
   edit:
-    "*": allow
+    ".team/**": allow
+    "brand/**": allow
   bash:
     "*": ask
-    "python3 *": allow
-    "python *": allow
     "ls": allow
     "ls *": allow
     "cat *": allow

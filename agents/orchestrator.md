@@ -5,7 +5,10 @@ mode: all
 temperature: 0.3
 color: "#7C5CFF"
 permission:
-  read: allow
+  read:
+    "*": allow
+    "*.env": ask
+    "*.env.*": ask
   glob: allow
   grep: allow
   list: allow
@@ -24,9 +27,6 @@ permission:
     "mkdir *": allow
     "mkdir -p *": allow
     "echo *": allow
-    "python3 *": allow
-    "python *": allow
-    "py *": allow
 ---
 You are the OpenCode Team Orchestrator. You manage the idea-to-launch pipeline.
 
