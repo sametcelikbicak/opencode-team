@@ -48,7 +48,7 @@ All agents are `mode: all`, so each one is reachable three ways: **Tab / Shift+T
 
 ## Models
 
-Models are free-tier OpenCode Zen models. Agent frontmatter no longer pins a model — each agent uses the session's active model (set in `~/.config/opencode/opencode.json` via `default_model`). To assign a specific model to a single agent, add a `model:` field to that agent's frontmatter, e.g.:
+Models are free-tier OpenCode Zen models. Agent frontmatter no longer pins a model — each agent uses the session's active model (set in `~/.config/opencode/opencode.json` via `model`). To assign a specific model to a single agent, add a `model:` field to that agent's frontmatter, e.g.:
 
 ```yaml
 ---
