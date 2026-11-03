@@ -39,6 +39,7 @@ const config = defineConfig({
       nav: [
         { text: 'Guides', items: [
           { text: 'Getting Started', link: '/install' },
+          { text: 'Usage', link: '/usage' },
           { text: 'Pipeline', link: '/pipeline' },
           { text: 'Customization', link: '/customization' },
         ]},
@@ -57,6 +58,7 @@ const config = defineConfig({
           {
             text: 'Guides',
             items: [
+              { text: 'Usage', link: '/usage' },
               { text: 'Pipeline & Gates', link: '/pipeline' },
               { text: 'How Agents Work', link: '/agents' },
               { text: 'How Commands Work', link: '/commands' },
@@ -79,6 +81,20 @@ const config = defineConfig({
             items: [
               { text: 'Project-Local Memory', link: '/memory' },
               { text: 'Run Checkpoints', link: '/runs' },
+            ],
+          },
+          {
+            text: 'Output',
+            items: [
+              { text: 'Output Convention', link: '/output' },
+            ],
+          },
+          {
+            text: 'Testing',
+            items: [
+              { text: 'Memory Verification', link: '/testing/memory' },
+              { text: 'Run Checkpoint Verification', link: '/testing/runs' },
+              { text: 'Windows Verification', link: '/testing/windows' },
             ],
           },
         ],

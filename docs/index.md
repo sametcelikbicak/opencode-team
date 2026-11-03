@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/sametcelikbicak/opencode-team/main/assets/opencode-team.svg" alt="OpenCode Team">
+</p>
+
 # OpenCode Team
 
 A team of AI agents that takes an idea from research to launch — built on [opencode](https://opencode.ai), with no framework and no extra dependencies.
@@ -8,7 +12,7 @@ OpenCode Team is a **software team** you install once and use in every project. 
 
 - **14 agent roles** — analyst, pm, po, ux, brand, architect, fe, be, qa, devops, security, marketing, docs, and an orchestrator that routes work between them
 - **12 pipeline stages** — configured in `team.yaml`, not hardcoded, so you can add, remove, or reorder stages freely
-- **13 skills** — 12 stage methodologies plus `team-memory`, all local under `skills/team-*`; no external skill is cloned or required
+- **14 skills** — 12 stage methodologies plus `team-memory` and `team-discipline`, all local under `skills/team-*`; no external skill is cloned or required
 - **19 slash commands** — run a single stage directly, or drive the whole pipeline
 
 The orchestrator is the **default agent**. Open `opencode` anywhere, describe an idea, and the team takes it stage by stage, asking for your approval at each gate.
@@ -42,7 +46,7 @@ opencode
 - [Customization](./customization) — add agents, commands, skills
 - [Agent reference](./reference/agents) — all 14 roles
 - [Command reference](./reference/commands) — all 19 slash commands
-- [Skill reference](./reference/skills) — all 13 skills
+- [Skill reference](./reference/skills) — all 14 skills
 - [Stage reference](./reference/stages) — all 12 pipeline stages
 - [Memory](./memory) — project-local agent memory
 - [Run checkpoints](./runs) — resume after compaction or interruption

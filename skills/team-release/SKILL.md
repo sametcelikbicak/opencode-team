@@ -52,6 +52,20 @@ Rules:
 - Breaking changes go under `### BREAKING CHANGES` with a migration note
 - Date format `YYYY-MM-DD`
 
+### When the repository already automates the CHANGELOG
+
+If a tag push already generates the CHANGELOG, do **not** write it by hand. Review the generated release PR instead, then fix wording, missing breaking changes or migration notes there.
+
+This repository is the reference implementation:
+
+1. Push a `v*` tag.
+2. `.github/workflows/release-prep.yml` runs `.github/scripts/release-prep.sh <tag>`.
+3. The script diffs from the previous tag, groups commits by conventional prefix (`feat` → Added, `fix` → Fixed, `docs` → Documentation, `chore`/`refactor`/`perf`/`test`/`ci`/`style` → Changed, the rest → Other), adds `by @author` and `in [#PR]`, prepends a `## [<tag>] - date` section to `CHANGELOG.md`, and sets the `package.json` version.
+4. The workflow commits `CHANGELOG.md` and `package.json` to `changelog/<tag>` and opens a PR.
+5. After the PR merges, `.github/workflows/release-publish.yml` publishes to npm, attests provenance and creates the GitHub Release from the changelog section.
+
+The devops role still owns the result: check the generated entry for user-visible wording, breaking changes and a migration note. Do not bump the version or edit `CHANGELOG.md` in a separate commit. If the project has no automation, write the CHANGELOG manually using the rules above.
+
 ## 3. CI/CD
 
 Match the **existing** CI if there is one. If there is not, propose one, do not install one.
@@ -137,6 +151,7 @@ Every log line should carry a request ID, otherwise debugging is impossible.
 | Deploying without a health check | A `/health` endpoint |
 | Running the migration after the deployment | Run it first, keep it backward compatible |
 | Listing commits in the CHANGELOG | Write the behavior |
+| Hand-writing a CHANGELOG when the tag workflow generates it | Review the generated release PR |
 
 ## Output format
 
