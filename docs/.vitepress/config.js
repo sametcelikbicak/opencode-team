@@ -89,6 +89,14 @@ const config = defineConfig({
               { text: 'Output Convention', link: '/output' },
             ],
           },
+          {
+            text: 'Testing',
+            items: [
+              { text: 'Memory Verification', link: '/testing/memory' },
+              { text: 'Run Checkpoint Verification', link: '/testing/runs' },
+              { text: 'Windows Verification', link: '/testing/windows' },
+            ],
+          },
         ],
       },
       search: { provider: 'local' },
