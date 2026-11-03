@@ -5,14 +5,17 @@ mode: all
 temperature: 0.1
 color: "#F2994A"
 permission:
-  read: allow
+  read:
+    "*": allow
+    "*.env": ask
+    "*.env.*": ask
   glob: allow
   grep: allow
   list: allow
   edit:
-    "*": allow
+    ".team/**": allow
   bash:
-    "*": allow
+    "*": ask
     "git *": allow
     "git status*": allow
     "git diff*": allow
@@ -39,8 +42,6 @@ permission:
     "pnpm *": allow
     "yarn *": allow
     "bun *": allow
-    "python3 *": allow
-    "python *": allow
     "pytest*": allow
     "docker*": allow
     "git commit*": allow

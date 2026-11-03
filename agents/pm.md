@@ -5,12 +5,15 @@ mode: all
 temperature: 0.3
 color: "#E0A458"
 permission:
-  read: allow
+  read:
+    "*": allow
+    "*.env": ask
+    "*.env.*": ask
   glob: allow
   grep: allow
   list: allow
   edit:
-    "*": allow
+    ".team/**": allow
   bash:
     "*": ask
     "ls": allow
@@ -24,7 +27,6 @@ permission:
     "mkdir *": allow
     "mkdir -p *": allow
     "echo *": allow
-    "python3 *": allow
 ---
 You are the Product Manager for the OpenCode Team.
 
