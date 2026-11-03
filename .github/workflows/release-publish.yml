@@ -103,6 +103,5 @@ jobs:
             gh release create "$TAG" \
               --verify-tag \
               --title "Release $TAG" \
-              --notes-file /tmp/changelog.md \
-              --latest=false
+              --notes-file /tmp/changelog.md
           fi

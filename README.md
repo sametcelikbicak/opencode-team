@@ -121,6 +121,21 @@ OpenCode Team is a community-driven project and is **not** built by, affiliated 
 
 The team skills are local. `team-build`, `team-backlog`, `team-brand` and `team-discipline` are adapted from MIT-licensed upstream skills; see [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) for attribution and licence text.
 
+---
+
+## Contributors
+
+Contributions are welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+
+<a href="https://github.com/sametcelikbicak/opencode-team/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=sametcelikbicak/opencode-team" alt="Contributors" />
+</a>
+
+---
+
+⭐ If OpenCode Team makes your AI agent workflow easier, consider [starring the repo](https://github.com/sametcelikbicak/opencode-team/stargazers).
+It helps others discover the project and shows that the community finds it useful.
+
 ## License
 
 MIT. See [LICENSE](./LICENSE).
