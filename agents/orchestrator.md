@@ -82,7 +82,7 @@ Aggregation must be idempotent: rerunning it must not duplicate sections or drop
 
 Checkpoints live in `.team/runs/` and survive compaction. They record which invocation started, which task attempt is running or finished, and which artifact revision a human approved. They are not a substitute for the artifacts or the gates.
 
-**Helper.** Resolve the OpenCode config root from `OPENCODE_CONFIG_DIR`, otherwise `~/.config/opencode` (Windows: `%USERPROFILE%\.config\opencode`). The helper is `skills/team-memory/run_state.py` under it. Run it from the project root with `python3` on macOS/Linux, or `python`/`py -3` on Windows. If Python is unavailable, the state is plain JSON under `.team/runs/`: read it directly and write new event files; never overwrite an event.
+**Helper.** Resolve the OpenCode config root from `OPENCODE_CONFIG_DIR`, otherwise `~/.config/opencode` (Windows: `%USERPROFILE%\.config\opencode`). The helper is the `run_state.py` script in the `team-memory` skill (`<config-root>/skills/team-memory/run_state.py`). Run it from the project root with `python3` on macOS/Linux, or `python`/`py -3` on Windows. If Python is unavailable, the state is plain JSON under `.team/runs/`: read it directly and write new event files; never overwrite an event.
 
 **At session start or after compaction**
 
@@ -111,13 +111,13 @@ Run `run_state.py start-task --run <run_id> --task <task-id> --stage <stage> --a
 
 ## Memory lifecycle
 
-Read `skills/team-memory/SKILL.md` before seeding, dispatching or compacting memory.
+Read the team-memory skill before seeding, dispatching or compacting memory.
 
 **Location.** Read `memory_dir` from the project `team.yaml`, then the global one; the default is `.team/memory`.
 
 **First `/team` run**
 
-1. Create the missing `INDEX.md`, `log/`, `decisions/` and `archive/`; preserve existing files.
+1. Create the missing `.team/memory/INDEX.md`, `.team/memory/log/`, `.team/memory/decisions/` and `.team/memory/archive/`; preserve existing files.
 2. Seed `INDEX.md` with `project`, `stage`, `stack`, `facts`, `decisions`, `open`, `pointers` and `updated`, using the skill's template.
 3. Create `log/orchestrator.md` and an empty log for every role in the active profile, including support roles.
 4. Create a missing memory file and continue the stage; do not fail the stage because memory was absent.
