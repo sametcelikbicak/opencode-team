@@ -9,6 +9,7 @@ import {
   writeFileSync,
   readdirSync,
   statSync,
+  lstatSync,
   unlinkSync,
   symlinkSync,
   copyFileSync,
@@ -111,9 +112,9 @@ function installOpencode() {
   }
 }
 
-function targetInRepo(target, repo) {
+function targetInRepo(linkPath, repo) {
   try {
-    const resolved = resolve(target);
+    const resolved = resolve(dirname(linkPath), readlinkSync(linkPath));
     return resolved === repo || resolved.startsWith(repo + sep);
   } catch {
     return false;
@@ -360,7 +361,7 @@ function cmdCheck(configDir) {
     } else if (mode === 'symlink') {
       try {
         const target = readlinkSync(configPath);
-        if (targetInRepo(target, REPO)) {
+        if (targetInRepo(configPath, REPO)) {
           info(`${configName} → ${target}`);
         } else {
           warn(`${configName} → not managed: ${target}`);
@@ -418,19 +419,27 @@ function cmdUninstall(configDir) {
   for (const file of manifest.files) {
     if (!existsSync(file.configPath)) continue;
     try {
-      const stat = statSync(file.configPath);
-      if (stat.isDirectory() && !stat.isSymbolicLink()) {
-        // Only remove if it's a copy we made and hash matches (unmodified)
-        if (file.type === 'copy' && file.hash) {
-          const currentHash = hashDir(file.configPath);
-          if (currentHash !== file.hash) {
-            warn(`${file.configPath} skipped (modified by user)`);
-            continue;
-          }
+      const stat = lstatSync(file.configPath);
+      if (stat.isSymbolicLink()) {
+        if (!targetInRepo(file.configPath, REPO)) {
+          warn(`${file.configPath} skipped (symlink outside repo)`);
+          continue;
         }
-        rmSync(file.configPath, { recursive: true, force: true });
-      } else {
         unlinkSync(file.configPath);
+      } else if (file.type === 'copy' && file.hash) {
+        const currentHash = stat.isDirectory() ? hashDir(file.configPath) : hashFile(file.configPath);
+        if (currentHash !== file.hash) {
+          warn(`${file.configPath} skipped (modified by user)`);
+          continue;
+        }
+        if (stat.isDirectory()) {
+          rmSync(file.configPath, { recursive: true, force: true });
+        } else {
+          unlinkSync(file.configPath);
+        }
+      } else {
+        warn(`${file.configPath} skipped (not managed)`);
+        continue;
       }
       info(`${file.configPath} removed`);
     } catch (err) {

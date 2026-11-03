@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import * as assert from 'node:assert';
 import { execSync } from 'node:child_process';
-import { mkdtempSync, writeFileSync, readFileSync, existsSync, rmSync, readlinkSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, rmSync, readlinkSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -105,6 +105,66 @@ test('uninstall removes managed files', (t) => {
     assert.strictEqual(result.code, 0, result.stderr);
     assert.ok(!existsSync(join(configDir, 'team.yaml')));
     assert.ok(!existsSync(join(configDir, 'skills', 'team-memory')));
+  } finally {
+    rmSync(configDir, { recursive: true, force: true });
+  }
+});
+
+test('uninstall keeps a real directory that replaced a managed symlink', (t) => {
+  const configDir = freshConfigDir();
+  try {
+    assert.strictEqual(run(['install', '--config-dir', configDir]).code, 0);
+    rmSync(join(configDir, 'agents'));
+    mkdirSync(join(configDir, 'agents'));
+    writeFileSync(join(configDir, 'agents', 'mine.md'), 'mine\n');
+    const result = run(['uninstall', '--config-dir', configDir]);
+    assert.strictEqual(result.code, 0, result.stderr);
+    assert.ok(existsSync(join(configDir, 'agents', 'mine.md')), 'user directory must survive');
+  } finally {
+    rmSync(configDir, { recursive: true, force: true });
+  }
+});
+
+test('uninstall keeps a symlink pointing outside the repo', (t) => {
+  const configDir = freshConfigDir();
+  const userDir = freshConfigDir();
+  try {
+    assert.strictEqual(run(['install', '--config-dir', configDir]).code, 0);
+    writeFileSync(join(userDir, 'keep.txt'), 'keep\n');
+    rmSync(join(configDir, 'agents'));
+    symlinkSync(userDir, join(configDir, 'agents'));
+    const result = run(['uninstall', '--config-dir', configDir]);
+    assert.strictEqual(result.code, 0, result.stderr);
+    assert.ok(existsSync(join(configDir, 'agents')), 'external symlink must be left untouched');
+    assert.ok(existsSync(join(userDir, 'keep.txt')), 'external target must survive');
+  } finally {
+    rmSync(configDir, { recursive: true, force: true });
+    rmSync(userDir, { recursive: true, force: true });
+  }
+});
+
+test('uninstall removes an unmodified copy install', (t) => {
+  const configDir = freshConfigDir();
+  try {
+    assert.strictEqual(run(['install', '--config-dir', configDir, '--copy']).code, 0);
+    const result = run(['uninstall', '--config-dir', configDir]);
+    assert.strictEqual(result.code, 0, result.stderr);
+    assert.ok(!existsSync(join(configDir, 'team.yaml')));
+    assert.ok(!existsSync(join(configDir, 'agents')));
+    assert.ok(!existsSync(join(configDir, 'skills', 'team-memory')));
+  } finally {
+    rmSync(configDir, { recursive: true, force: true });
+  }
+});
+
+test('uninstall keeps a modified copy', (t) => {
+  const configDir = freshConfigDir();
+  try {
+    assert.strictEqual(run(['install', '--config-dir', configDir, '--copy']).code, 0);
+    writeFileSync(join(configDir, 'team.yaml'), 'user content\n');
+    const result = run(['uninstall', '--config-dir', configDir]);
+    assert.strictEqual(result.code, 0, result.stderr);
+    assert.ok(existsSync(join(configDir, 'team.yaml')), 'modified copy must survive');
   } finally {
     rmSync(configDir, { recursive: true, force: true });
   }
