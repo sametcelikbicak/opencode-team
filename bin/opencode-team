@@ -179,9 +179,9 @@ function installTeam(configDir, mode, installOpenencode) {
   mkdirSync(join(configDir, 'team'), { recursive: true });
 
   const manifest = loadManifest(configDir);
+  const files = [];
   manifest.mode = mode;
   manifest.installedAt = new Date().toISOString();
-  manifest.files = [];
 
   const installItem = (repoPath, configName) => {
     const configPath = join(configDir, configName);
@@ -217,7 +217,7 @@ function installTeam(configDir, mode, installOpenencode) {
       }
     }
 
-    manifest.files.push({
+    files.push({
       configPath,
       repoPath: repoResolved,
       type: mode,
@@ -261,7 +261,7 @@ function installTeam(configDir, mode, installOpenencode) {
       }
     }
 
-    manifest.files.push({
+    files.push({
       configPath,
       repoPath: repoResolved,
       type: mode,
@@ -284,6 +284,7 @@ function installTeam(configDir, mode, installOpenencode) {
     }
   }
 
+  manifest.files = files;
   saveManifest(configDir, manifest);
 
   console.log();

@@ -110,6 +110,23 @@ test('uninstall removes managed files', (t) => {
   }
 });
 
+test('reinstall keeps the manifest so uninstall still removes managed files', (t) => {
+  const configDir = freshConfigDir();
+  try {
+    assert.strictEqual(run(['install', '--config-dir', configDir]).code, 0);
+    assert.strictEqual(run(['install', '--config-dir', configDir]).code, 0);
+    const manifest = JSON.parse(readFileSync(join(configDir, '.opencode-team-manifest.json'), 'utf-8'));
+    assert.ok(manifest.files.length > 0, 'manifest should keep managed files after reinstall');
+    const result = run(['uninstall', '--config-dir', configDir]);
+    assert.strictEqual(result.code, 0, result.stderr);
+    assert.ok(!existsSync(join(configDir, 'team.yaml')));
+    assert.ok(!existsSync(join(configDir, 'agents')));
+    assert.ok(!existsSync(join(configDir, 'skills', 'team-memory')));
+  } finally {
+    rmSync(configDir, { recursive: true, force: true });
+  }
+});
+
 test('install does not clobber non-managed files', (t) => {
   const configDir = freshConfigDir();
   try {
