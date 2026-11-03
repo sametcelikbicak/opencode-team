@@ -85,7 +85,8 @@ function checkVersion() {
     return;
   }
   if (major !== TARGET_MAJOR) {
-    warn(`opencode ${major} detected; the team targets OpenCode 1.x. OpenCode 2 support is not available yet.`);
+    error(`opencode ${major} detected; the team targets OpenCode 1.x. OpenCode 2 support is not available yet.`);
+    process.exit(1);
   }
 }
 

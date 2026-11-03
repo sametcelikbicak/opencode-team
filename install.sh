@@ -55,9 +55,11 @@ check_version() {
   local major
   major="$(opencode_major)"
   if [ -z "$major" ]; then
-    echo "  ! could not determine opencode version; the team targets OpenCode 1.x."
+    echo "  ✗ could not determine opencode version; the team targets OpenCode 1.x." >&2
+    exit 1
   elif [ "$major" != "$TARGET_MAJOR" ]; then
-    echo "  ! opencode $major detected; the team targets OpenCode 1.x. OpenCode 2 support is not available yet."
+    echo "  ✗ opencode $major detected; the team targets OpenCode 1.x. OpenCode 2 support is not available yet." >&2
+    exit 1
   fi
 }
 
@@ -253,6 +255,8 @@ case "$MODE" in
     echo "Installing ($CONFIG):"
     if [ "$INSTALL_OPENCODE" -eq 1 ]; then
       install_opencode
+      # Verify the installed OpenCode is 1.x
+      check_version
     fi
     require_opencode
     check_version
