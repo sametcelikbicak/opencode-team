@@ -475,12 +475,14 @@ function cmdUninstall(configDir) {
   process.exit(0);
 }
 
-function cmdUpdate(configDir, mode, installOpenencode) {
+function cmdUpdate(configDir, installOpenencode) {
   try {
     execSync('npm install --global @opencodeteam/cli@latest', { stdio: 'inherit' });
   } catch {
     fail('Failed to update @opencodeteam/cli via npm.');
   }
+  const manifest = loadManifest(configDir);
+  const mode = manifest.mode || 'symlink';
   installTeam(configDir, mode, installOpenencode);
 }
 
@@ -566,7 +568,7 @@ function main() {
       cmdCheck(configDir);
       break;
     case 'update':
-      cmdUpdate(configDir, mode, args.installOpenencode);
+      cmdUpdate(configDir, args.installOpenencode);
       break;
     case 'uninstall':
       cmdUninstall(configDir);

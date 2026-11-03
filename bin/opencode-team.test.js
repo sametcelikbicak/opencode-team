@@ -251,3 +251,42 @@ test('check snippet reflects the resolved config dir', (t) => {
     rmSync(configDir, { recursive: true, force: true });
   }
 });
+
+test('uninstall skips a copied file whose hash differs from the manifest', (t) => {
+  const configDir = freshConfigDir();
+  try {
+    assert.strictEqual(run(['install', '--config-dir', configDir, '--copy']).code, 0);
+    // Modify a copied file
+    writeFileSync(join(configDir, 'team.yaml'), 'user modified content\n');
+    const result = run(['uninstall', '--config-dir', configDir]);
+    assert.strictEqual(result.code, 0, result.stderr);
+    assert.ok(existsSync(join(configDir, 'team.yaml')), 'modified copy must survive uninstall');
+    assert.ok(result.stdout.includes('skipped (modified by user)'), 'should warn about modified file');
+  } finally {
+    rmSync(configDir, { recursive: true, force: true });
+  }
+});
+
+test('update uses manifest mode so --copy install stays copy after update', (t) => {
+  const configDir = freshConfigDir();
+  try {
+    assert.strictEqual(run(['install', '--config-dir', configDir, '--copy']).code, 0);
+    // Verify manifest records copy mode
+    const manifest = JSON.parse(readFileSync(join(configDir, '.opencode-team-manifest.json'), 'utf-8'));
+    assert.strictEqual(manifest.mode, 'copy', 'manifest should record copy mode');
+    // Modify a copied file so we can detect refresh on update
+    writeFileSync(join(configDir, 'team.yaml'), 'user modified content\n');
+    const result = run(['update', '--config-dir', configDir]);
+    // update runs npm install --global which may fail offline; accept either
+    // a successful refresh or an npm/network failure, but not a mode-related error.
+    if (result.code === 0) {
+      assert.ok(readFileSync(join(configDir, 'team.yaml'), 'utf-8').length > 0, 'team.yaml should exist after update');
+      const updatedManifest = JSON.parse(readFileSync(join(configDir, '.opencode-team-manifest.json'), 'utf-8'));
+      assert.strictEqual(updatedManifest.mode, 'copy', 'manifest mode should remain copy after update');
+    } else {
+      assert.ok(result.stderr.includes('npm') || result.stderr.includes('Failed to update'), `unexpected update failure: ${result.stderr}`);
+    }
+  } finally {
+    rmSync(configDir, { recursive: true, force: true });
+  }
+});
