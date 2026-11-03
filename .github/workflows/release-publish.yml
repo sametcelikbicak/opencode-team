@@ -72,8 +72,8 @@ jobs:
         run: |
           VERSION="${{ steps.version.outputs.version }}"
           TAG="v$VERSION"
-          # Extract the changelog section for this version (format: ## [0.0.3])
-          awk -v tag="$VERSION" '
+          # Extract the changelog section for this version (format: ## [vX.Y.Z])
+          awk -v tag="$TAG" '
             /^## \[/ { in_section = ($0 ~ "\\[" tag "\\]") }
             in_section { print }
           ' CHANGELOG.md > /tmp/changelog.md
