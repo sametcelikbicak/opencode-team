@@ -290,3 +290,18 @@ test('update uses manifest mode so --copy install stays copy after update', (t) 
     rmSync(configDir, { recursive: true, force: true });
   }
 });
+
+  test('check detects default_agent in opencode.jsonc', (t) => {
+    const configDir = freshConfigDir();
+    try {
+      assert.strictEqual(run(['install', '--config-dir', configDir]).code, 0);
+      writeFileSync(join(configDir, 'opencode.jsonc'), JSON.stringify({
+        default_agent: 'orchestrator',
+      }, null, 2));
+      const result = run(['check', '--config-dir', configDir]);
+      assert.strictEqual(result.code, 0, result.stderr);
+      assert.ok(result.stdout.includes('opencode.jsonc: default_agent is orchestrator'), 'should detect default_agent in opencode.jsonc');
+    } finally {
+      rmSync(configDir, { recursive: true, force: true });
+    }
+  });
