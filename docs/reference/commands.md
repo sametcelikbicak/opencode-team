@@ -6,15 +6,15 @@ The 19 slash commands defined in `commands/*.md`. Edit the command file, not thi
 
 | Command | Description | Agent |
 | --- | --- | --- |
-| `/architecture` | Design the technical architecture. Write the output to .team/06-architecture.md. First read .team/02-prd.md and .team/04-ux.md. | `architect` |
-| `/backlog` | Break the PRD down into work items. Write the output to .team/03-backlog.md. First read .team/02-prd.md. | `po` |
+| `/architecture` | Design the technical architecture. Write the output to .team/06-architecture.md. First read .team/02-prd.md and .team/04-ux.md (if they exist). | `architect` |
+| `/backlog` | Break the PRD down into work items. Write the output to .team/03-backlog.md. First read .team/02-prd.md (if it exists). | `po` |
 | `/brand` | With the team-brand skill: concept -> SVG -> test -> color -> favicon set -> guidelines. | `brand` |
 | `/build` | Run the build stage: call the frontend and backend agents according to the brief in team.yaml. Each writes a specialist report; consolidate them into .team/07-build.md only after every requested specialist finishes successfully. | `orchestrator` |
 | `/docs` | Write technical documentation. Write the output to .team/10-docs.md. | `docs` |
 | `/launch` | Write the marketing and launch plan. Write the output to .team/12-launch.md. | `marketing` |
 | `/memory` | Inspect, seed, or compact project-local agent memory. | `orchestrator` |
-| `/prd` | Write the PRD. Write the output to .team/02-prd.md. First read .team/01-research.md. | `pm` |
-| `/qa` | Turn acceptance criteria into tests and run the tests. Write the output to .team/08-qa.md. First read .team/03-backlog.md. | `qa` |
+| `/prd` | Write the PRD. Write the output to .team/02-prd.md. First read .team/01-research.md (if it exists). | `pm` |
+| `/qa` | Turn acceptance criteria into tests and run the tests. Write the output to .team/08-qa.md. First read .team/03-backlog.md (if it exists). | `qa` |
 | `/release` | Write the version and deployment plan. Write the output to .team/11-release.md. | `devops` |
 | `/remember` | Append a note to the active agent's project memory log. | — |
 | `/research` | Conduct market and user research. Write the output to .team/01-research.md. | `analyst` |
@@ -24,4 +24,4 @@ The 19 slash commands defined in `commands/*.md`. Edit the command file, not thi
 | `/team-next` | Run the next stage in the pipeline. Follow the profile order in team.yaml. | `orchestrator` |
 | `/team-status` | Report the status of the software team: which stages are done, which outputs exist, what is next, which gate we are waiting at. | `orchestrator` |
 | `/team` | Start or continue the software team pipeline. If an argument is given, interpret it as a profile or a stage. | `orchestrator` |
-| `/ux` | Do UX design. Write the output to .team/04-ux.md. First read .team/02-prd.md. | `ux` |
+| `/ux` | Do UX design. Write the output to .team/04-ux.md. First read .team/02-prd.md (if it exists). | `ux` |
