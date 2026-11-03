@@ -2,6 +2,21 @@
 
 All notable changes to the OpenCode Team npm package are documented in this file.
 
+## [v0.0.4] - 2026-11-03
+
+### Fixed
+- uninstall never deletes non-owned files (#74) by @sametcelikbicak in [#74](https://github.com/sametcelikbicak/opencode-team/pull/74)
+- keep install manifest across reinstalls (#73) by @sametcelikbicak in [#73](https://github.com/sametcelikbicak/opencode-team/pull/73)
+- release-prep.sh and release-publish.yml match rolecraft format by @sametcelikbicak in [#72](https://github.com/sametcelikbicak/opencode-team/pull/72)
+
+### Changed
+- update changelog and version for v0.0.3 by @sametcelikbicak in [#71](https://github.com/sametcelikbicak/opencode-team/pull/71)
+
+### Documentation
+- correct v0.0.1 date to v1 release date by @sametcelikbicak in [#94](https://github.com/sametcelikbicak/opencode-team/pull/94)
+
+### Other
+- Restructure README, add team-discipline, and fix release changelog by @sametcelikbicak in [#93](https://github.com/sametcelikbicak/opencode-team/pull/93)
 ## [v0.0.3] - 2026-11-02
 
 ### Added
