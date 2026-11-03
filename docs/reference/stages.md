@@ -12,7 +12,7 @@ The 12 pipeline stages defined in `team.yaml`, in pipeline order. Edit `team.yam
 | `ux` | UX design | `ux` | yes | `.team/04-ux.md` | — |
 | `brand` | Brand and logo | `brand` | yes | `.team/05-brand.md` | — |
 | `architecture` | Technical architecture | `architect` | yes | `.team/06-architecture.md` | — |
-| `build` | Implementation | `fe` | yes | `.team/07-build.md` | `be` |
+| `build` | Implementation | `orchestrator` | yes | `.team/07-build.md` | `fe`, `be` |
 | `qa` | Testing and quality assurance | `qa` | yes | `.team/08-qa.md` | — |
 | `security` | Security review | `security` | yes | `.team/09-security.md` | — |
 | `docs` | Technical documentation | `docs` | yes | `.team/10-docs.md` | — |
