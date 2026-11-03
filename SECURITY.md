@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-`main` only. There is no tagged release yet; OpenCode 2 support is planned as a separate release.
+Latest release: v0.0.4. OpenCode 2 support is planned as a separate release.
 
 ## Reporting
 

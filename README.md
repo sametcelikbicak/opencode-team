@@ -32,7 +32,7 @@ The orchestrator is the **default agent**. Open `opencode` anywhere, describe an
 
 ## Install
 
-Requires OpenCode 1.x (tested on 1.19.0). OpenCode 2 support is planned as a separate release. There is no tagged release yet; `main` is the development branch.
+Requires OpenCode 1.x (tested on 1.19.0). OpenCode 2 support is planned as a separate release. Latest release: v0.0.4; `main` is the development branch.
 
 Supported on macOS, Linux, and native Windows (Windows PowerShell 5.1 or PowerShell 7; verified with OpenCode 1.19.4). WSL is untested.
 
