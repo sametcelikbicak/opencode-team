@@ -56,7 +56,8 @@
     "generate:reference": "ruby scripts/generate-reference.rb",
     "docs:dev": "npm run generate:reference && vitepress dev docs",
     "docs:build": "npm run generate:reference && vitepress build docs",
-    "docs:preview": "npm run generate:reference && vitepress preview docs"
+    "docs:preview": "npm run generate:reference && vitepress preview docs",
+    "test": "node --test bin/*.test.js"
   },
   "devDependencies": {
     "vitepress": "^1.6.4"
