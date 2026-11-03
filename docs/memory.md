@@ -65,4 +65,4 @@ Append `-Role analyst` to compact only that role's log. Both helpers default to 
 
 ## Full protocol
 
-See `skills/team-memory/SKILL.md` and `docs/rfcs/0001-project-memory.md`. Run state: [`docs/runs.md`](./runs).
+See `skills/team-memory/SKILL.md`. Run state: [`docs/runs.md`](./runs).

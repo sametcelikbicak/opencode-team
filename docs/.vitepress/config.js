@@ -23,13 +23,9 @@ const config = defineConfig({
       ['meta', { property: 'og:site_name', content: 'OpenCode Team' }],
       ['meta', { property: 'og:title', content: 'OpenCode Team — AI agent pipeline' }],
       ['meta', { property: 'og:description', content: DESCRIPTION }],
-      ['meta', { property: 'og:image', content: `${SITE}/opencode-team/og.jpg` }],
-      ['meta', { property: 'og:image:width', content: '1200' }],
-      ['meta', { property: 'og:image:height', content: '630' }],
       ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
       ['meta', { name: 'twitter:title', content: 'OpenCode Team — AI agent pipeline' }],
       ['meta', { name: 'twitter:description', content: DESCRIPTION }],
-      ['meta', { name: 'twitter:image', content: `${SITE}/opencode-team/og.jpg` }],
       ['meta', { name: 'theme-color', content: '#010314' }],
       ['style', {}, ':root { --vp-nav-logo-height: 48px; }'],
     ],
@@ -49,6 +45,13 @@ const config = defineConfig({
           { text: 'Skill reference', link: '/reference/skills' },
           { text: 'Stage reference', link: '/reference/stages' },
           { text: 'FAQ', link: '/faq' },
+        ]},
+        { text: 'Memory', items: [
+          { text: 'Project-Local Memory', link: '/memory' },
+          { text: 'Run Checkpoints', link: '/runs' },
+        ]},
+        { text: 'Output', items: [
+          { text: 'Output Convention', link: '/output' },
         ]},
       ],
       sidebar: {

@@ -195,6 +195,39 @@ If you previously installed via `git clone` + `install.sh` (symlink mode), migra
 
    Restart OpenCode after migration.
 
+## Windows
+
+On native Windows, use **Windows PowerShell 5.1** or **PowerShell 7**. Run `install.ps1` instead of `install.sh`:
+
+```powershell
+git clone https://github.com/sametcelikbicak/opencode-team.git
+cd opencode-team
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+Symbolic links require an Administrator PowerShell, or PowerShell 7 with Windows Developer Mode enabled. Without link privileges, the installer stops before changing installation links and explains how to proceed.
+
+To install OpenCode 1.x if missing:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -InstallOpenCode
+```
+
+The default config directory is `%USERPROFILE%\.config\opencode`. To use a different directory, set `OPENCODE_CONFIG_DIR` for installation **and** subsequent OpenCode sessions:
+
+```powershell
+$env:OPENCODE_CONFIG_DIR = 'D:\my config\opencode'
+.\install.ps1
+opencode
+```
+
+Verify or uninstall from the same elevated shell:
+
+```powershell
+.\install.ps1 -Check
+.\install.ps1 -Uninstall
+```
+
 ### What the installer does
 
 The platform's installer symlinks or copies the repo into your OpenCode config:
