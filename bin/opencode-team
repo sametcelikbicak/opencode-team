@@ -21,6 +21,7 @@ import { execSync } from 'child_process';
 
 const require = createRequire(import.meta.url);
 const crypto = require('crypto');
+const os = require('os');
 const pkg = require('../package.json');
 const VERSION = pkg.version;
 const REPO = dirname(require.resolve('../package.json'));
@@ -49,6 +50,17 @@ function defaultConfigDir() {
     return resolve(process.env.USERPROFILE || '', '.config', 'opencode');
   }
   return resolve(process.env.HOME || '', '.config', 'opencode');
+}
+
+function probeSymlinkSupport() {
+  if (process.platform !== 'win32') return;
+  const tmp = join(os.tmpdir(), `opencode-team-probe-${Date.now()}`);
+  try {
+    symlinkSync(tmp, tmp + '.link');
+    unlinkSync(tmp + '.link');
+  } catch {
+    warn('Symlinks are not supported on this system; rerun with --copy to copy files instead.');
+  }
 }
 
 function resolveConfigDir(flagValue) {
@@ -146,16 +158,16 @@ function saveManifest(configDir, manifest) {
   writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n', 'utf-8');
 }
 
-function printConfigSnippet() {
+function printConfigSnippet(configDir) {
   console.log(`
-Add this to ${join(resolveConfigDir(), 'opencode.json')}:
+Add this to ${join(configDir, 'opencode.json')}:
 
 {
   "$schema": "https://opencode.ai/config.json",
   "default_agent": "orchestrator",
   "instructions": [
-    "~/.config/opencode/team/AGENTS.md",
-    "~/.config/opencode/team.yaml"
+    "${join(configDir, 'team', 'AGENTS.md')}",
+    "${join(configDir, 'team.yaml')}"
   ]
 }
 `);
@@ -175,12 +187,14 @@ function installTeam(configDir, mode, installOpenencode) {
     installOpencode();
   }
   checkVersion();
+  probeSymlinkSupport();
 
   mkdirSync(join(configDir, 'skills'), { recursive: true });
   mkdirSync(join(configDir, 'team'), { recursive: true });
 
   const manifest = loadManifest(configDir);
   const files = [];
+  let failures = 0;
   manifest.mode = mode;
   manifest.installedAt = new Date().toISOString();
 
@@ -200,6 +214,7 @@ function installTeam(configDir, mode, installOpenencode) {
         symlinkSync(repoResolved, configPath);
       } catch (err) {
         error(`Failed to symlink ${configName}: ${err.message}`);
+        failures++;
         return false;
       }
     } else {
@@ -214,6 +229,7 @@ function installTeam(configDir, mode, installOpenencode) {
         }
       } catch (err) {
         error(`Failed to copy ${configName}: ${err.message}`);
+        failures++;
         return false;
       }
     }
@@ -245,6 +261,7 @@ function installTeam(configDir, mode, installOpenencode) {
         symlinkSync(repoResolved, configPath);
       } catch (err) {
         error(`Failed to symlink skills/${skillName}: ${err.message}`);
+        failures++;
         return;
       }
     } else {
@@ -258,6 +275,7 @@ function installTeam(configDir, mode, installOpenencode) {
         }
       } catch (err) {
         error(`Failed to copy skills/${skillName}: ${err.message}`);
+        failures++;
         return;
       }
     }
@@ -292,10 +310,15 @@ function installTeam(configDir, mode, installOpenencode) {
   if (hasDefaultAgent(configDir)) {
     info('opencode.json: default_agent is orchestrator');
   } else {
-    console.log(`Add this to ${join(configDir, 'opencode.json')}:`);
-    printConfigSnippet();
+    printConfigSnippet(configDir);
   }
   console.log('Restart opencode.');
+
+  if (failures > 0) {
+    console.log();
+    error(`${failures} item(s) failed to install.`);
+    process.exit(1);
+  }
 }
 
 function isManaged(configPath, manifest) {
@@ -407,7 +430,7 @@ function cmdCheck(configDir) {
   } else {
     warn('opencode.json: recommended settings not found');
     console.log(`    Add to ${join(configDir, 'opencode.json')}:`);
-    printConfigSnippet();
+    printConfigSnippet(configDir);
   }
 
   process.exit(ok);
@@ -501,6 +524,9 @@ function parseArgs(argv) {
     } else if (arg === 'install' || arg === 'check' || arg === 'update' || arg === 'uninstall') {
       result.command = arg;
     } else if (arg === '--config-dir') {
+      if (i + 1 >= argv.length) {
+        fail('--config-dir requires a value');
+      }
       result.configDir = argv[++i];
     } else if (arg === '--copy') {
       result.copy = true;
