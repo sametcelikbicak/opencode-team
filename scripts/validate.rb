@@ -172,6 +172,21 @@ if profiles.is_a?(Hash) && stages.is_a?(Array)
   end
 end
 
+# --- dispatch path references each stage skill ---
+orchestrator = File.join(ROOT, "agents", "orchestrator.md")
+orch_source = File.exist?(orchestrator) ? File.read(orchestrator) : ""
+dispatch_loads_skill = orch_source.include?("skill tool") || orch_source.include?("load that skill")
+if stages.is_a?(Array)
+  stages.each do |s|
+    id = s["id"] || "stages[?]"
+    skill = s["skill"]
+    if skill.is_a?(String) && !skill.empty?
+      check(errors, "team.yaml", dispatch_loads_skill,
+            "#{id}: stage skill #{skill.inspect} is not referenced by the orchestrator dispatch path (orchestrator must load stage skills via the skill tool)")
+    end
+  end
+end
+
 # --- report ---
 count = files.size + skills.size + 1
 if errors.empty?
