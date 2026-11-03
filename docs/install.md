@@ -258,57 +258,6 @@ opencode-team uninstall
 
 `opencode.json` is never modified by either installer. For Windows commands, see [Windows](#windows).
 
-## What the installer does
-
-The platform's installer symlinks the repo into your OpenCode config:
-
-| Path                                | Target                         |
-|-------------------------------------|--------------------------------|
-| `~/.config/opencode/agents`         | `opencode-team/agents`         |
-| `~/.config/opencode/commands`       | `opencode-team/commands`       |
-| `~/.config/opencode/skills/team-*`  | `opencode-team/skills/team-*`  |
-| `~/.config/opencode/team.yaml`      | `opencode-team/team.yaml`      |
-| `~/.config/opencode/team/AGENTS.md` | `opencode-team/team/AGENTS.md` |
-
-The repo stays in git; the config directory holds symlinks. Edit a file in the repo and it takes effect immediately.
-
-## Manual setup
-
-If you prefer to wire it up manually, add to `~/.config/opencode/opencode.json`:
-
-```json
-{
-  "$schema": "https://opencode.ai/config.json",
-  "default_agent": "orchestrator",
-  "instructions": [
-    "~/.config/opencode/team/AGENTS.md",
-    "~/.config/opencode/team.yaml"
-  ]
-}
-```
-
-and place the agent, command and skill files in the matching directories under `~/.config/opencode/`.
-
-## Check
-
-Verify the installation:
-
-```bash
-./install.sh --check
-```
-
-This exits non-zero when a symlink is missing. A missing `default_agent` is shown as a hint, not a failure.
-
-## Uninstall
-
-Remove only symlinks that point into this repo:
-
-```bash
-./install.sh --uninstall
-```
-
-`opencode.json` is never modified by either installer. For Windows commands, see [Windows](#windows).
-
 ## First run
 
 After installation, open `opencode` in any project directory and describe an idea:
