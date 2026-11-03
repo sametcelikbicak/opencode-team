@@ -2,6 +2,10 @@ name: Release Publish
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g. v0.0.4)'
+        required: true
   pull_request_target:
     types:
       - closed
@@ -29,6 +33,16 @@ jobs:
           ref: main
           fetch-depth: 0
 
+      - name: Verify tag matches package.json version
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          TAG="${{ github.event.inputs.tag }}"
+          VERSION=$(node -e "console.log(require('./package.json').version)")
+          if [ "$TAG" != "v$VERSION" ]; then
+            echo "Error: tag $TAG does not match package.json version v$VERSION"
+            exit 1
+          fi
+
       - name: Setup Node.js
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
@@ -47,11 +61,22 @@ jobs:
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Publish to npm
-        if: steps.published.outputs.skip != 'true'
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Verify changelog section exists
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          if ! awk -v tag="$VERSION" '
+            /^## \[/ { in_section = ($0 ~ "\\[v?" tag "\\]") }
+            in_section { print }
+          ' CHANGELOG.md | grep -q .; then
+            echo "Error: No changelog section found for version $VERSION"
+            exit 1
+          fi
+
+      - name: Run tests
+        run: node --test bin/*.test.js
+
+      - name: Run validation
+        run: ruby scripts/validate.rb
 
       # npm provenance (package.json publishConfig.provenance) already covers
       # the registry-side attestation. This adds the GitHub-side attestation so
@@ -62,20 +87,19 @@ jobs:
         with:
           subject-path: package.json
 
-      - name: Extract version from package.json
-        id: version
-        run: |
-          VERSION=$(node -e "console.log(require('./package.json').version)")
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+      - name: Publish to npm
+        if: steps.published.outputs.skip != 'true'
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Extract changelog for this version
         id: changelog
         run: |
           VERSION="${{ steps.version.outputs.version }}"
-          TAG="v$VERSION"
-          # Extract the changelog section for this version (format: ## [vX.Y.Z])
-          awk -v tag="$TAG" '
-            /^## \[/ { in_section = ($0 ~ "\\[" tag "\\]") }
+          # Extract the changelog section for this version (format: ## [vX.Y.Z] or ## [X.Y.Z])
+          awk -v tag="$VERSION" '
+            /^## \[/ { in_section = ($0 ~ "\\[v?" tag "\\]") }
             in_section { print }
           ' CHANGELOG.md > /tmp/changelog.md
           # Check if we got content
