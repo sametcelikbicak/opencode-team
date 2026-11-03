@@ -42,8 +42,10 @@ opencode
 ## Documentation
 
 - [Installation](./install) — install, check, uninstall
+- [Usage](./usage) — commands, models, agents
 - [Pipeline & Gates](./pipeline) — how stages and gates work
 - [Customization](./customization) — add agents, commands, skills
+- [Output](./output) — .team/ artifacts and run checkpoints
 - [Agent reference](./reference/agents) — all 14 roles
 - [Command reference](./reference/commands) — all 19 slash commands
 - [Skill reference](./reference/skills) — all 14 skills
