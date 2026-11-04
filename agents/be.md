@@ -16,7 +16,6 @@ permission:
     "*": allow
   bash:
     "*": ask
-    "git *": allow
     "git status*": allow
     "git diff*": allow
     "git log*": allow
@@ -39,12 +38,20 @@ permission:
     "printf *": allow
     "npm *": allow
     "npx *": allow
+    "node *": allow
+    "python3 *": allow
     "pnpm *": allow
     "yarn *": allow
     "bun *": allow
     "pytest*": allow
     "docker*": allow
     "git commit*": allow
+    "cat *.env": deny
+    "head *.env": deny
+    "tail *.env": deny
+    "grep *.env": deny
+    "rg *.env": deny
+    "find *.env": deny
 ---
 You are the Senior Backend Developer for the OpenCode Team.
 

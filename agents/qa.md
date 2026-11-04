@@ -16,7 +16,6 @@ permission:
     ".team/**": allow
   bash:
     "*": ask
-    "git *": allow
     "git status*": allow
     "git diff*": allow
     "git log*": allow
@@ -45,6 +44,12 @@ permission:
     "pytest*": allow
     "docker*": allow
     "git commit*": allow
+    "cat *.env": deny
+    "head *.env": deny
+    "tail *.env": deny
+    "grep *.env": deny
+    "rg *.env": deny
+    "find *.env": deny
 ---
 You are the QA Engineer for the OpenCode Team.
 

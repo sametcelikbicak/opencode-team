@@ -291,7 +291,42 @@ test('update uses manifest mode so --copy install stays copy after update', (t) 
   }
 });
 
-  test('check detects default_agent in opencode.jsonc', (t) => {
+  test('check exits non-zero when opencode major is not 1', (t) => {
+  const configDir = freshConfigDir();
+  const fakeBin = mkdtempSync(join(tmpdir(), 'opencode-fake-'));
+  try {
+    writeFileSync(join(fakeBin, 'opencode'), '#!/bin/sh\necho "2.0.0"\n');
+    try { execSync(`chmod 755 "${fakeBin}/opencode"`); } catch {}
+    assert.strictEqual(run(['install', '--config-dir', configDir]).code, 0);
+    const result = run(['check', '--config-dir', configDir], {
+      PATH: `${fakeBin}:${process.env.PATH}`,
+    });
+    assert.strictEqual(result.code, 1, `expected exit 1 for opencode 2.x, got ${result.code}`);
+  } finally {
+    rmSync(configDir, { recursive: true, force: true });
+    rmSync(fakeBin, { recursive: true, force: true });
+  }
+});
+
+test('check exits non-zero when opencode is missing', (t) => {
+  const configDir = freshConfigDir();
+  const fakeBin = mkdtempSync(join(tmpdir(), 'opencode-broken-'));
+  try {
+    // A broken opencode that exits non-zero: opencodeMajor() returns null
+    writeFileSync(join(fakeBin, 'opencode'), '#!/bin/sh\nexit 1\n');
+    try { execSync(`chmod 755 "${fakeBin}/opencode"`); } catch {}
+    assert.strictEqual(run(['install', '--config-dir', configDir]).code, 0);
+    const result = run(['check', '--config-dir', configDir], {
+      PATH: `${fakeBin}:${process.env.PATH}`,
+    });
+    assert.strictEqual(result.code, 1, `expected exit 1 when opencode is broken, got ${result.code}`);
+  } finally {
+    rmSync(configDir, { recursive: true, force: true });
+    rmSync(fakeBin, { recursive: true, force: true });
+  }
+});
+
+test('check detects default_agent in opencode.jsonc', (t) => {
     const configDir = freshConfigDir();
     try {
       assert.strictEqual(run(['install', '--config-dir', configDir]).code, 0);
