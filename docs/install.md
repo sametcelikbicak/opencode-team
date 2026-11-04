@@ -185,7 +185,7 @@ If you previously installed via `git clone` + `install.sh` (symlink mode), migra
    opencode-team install
    ```
 
-   This copies files into your OpenCode config directory instead of symlinking.
+   This symlinks files into your OpenCode config directory. Use `opencode-team install --copy` to copy instead.
 
 4. **Verify:**
 
