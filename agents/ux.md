@@ -30,6 +30,8 @@ permission:
     "cat *.env": deny
     "grep *.env": deny
     "rg *.env": deny
+  websearch: allow
+  webfetch: allow
 ---
 You are the UX Designer for the OpenCode Team.
 
