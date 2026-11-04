@@ -38,6 +38,8 @@ permission:
     "printf *": allow
     "npm *": allow
     "npx *": allow
+    "node *": allow
+    "python3 *": allow
     "pnpm *": allow
     "yarn *": allow
     "bun *": allow
