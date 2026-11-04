@@ -2,6 +2,35 @@
 
 All notable changes to the OpenCode Team npm package are documented in this file.
 
+## [v0.0.5] - 2026-11-04
+
+### Fixed
+- check warns (not fails) for missing opencode by @sametcelikbicak in [#120](https://github.com/sametcelikbicak/opencode-team/pull/120)
+- checkVersion warns (not fails) for missing opencode by @sametcelikbicak in [#119](https://github.com/sametcelikbicak/opencode-team/pull/119)
+- OpenCode v1 compliance items (install, permissions, docs, tests) by @sametcelikbicak in [#118](https://github.com/sametcelikbicak/opencode-team/pull/118)
+- release-publish version step and npm notices attribution by @sametcelikbicak in [#117](https://github.com/sametcelikbicak/opencode-team/pull/117)
+- Stale TESTING docs removed; model field marked optional (#92) by @sametcelikbicak in [#92](https://github.com/sametcelikbicak/opencode-team/pull/92)
+- default_agent check ignores opencode.jsonc (#91) by @sametcelikbicak in [#91](https://github.com/sametcelikbicak/opencode-team/pull/91)
+- npm packaging — add test script, exclude test file, review engines constraint (#90) by @sametcelikbicak in [#90](https://github.com/sametcelikbicak/opencode-team/pull/90)
+- Docs site cleanup — broken anchors, missing og.jpg, orphan RFC, index links (#89) by @sametcelikbicak in [#89](https://github.com/sametcelikbicak/opencode-team/pull/89)
+- POSIX installers only warn when opencode major is not 1 (#88) by @sametcelikbicak in [#88](https://github.com/sametcelikbicak/opencode-team/pull/88)
+- CLI test suite does not run on push or pull_request (#87) by @sametcelikbicak in [#87](https://github.com/sametcelikbicak/opencode-team/pull/87)
+- Release tag format mismatch silently skips the GitHub Release (#86) by @sametcelikbicak in [#86](https://github.com/sametcelikbicak/opencode-team/pull/86)
+- Documentation corrections (#85) by @sametcelikbicak in [#85](https://github.com/sametcelikbicak/opencode-team/pull/85)
+- docs/install.md contains duplicated sections (#84) by @sametcelikbicak in [#84](https://github.com/sametcelikbicak/opencode-team/pull/84)
+- README and SECURITY claim no tagged release, but v0.0.2 and v0.0.3 exist (#83) by @sametcelikbicak in [#83](https://github.com/sametcelikbicak/opencode-team/pull/83)
+- Change profile skips ux and backlog but downstream agents require those artifacts (#82) by @sametcelikbicak in [#82](https://github.com/sametcelikbicak/opencode-team/pull/82)
+- Memory paths are relative and break in an installed setup (#81) by @sametcelikbicak in [#81](https://github.com/sametcelikbicak/opencode-team/pull/81)
+- Build stage ownership conflicts (#80) by @sametcelikbicak in [#80](https://github.com/sametcelikbicak/opencode-team/pull/80)
+- Stage skills loaded during dispatch (#79) by @sametcelikbicak in [#79](https://github.com/sametcelikbicak/opencode-team/pull/79)
+- release-publish.yml fork guard and protected publish environment (#78) by @sametcelikbicak in [#78](https://github.com/sametcelikbicak/opencode-team/pull/78)
+- Agent permission model is over-broad (#77) by @sametcelikbicak in [#77](https://github.com/sametcelikbicak/opencode-team/pull/77)
+- CLI copy mode respects manifest on update and uninstall (#76) by @sametcelikbicak in [#76](https://github.com/sametcelikbicak/opencode-team/pull/76)
+- CLI argument and error handling (#75) by @sametcelikbicak in [#75](https://github.com/sametcelikbicak/opencode-team/pull/75)
+- new releases auto-latest; add contributors to README by @sametcelikbicak in [#98](https://github.com/sametcelikbicak/opencode-team/pull/98)
+
+### Changed
+- update changelog and version for v0.0.4 by @sametcelikbicak in [#97](https://github.com/sametcelikbicak/opencode-team/pull/97)
 ## [v0.0.4] - 2026-11-03
 
 ### Fixed
