@@ -12,7 +12,7 @@ The 14 agent roles defined in `agents/*.md`. Edit the agent file, not this page.
 | `brand` | Brand and logo designer. Runs the team-brand skill end to end: brief, concepts, SVG construction, testing, colour, lockups, favicon set and brand guidelines. | `all` | — |
 | `devops` | DevOps: CI/CD, deployment, infrastructure, release management | `all` | — |
 | `docs` | Technical Writer: README, API docs, user guides, release notes | `all` | — |
-| `fe` | Senior Frontend Developer: UI implementation, React, Vue, HTML/CSS | `all` | — |
+| `fe` | Senior Frontend Developer: UI implementation, HTML/CSS, and frontend tooling. Framework choice (React, Angular, or other) is decided per project needs. | `all` | — |
 | `marketing` | Marketing: positioning, copywriting, launch strategy, go-to-market | `all` | — |
 | `orchestrator` | OpenCode Team orchestrator. Routes ideas through the team pipeline: research → PRD → backlog → UX → brand → architecture → build → QA → security → docs → release → launch. | `all` | — |
 | `pm` | Product Manager: PRD, epics, user stories, acceptance criteria | `all` | — |
