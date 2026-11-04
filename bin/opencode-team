@@ -81,7 +81,8 @@ function opencodeMajor() {
 function checkVersion() {
   const major = opencodeMajor();
   if (major === null) {
-    fail('could not determine opencode version; the team targets OpenCode 1.x.');
+    warn('could not determine opencode version; the team targets OpenCode 1.x.');
+    return;
   }
   if (major !== TARGET_MAJOR) {
     fail(`opencode ${major} detected; the team targets OpenCode 1.x. OpenCode 2 support is not available yet.`);

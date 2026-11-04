@@ -297,11 +297,15 @@ test('update uses manifest mode so --copy install stays copy after update', (t) 
   try {
     writeFileSync(join(fakeBin, 'opencode'), '#!/bin/sh\necho "2.0.0"\n');
     try { execSync(`chmod 755 "${fakeBin}/opencode"`); } catch {}
-    assert.strictEqual(run(['install', '--config-dir', configDir]).code, 0);
+    // install also fails because checkVersion() exits 1 for wrong version
+    const installResult = run(['install', '--config-dir', configDir], {
+      PATH: `${fakeBin}:${process.env.PATH}`,
+    });
+    assert.strictEqual(installResult.code, 1, `expected exit 1 for opencode 2.x on install, got ${installResult.code}`);
     const result = run(['check', '--config-dir', configDir], {
       PATH: `${fakeBin}:${process.env.PATH}`,
     });
-    assert.strictEqual(result.code, 1, `expected exit 1 for opencode 2.x, got ${result.code}`);
+    assert.strictEqual(result.code, 1, `expected exit 1 for opencode 2.x on check, got ${result.code}`);
   } finally {
     rmSync(configDir, { recursive: true, force: true });
     rmSync(fakeBin, { recursive: true, force: true });
