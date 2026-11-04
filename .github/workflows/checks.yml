@@ -144,6 +144,8 @@ jobs:
         with:
           node-version: '24'
           cache: npm
+      - name: Install OpenCode 1.x
+        run: npm install --global opencode-ai@1
       - name: Pack the package
         run: npm pack
       - name: Extract to clean directory
