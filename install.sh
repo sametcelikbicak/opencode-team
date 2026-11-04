@@ -276,7 +276,7 @@ case "$MODE" in
     link "$REPO/team/AGENTS.md" "team/AGENTS.md"
     install_skills
     echo
-    if has_default_agent; then
+    if find_config_file >/dev/null; then
       echo "  ✓ opencode.json: default_agent is orchestrator"
     else
       echo "Add this to $CONFIG/opencode.json:"
