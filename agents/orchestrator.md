@@ -28,6 +28,7 @@ permission:
     "mkdir -p *": allow
     "echo *": allow
     "cat *.env": deny
+  task: allow
     "grep *.env": deny
     "rg *.env": deny
 ---
