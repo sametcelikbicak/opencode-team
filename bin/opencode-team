@@ -365,10 +365,11 @@ function cmdCheck(configDir) {
 
   const major = opencodeMajor();
   if (major === null) {
-    fail('opencode not found — install it first: https://opencode.ai/docs/');
+    warn('opencode not found — install it first: https://opencode.ai/docs/');
+  } else {
+    info(`opencode ${major}`);
+    checkVersion();
   }
-  info(`opencode ${major}`);
-  checkVersion();
 
   const manifest = loadManifest(configDir);
   const mode = manifest.mode || 'symlink';

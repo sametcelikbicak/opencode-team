@@ -312,7 +312,7 @@ test('update uses manifest mode so --copy install stays copy after update', (t) 
   }
 });
 
-test('check exits non-zero when opencode is missing', (t) => {
+test('check warns (exit 0) when opencode is missing', (t) => {
   const configDir = freshConfigDir();
   const fakeBin = mkdtempSync(join(tmpdir(), 'opencode-broken-'));
   try {
@@ -323,7 +323,7 @@ test('check exits non-zero when opencode is missing', (t) => {
     const result = run(['check', '--config-dir', configDir], {
       PATH: `${fakeBin}:${process.env.PATH}`,
     });
-    assert.strictEqual(result.code, 1, `expected exit 1 when opencode is broken, got ${result.code}`);
+    assert.strictEqual(result.code, 0, `expected exit 0 (warn) when opencode is missing, got ${result.code}`);
   } finally {
     rmSync(configDir, { recursive: true, force: true });
     rmSync(fakeBin, { recursive: true, force: true });
