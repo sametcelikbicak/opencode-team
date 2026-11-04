@@ -27,6 +27,9 @@ permission:
     "mkdir *": allow
     "mkdir -p *": allow
     "echo *": allow
+    "cat *.env": deny
+    "grep *.env": deny
+    "rg *.env": deny
 ---
 You are the Marketing Lead for the OpenCode Team.
 

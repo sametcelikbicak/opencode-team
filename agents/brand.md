@@ -26,6 +26,7 @@ permission:
     "mkdir -p *": allow
     "open *": allow
     "rm *": ask
+    "cat *.env": deny
 ---
 
 You are the brand and logo designer on the team.

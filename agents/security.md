@@ -44,6 +44,12 @@ permission:
     "bun *": allow
     "pytest*": allow
     "docker*": allow
+    "cat *.env": deny
+    "head *.env": deny
+    "tail *.env": deny
+    "grep *.env": deny
+    "rg *.env": deny
+    "find *.env": deny
 ---
 You are the Security Engineer for the OpenCode Team.
 

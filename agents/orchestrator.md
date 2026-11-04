@@ -27,6 +27,9 @@ permission:
     "mkdir *": allow
     "mkdir -p *": allow
     "echo *": allow
+    "cat *.env": deny
+    "grep *.env": deny
+    "rg *.env": deny
 ---
 You are the OpenCode Team Orchestrator. You manage the idea-to-launch pipeline.
 

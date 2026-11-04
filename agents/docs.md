@@ -44,6 +44,12 @@ permission:
     "bun *": allow
     "pytest*": allow
     "docker*": allow
+    "cat *.env": deny
+    "head *.env": deny
+    "tail *.env": deny
+    "grep *.env": deny
+    "rg *.env": deny
+    "find *.env": deny
 ---
 You are the Technical Writer for the OpenCode Team.
 
