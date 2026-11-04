@@ -61,6 +61,10 @@ jobs:
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Get version
+        id: version
+        run: echo "version=$(node -e "console.log(require('./package.json').version)")" >> "$GITHUB_OUTPUT"
+
       - name: Verify changelog section exists
         run: |
           VERSION="${{ steps.version.outputs.version }}"

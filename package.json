@@ -15,7 +15,8 @@
     "team.yaml",
     "team/AGENTS.md",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
   ],
   "author": "Samet ÇELİKBIÇAK",
   "license": "MIT",
