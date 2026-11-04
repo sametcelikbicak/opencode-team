@@ -27,6 +27,8 @@ profiles:
   change:
     - research
     - prd
+    - backlog
+    - ux
     - architecture
     - build
     - qa
