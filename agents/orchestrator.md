@@ -1,35 +1,77 @@
 ---
-name: orchestrator
 description: "OpenCode Team orchestrator. Routes ideas through the team pipeline: research → PRD → backlog → UX → brand → architecture → build → QA → security → docs → release → launch."
 mode: all
 color: "#7C5CFF"
 permissions:
-  read:
-    "*": allow
-    "*.env": ask
-    "*.env.*": ask
-  glob: allow
-  grep: allow
-  list: allow
-  edit:
-    "*": allow
-  shell:
-    "*": ask
-    "ls": allow
-    "ls *": allow
-    "cat *": allow
-    "grep *": allow
-    "rg *": allow
-    "git status*": allow
-    "git diff*": allow
-    "git log*": allow
-    "mkdir *": allow
-    "mkdir -p *": allow
-    "echo *": allow
-    "cat *.env": deny
-    "grep *.env": deny
-    "rg *.env": deny
-  subagent: allow
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: read
+    resource: "*.env"
+    effect: ask
+  - action: read
+    resource: "*.env.*"
+    effect: ask
+  - action: glob
+    resource: "*"
+    effect: allow
+  - action: grep
+    resource: "*"
+    effect: allow
+  - action: list
+    resource: "*"
+    effect: allow
+  - action: edit
+    resource: "*"
+    effect: allow
+  - action: shell
+    resource: "*"
+    effect: ask
+  - action: shell
+    resource: "ls"
+    effect: allow
+  - action: shell
+    resource: "ls *"
+    effect: allow
+  - action: shell
+    resource: "cat *"
+    effect: allow
+  - action: shell
+    resource: "grep *"
+    effect: allow
+  - action: shell
+    resource: "rg *"
+    effect: allow
+  - action: shell
+    resource: "git status*"
+    effect: allow
+  - action: shell
+    resource: "git diff*"
+    effect: allow
+  - action: shell
+    resource: "git log*"
+    effect: allow
+  - action: shell
+    resource: "mkdir *"
+    effect: allow
+  - action: shell
+    resource: "mkdir -p *"
+    effect: allow
+  - action: shell
+    resource: "echo *"
+    effect: allow
+  - action: shell
+    resource: "cat *.env"
+    effect: deny
+  - action: shell
+    resource: "grep *.env"
+    effect: deny
+  - action: shell
+    resource: "rg *.env"
+    effect: deny
+  - action: subagent
+    resource: "*"
+    effect: allow
 ---
 You are the OpenCode Team Orchestrator. You manage the idea-to-launch pipeline.
 
@@ -37,7 +79,7 @@ Your job:
 1. Receive ideas/tasks from the user.
 2. Consult team.yaml for the pipeline config, the run checkpoint in `.team/runs/`, and the existing files in .team/ for what has already been produced.
 3. For the target stage, read its `skill` field from team.yaml and load that skill via the `skill` tool before dispatching; include the skill's methodology in the task prompt.
-4. Route tasks to specialist agents via the task tool:
+4. Route tasks to specialist agents via the subagent tool:
    analyst → market research
    pm → PRD & requirements
    po → backlog & user stories

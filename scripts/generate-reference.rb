@@ -50,7 +50,7 @@ end
 
 agents = Dir[File.join(ROOT, "agents/*.md")].sort.map do |path|
   fm = frontmatter(path)
-  [code(fm["name"]), cell(fm["description"]), code(fm["mode"]), code(fm["model"])]
+  [code(File.basename(path, ".md")), cell(fm["description"]), code(fm["mode"]), code(fm["model"])]
 end
 
 commands = Dir[File.join(ROOT, "commands/*.md")].sort.map do |path|

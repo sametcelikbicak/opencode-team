@@ -45,7 +45,7 @@ If OpenCode is not on your PATH, install it first:
 
 > **Security note:** `--install-opencode` downloads and executes the OpenCode installer from `https://opencode.ai/install` via `curl | bash`. This flag is opt-in. If you prefer not to run a remote script, install OpenCode 2.x manually from https://opencode.ai/docs/ before running the team installer.
 
-Restart opencode after installation. The setup is global, so it works in every project directory.
+Start a new OpenCode session after installation. The setup is global, so it works in every project directory.
 
 ### Method 1: Git clone (symlink) — Windows
 
@@ -310,11 +310,11 @@ This can occur when OpenCode 2.x opens a data directory previously migrated by O
 Keep that database and use a separate data directory for your 2.x session:
 
 ```powershell
-$env:XDG_DATA_HOME = Join-Path $env:USERPROFILE '.local/share/opencode-v1'
-opencode --agent orchestrator
+$env:XDG_DATA_HOME = Join-Path $env:USERPROFILE '.local/share/opencode-v2'
+opencode run --agent orchestrator
 ```
 
-This environment setting applies to the current terminal and its child processes. It preserves the original database and uses fresh v1 session/authentication data; connect your provider in the new environment if needed. The global team configuration remains in `%USERPROFILE%\.config\opencode` (or `OPENCODE_CONFIG_DIR`). It does not migrate v2 sessions. Do not delete the old database to fix this error.
+This environment setting applies to the current terminal and its child processes. It preserves the original database and uses fresh v2 session/authentication data; connect your provider in the new environment if needed. The global team configuration remains in `%USERPROFILE%\.config\opencode` (or `OPENCODE_CONFIG_DIR`). It does not migrate v2 sessions. Do not delete the old database to fix this error.
 
 ### `opencode: command not found`
 

@@ -283,7 +283,7 @@ case "$MODE" in
       print_config_snippet
     fi
     echo
-    echo "Restart opencode."
+    echo "Start a new OpenCode session."
     ;;
   *)
     echo "Unknown argument: $MODE" >&2

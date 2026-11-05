@@ -318,7 +318,7 @@ function installTeam(configDir, mode, installOpenencode) {
   } else {
     printConfigSnippet(configDir);
   }
-  console.log('Restart opencode.');
+  console.log('Start a new OpenCode session.');
 
   if (failures > 0) {
     console.log();
