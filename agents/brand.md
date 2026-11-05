@@ -1,31 +1,65 @@
 ---
-name: brand
 description: "Brand and logo designer. Runs the team-brand skill end to end: brief, concepts, SVG construction, testing, colour, lockups, favicon set and brand guidelines."
 mode: all
 color: "#E056A0"
 permissions:
-  read:
-    "*": allow
-    "*.env": ask
-    "*.env.*": ask
-  glob: allow
-  grep: allow
-  list: allow
-  websearch: allow
-  webfetch: allow
-  edit:
-    ".team/**": allow
-    "brand/**": allow
-  shell:
-    "*": ask
-    "ls": allow
-    "ls *": allow
-    "cat *": allow
-    "mkdir *": allow
-    "mkdir -p *": allow
-    "open *": allow
-    "rm *": ask
-    "cat *.env": deny
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: read
+    resource: "*.env"
+    effect: ask
+  - action: read
+    resource: "*.env.*"
+    effect: ask
+  - action: glob
+    resource: "*"
+    effect: allow
+  - action: grep
+    resource: "*"
+    effect: allow
+  - action: list
+    resource: "*"
+    effect: allow
+  - action: websearch
+    resource: "*"
+    effect: allow
+  - action: webfetch
+    resource: "*"
+    effect: allow
+  - action: edit
+    resource: ".team/**"
+    effect: allow
+  - action: edit
+    resource: "brand/**"
+    effect: allow
+  - action: shell
+    resource: "*"
+    effect: ask
+  - action: shell
+    resource: "ls"
+    effect: allow
+  - action: shell
+    resource: "ls *"
+    effect: allow
+  - action: shell
+    resource: "cat *"
+    effect: allow
+  - action: shell
+    resource: "mkdir *"
+    effect: allow
+  - action: shell
+    resource: "mkdir -p *"
+    effect: allow
+  - action: shell
+    resource: "open *"
+    effect: allow
+  - action: shell
+    resource: "rm *"
+    effect: ask
+  - action: shell
+    resource: "cat *.env"
+    effect: deny
 ---
 
 You are the brand and logo designer on the team.

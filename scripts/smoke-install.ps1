@@ -58,7 +58,7 @@ function Assert-Link([string]$Path, [string]$Target) {
     Assert ([IO.Path]::GetFullPath([string]@($item.Target)[0]) -eq [IO.Path]::GetFullPath($Target)) "$Path target must be $Target"
 }
 function Fake-Version([string]$Version = '2.2.5', [int]$Code = 0) {
-    Write-Text (Join-Path $work 'bin/opencode.cmd') "@echo off`r`necho $Version`r`nexit /b $Code`r`n"
+    Write-Text (Join-Path $work 'bin/opencode.cmd') "@echo off`r`necho opencode v$Version`r`nexit /b $Code`r`n"
 }
 
 try {

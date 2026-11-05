@@ -10,7 +10,7 @@ cd opencode-team
 ./install.sh
 ```
 
-Restart opencode after installation.
+Start a new OpenCode session after installation.
 
 On native Windows, use an Administrator PowerShell and run `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1` instead of `./install.sh`. See the [Windows guide](install.md#windows).
 

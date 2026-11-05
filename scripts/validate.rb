@@ -43,15 +43,30 @@ files.each do |path|
     next
   end
 
-  check(errors, rel, fm["name"].is_a?(String) && !fm["name"].empty?, "missing name")
   check(errors, rel, fm["description"].is_a?(String) && !fm["description"].empty?, "missing description")
 
-  expected = File.basename(path, ".md")
-  check(errors, rel, fm["name"] == expected, "name #{fm["name"].inspect} != filename #{expected.inspect}")
-
   if rel.start_with?("agents/")
+    # V2 derives the agent id from the filename and ignores name.
+    check(errors, rel, !fm.key?("name"), "remove name: v2 derives the id from the filename")
     modes = %w[primary subagent all]
     check(errors, rel, modes.include?(fm["mode"]), "mode must be primary|subagent|all, got #{fm["mode"].inspect}")
+    check(errors, rel, !fm.key?("permission"), "use permissions (ordered array), not permission")
+    check(errors, rel, !fm.key?("temperature"), "temperature belongs on a model variant, not the agent")
+    rules = fm["permissions"]
+    check(errors, rel, rules.is_a?(Array), "permissions must be an ordered array")
+    if rules.is_a?(Array)
+      rules.each_with_index do |rule, i|
+        ok = rule.is_a?(Hash) &&
+             rule["action"].is_a?(String) &&
+             rule["resource"].is_a?(String) &&
+             %w[allow ask deny].include?(rule["effect"])
+        check(errors, rel, ok, "permissions[#{i}] must be {action, resource, effect: allow|ask|deny}")
+      end
+    end
+  else
+    check(errors, rel, fm["name"].is_a?(String) && !fm["name"].empty?, "missing name")
+    expected = File.basename(path, ".md")
+    check(errors, rel, fm["name"] == expected, "name #{fm["name"].inspect} != filename #{expected.inspect}")
   end
 
   if rel.start_with?("commands/") && fm["agent"]

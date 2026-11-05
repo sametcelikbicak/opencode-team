@@ -11,7 +11,7 @@ trap 'rm -rf "$WORK"' EXIT
 mkdir -p "$WORK/bin"
 cat > "$WORK/bin/opencode" <<'EOF'
 #!/usr/bin/env bash
-echo "2.2.5"
+echo "opencode v2.2.5"
 EOF
 chmod +x "$WORK/bin/opencode"
 export PATH="$WORK/bin:$PATH"

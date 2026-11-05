@@ -35,7 +35,7 @@ cd opencode-team
 # Install the team into your OpenCode config
 ./install.sh
 
-# Restart opencode, then describe an idea
+# Start a new OpenCode session, then describe an idea
 opencode
 ```
 
