@@ -4,7 +4,7 @@ Install OpenCode Team into your OpenCode configuration so you can use it in any 
 
 ## Requirements
 
-- [OpenCode](https://opencode.ai) 1.x (tested on 1.19.0; native Windows verified on 1.19.4)
+- [OpenCode](https://opencode.ai) 2.x (tested on 2.2.5; native Windows verified on 2.2.5)
 - An OpenCode Zen account or any provider configured in opencode — the defaults use free-tier models
 
 ## Platform support
@@ -41,9 +41,9 @@ If OpenCode is not on your PATH, install it first:
 ./install.sh --install-opencode
 ```
 
-`--install-opencode` runs the official OpenCode 1.x installer. OpenCode 1 and 2 cannot coexist — an existing OpenCode 2 binary is replaced. Without the flag, the installer never installs OpenCode and leaves an existing binary untouched.
+`--install-opencode` runs the official OpenCode 2.x installer. OpenCode 2 and 1 cannot coexist — an existing OpenCode 1 binary is replaced. Without the flag, the installer never installs OpenCode and leaves an existing binary untouched.
 
-> **Security note:** `--install-opencode` downloads and executes the OpenCode installer from `https://opencode.ai/install` via `curl | bash`. This flag is opt-in. If you prefer not to run a remote script, install OpenCode 1.x manually from https://opencode.ai/docs/ before running the team installer.
+> **Security note:** `--install-opencode` downloads and executes the OpenCode installer from `https://opencode.ai/install` via `curl | bash`. This flag is opt-in. If you prefer not to run a remote script, install OpenCode 2.x manually from https://opencode.ai/docs/ before running the team installer.
 
 Restart opencode after installation. The setup is global, so it works in every project directory.
 
@@ -61,7 +61,7 @@ Windows PowerShell 5.1 is included with Windows. PowerShell 7 (`pwsh`) is also s
 
 `-ExecutionPolicy Bypass` applies only to the new PowerShell process. It does not change the machine's execution policy; an organization policy can still restrict script execution. In a shell that already permits scripts, `.\install.ps1` is sufficient.
 
-OpenCode 1.x must already be on PATH. To explicitly install it when missing or incompatible, use:
+OpenCode 2.x must already be on PATH. To explicitly install it when missing or incompatible, use:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -InstallOpenCode
@@ -207,7 +207,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
 
 Symbolic links require an Administrator PowerShell, or PowerShell 7 with Windows Developer Mode enabled. Without link privileges, the installer stops before changing installation links and explains how to proceed.
 
-To install OpenCode 1.x if missing:
+To install OpenCode 2.x if missing:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -InstallOpenCode
@@ -305,9 +305,9 @@ The orchestrator will start the pipeline and ask for your approval at each gate.
 
 ### Windows: `Database is not empty and has no session table`
 
-This can occur when OpenCode 1.x opens a data directory previously migrated by OpenCode 2. It is separate from the team installer: a v2 database has `session_v2` instead of the v1 `session` table. See the [upstream report](https://github.com/anomalyco/opencode/issues/56764).
+This can occur when OpenCode 2.x opens a data directory previously migrated by OpenCode 1. It is separate from the team installer: a v1 database has `session` instead of the v2 `session_v2` table. See the [upstream report](https://github.com/anomalyco/opencode/issues/56764).
 
-Keep that database and use a separate data directory for your 1.x session:
+Keep that database and use a separate data directory for your 2.x session:
 
 ```powershell
 $env:XDG_DATA_HOME = Join-Path $env:USERPROFILE '.local/share/opencode-v1'
@@ -318,13 +318,13 @@ This environment setting applies to the current terminal and its child processes
 
 ### `opencode: command not found`
 
-The installer only links files when OpenCode is already on your PATH. To install OpenCode 1.x first:
+The installer only links files when OpenCode is already on your PATH. To install OpenCode 2.x first:
 
 ```bash
 ./install.sh --install-opencode
 ```
 
-OpenCode 1 and 2 cannot coexist. The flag replaces an existing OpenCode 2 binary.
+OpenCode 2 and 1 cannot coexist. The flag replaces an existing OpenCode 1 binary.
 
 ### Agents or commands are missing after install
 

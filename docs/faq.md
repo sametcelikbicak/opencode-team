@@ -18,9 +18,9 @@ On native Windows, use an Administrator PowerShell and run `powershell.exe -NoPr
 
 Yes. Use `install.ps1` with Windows PowerShell 5.1 or PowerShell 7. Symbolic links require an Administrator PowerShell, or PowerShell 7 with Windows Developer Mode enabled. Configuration defaults to `%USERPROFILE%\.config\opencode` and supports `OPENCODE_CONFIG_DIR`. Installation and memory maintenance have native PowerShell tests and Windows CI coverage. WSL is untested. See [Windows installation](install.md#windows).
 
-### Do I need OpenCode 1.x or 2.x?
+### Do I need OpenCode 2.x or 1.x?
 
-OpenCode Team is tested on OpenCode 1.x (1.19.0). OpenCode 2 support is planned as a separate release. OpenCode 1 and 2 cannot coexist — an existing OpenCode 2 binary is replaced by the `--install-opencode` flag.
+OpenCode Team is tested on OpenCode 2.x (2.2.5). OpenCode 1.x users: use Release v1.0.0 (@opencodeteam/cli@1.0.0). OpenCode 2 and 1 cannot coexist — an existing OpenCode 1 binary is replaced by the `--install-opencode` flag.
 
 ### How do I uninstall?
 

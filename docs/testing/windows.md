@@ -21,13 +21,13 @@ Issue: #42
 
 Native tests ran elevated because Developer Mode was disabled. They use disposable directories and fake OpenCode/npm commands; they never install packages or modify actual user configuration. Existing Unix scripts were also checked, but this is a Windows run, not a new macOS/Linux run. A Windows GitHub Actions job for both shells is configured; remote CI has not been run during this work.
 
-## Actual OpenCode 1.19.4
+## Actual OpenCode 2.2.5
 
 An isolated config/data environment using the real installed binary discovered all 14 team agents, 19 commands, and 13 local skills. A disposable `opencode.json` resolved `orchestrator` as the default and both team instruction paths. The PowerShell install/check succeeded. No provider/model calls were made.
 
 Installation into the actual user config also passed `-Check`. The preexisting `opencode.json` SHA256 was identical before/after. The installer printed the recommended settings instead of changing provider/model/default-agent settings.
 
-The existing user database had a v2 schema (`session_v2` and `session_message`, no `session`) and caused OpenCode 1.19.4 to fail before agent discovery. A process-local `XDG_DATA_HOME` pointing at a separate v1 data directory allowed the real user configuration to discover all 14 team agents. The original database was not reset or migrated. See [Windows database troubleshooting](../install.md#windows-database-is-not-empty-and-has-no-session-table).
+The existing user database had a v2 schema (`session_v2` and `session_message`, no `session`) and caused OpenCode 2.2.5 to fail before agent discovery. A process-local `XDG_DATA_HOME` pointing at a separate v2 data directory allowed the real user configuration to discover all 14 team agents. The original database was not reset or migrated. See [Windows database troubleshooting](../install.md#windows-database-is-not-empty-and-has-no-session-table).
 
 Provider authentication, model responses, and a full idea-to-launch pipeline were not exercised. Those depend on the user's configured provider and may incur usage.
 
