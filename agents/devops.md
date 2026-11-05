@@ -2,9 +2,8 @@
 name: devops
 description: "DevOps: CI/CD, deployment, infrastructure, release management"
 mode: all
-temperature: 0.1
 color: "#56CCF2"
-permission:
+permissions:
   read:
     "*": allow
     "*.env": ask
@@ -14,7 +13,7 @@ permission:
   list: allow
   edit:
     "*": allow
-  bash:
+  shell:
     "*": ask
     "git status*": allow
     "git diff*": allow

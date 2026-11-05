@@ -2,9 +2,8 @@
 name: brand
 description: "Brand and logo designer. Runs the team-brand skill end to end: brief, concepts, SVG construction, testing, colour, lockups, favicon set and brand guidelines."
 mode: all
-temperature: 0.4
 color: "#E056A0"
-permission:
+permissions:
   read:
     "*": allow
     "*.env": ask
@@ -17,7 +16,7 @@ permission:
   edit:
     ".team/**": allow
     "brand/**": allow
-  bash:
+  shell:
     "*": ask
     "ls": allow
     "ls *": allow

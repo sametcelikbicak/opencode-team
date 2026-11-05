@@ -2,9 +2,8 @@
 name: architect
 description: "Software Architect: system design, architecture, data model"
 mode: all
-temperature: 0.2
 color: "#5B8FF9"
-permission:
+permissions:
   read:
     "*": allow
     "*.env": ask
@@ -14,7 +13,7 @@ permission:
   list: allow
   edit:
     ".team/**": allow
-  bash:
+  shell:
     "*": ask
     "ls": allow
     "ls *": allow

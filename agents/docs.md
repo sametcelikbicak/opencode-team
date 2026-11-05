@@ -2,9 +2,8 @@
 name: docs
 description: "Technical Writer: README, API docs, user guides, release notes"
 mode: all
-temperature: 0.2
 color: "#B8B8B8"
-permission:
+permissions:
   read:
     "*": allow
     "*.env": ask
@@ -14,7 +13,7 @@ permission:
   list: allow
   edit:
     ".team/**": allow
-  bash:
+  shell:
     "*": ask
     "git status*": allow
     "git diff*": allow

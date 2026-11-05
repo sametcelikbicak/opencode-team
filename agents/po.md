@@ -2,9 +2,8 @@
 name: po
 description: "Product Owner: backlog, epics, stories, prioritization"
 mode: all
-temperature: 0.2
 color: "#C98BC8"
-permission:
+permissions:
   read:
     "*": allow
     "*.env": ask
@@ -14,7 +13,7 @@ permission:
   list: allow
   edit:
     ".team/**": allow
-  bash:
+  shell:
     "*": ask
     "ls": allow
     "ls *": allow

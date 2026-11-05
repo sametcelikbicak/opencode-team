@@ -2,9 +2,8 @@
 name: security
 description: "Security Engineer: security audits, vulnerability assessment, security testing"
 mode: all
-temperature: 0.1
 color: "#EB5757"
-permission:
+permissions:
   read:
     "*": allow
     "*.env": ask
@@ -14,7 +13,7 @@ permission:
   list: allow
   edit:
     ".team/**": allow
-  bash:
+  shell:
     "*": ask
     "git status*": allow
     "git diff*": allow
