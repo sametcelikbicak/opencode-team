@@ -46,7 +46,7 @@ stages:
 
 ## Adding a role
 
-1. Create `agents/<role>.md` with frontmatter (`name`, `description`, `mode: all`, `model` (optional), `permission`).
+1. Create `agents/<role>.md` with frontmatter (`description`, `mode: all`, `model` (optional), `permissions` as an ordered array of `{action, resource, effect}`). The filename becomes the agent id; do not add `name`.
 2. Reference it in `team.yaml` as `agent: <role>`.
 3. Add a command in `commands/<role>.md` if you want a direct entry point.
 
