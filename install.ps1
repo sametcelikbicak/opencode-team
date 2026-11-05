@@ -73,7 +73,7 @@ function Get-OpenCodeVersion {
     try {
         $global:LASTEXITCODE = 0
         $output = (& $command --version 2>$null | Out-String).Trim()
-        if ($LASTEXITCODE -eq 0 -and $output -match '^v?(1\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?)$') { return $Matches[1] }
+        if ($LASTEXITCODE -eq 0 -and $output -match '^v?(2\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?)$') { return $Matches[1] }
     } catch { return $null }
     return $null
 }
@@ -82,15 +82,15 @@ function Require-OpenCode {
     if ($version) { Write-Host "  OK OpenCode $version"; return }
     if ($InstallOpenCode) {
         $npm = Get-Command npm.cmd -ErrorAction SilentlyContinue
-        if ($null -eq $npm) { throw 'npm is required for -InstallOpenCode. Install Node.js/npm or OpenCode 1.x manually, then rerun.' }
-        Write-Host 'Installing OpenCode 1.x using npm. An incompatible OpenCode binary may be replaced.'
-        & $npm install --global opencode-ai@1
+        if ($null -eq $npm) { throw 'npm is required for -InstallOpenCode. Install Node.js/npm or OpenCode 2.x manually, then rerun.' }
+        Write-Host 'Installing OpenCode 2.x using npm. An incompatible OpenCode binary may be replaced.'
+        & $npm install --global @opencode/cli@2
         if ($LASTEXITCODE -ne 0) { throw "npm installation failed (exit $LASTEXITCODE)." }
         $version = Get-OpenCodeVersion
         if ($version) { Write-Host "  OK OpenCode $version"; return }
-        throw 'OpenCode 1.x could not be verified after npm installation. Check PATH and restart PowerShell.'
+        throw 'OpenCode 2.x could not be verified after npm installation. Check PATH and restart PowerShell.'
     }
-    throw 'A working OpenCode 1.x executable is required on PATH. Run opencode --version, or rerun .\install.ps1 -InstallOpenCode. OpenCode 2 is not supported.'
+    throw 'A working OpenCode 2.x executable is required on PATH. Run opencode --version, or rerun .\install.ps1 -InstallOpenCode. OpenCode 1.x users: use Release v1.0.0 (@opencodeteam/cli@1.0.0).'
 }
 function Show-ConfigHint {
     $jsonPath = Join-Path $config 'opencode.json'

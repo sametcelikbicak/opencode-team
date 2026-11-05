@@ -67,7 +67,7 @@ OpenCode 1.x must already be on PATH. To explicitly install it when missing or i
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -InstallOpenCode
 ```
 
-This optional mode requires npm and runs `npm install --global opencode-ai@1`, then verifies the executable. It reuses an existing working 1.x installation. Without the switch, the installer never changes OpenCode. OpenCode 2 is rejected.
+This optional mode requires npm and runs `npm install --global @opencode/cli@2`, then verifies the executable. It reuses an existing working 2.x installation. Without the switch, the installer never changes OpenCode. OpenCode 1.x users: use Release v1.0.0 (@opencodeteam/cli@1.0.0).
 
 The default config directory is `%USERPROFILE%\.config\opencode`. To use a different directory, set the same environment variable for installation **and** subsequent OpenCode sessions:
 

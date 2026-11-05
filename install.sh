@@ -15,8 +15,8 @@
 
 set -euo pipefail
 
-# Targets OpenCode 1.x. OpenCode 2 support needs a separate release.
-TARGET_MAJOR=1
+# Targets OpenCode 2.x. OpenCode 1.x users: use Release v1.0.0 (@opencodeteam/cli@1.0.0).
+TARGET_MAJOR=2
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG="${OPENCODE_CONFIG_DIR:-$HOME/.config/opencode}"
@@ -55,10 +55,10 @@ check_version() {
   local major
   major="$(opencode_major)"
   if [ -z "$major" ]; then
-    echo "  ✗ could not determine opencode version; the team targets OpenCode 1.x." >&2
+    echo "  ✗ could not determine opencode version; the team targets OpenCode 2.x. Use @opencodeteam/cli@1.0.0 for OpenCode 1.x." >&2
     exit 1
   elif [ "$major" != "$TARGET_MAJOR" ]; then
-    echo "  ✗ opencode $major detected; the team targets OpenCode 1.x. OpenCode 2 support is not available yet." >&2
+    echo "  ✗ opencode $major detected; the team targets OpenCode 2.x. OpenCode 1.x users: use Release v1.0.0 (@opencodeteam/cli@1.0.0)." >&2
     exit 1
   fi
 }
@@ -67,23 +67,23 @@ require_opencode() {
   if command -v opencode >/dev/null 2>&1; then
     return 0
   fi
-  echo "OpenCode 1.x is required." >&2
+  echo "OpenCode 2.x is required." >&2
   echo "  curl -fsSL https://opencode.ai/install | bash" >&2
   echo "  Or rerun: ./install.sh --install-opencode" >&2
-  echo "  OpenCode 2 support is not available yet." >&2
+  echo "  OpenCode 1.x users: use Release v1.0.0 (@opencodeteam/cli@1.0.0)." >&2
   exit 1
 }
 
 install_opencode() {
   if ! command -v curl >/dev/null 2>&1; then
-    echo "  ✗ curl not found. Install OpenCode 1.x manually: https://opencode.ai/docs/" >&2
+    echo "  ✗ curl not found. Install OpenCode 2.x manually: https://opencode.ai/docs/" >&2
     exit 1
   fi
   echo "  ! SECURITY: This downloads and executes the official OpenCode installer from https://opencode.ai/install"
-  echo "  ! The --install-opencode flag is opt-in; you can install OpenCode 1.x manually instead:"
+  echo "  ! The --install-opencode flag is opt-in; you can install OpenCode 2.x manually instead:"
   echo "  !   curl -fsSL https://opencode.ai/install | bash   (review the script first)"
   echo "  !   or: https://opencode.ai/docs/"
-  echo "  ! OpenCode 1 and 2 cannot coexist; an existing OpenCode 2 binary will be replaced."
+  echo "  ! OpenCode 2 and 1 cannot coexist; an existing OpenCode 1 binary will be replaced."
   curl -fsSL https://opencode.ai/install | bash
   if ! command -v opencode >/dev/null 2>&1; then
     echo "  ✗ opencode is still not on PATH. See https://opencode.ai/docs/" >&2
@@ -262,7 +262,7 @@ case "$MODE" in
     echo "Installing ($CONFIG):"
     if [ "$INSTALL_OPENCODE" -eq 1 ]; then
       install_opencode
-      # Verify the installed OpenCode is 1.x
+      # Verify the installed OpenCode is 2.x
       check_version
     fi
     require_opencode
