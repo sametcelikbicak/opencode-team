@@ -2,9 +2,33 @@
 
 All notable changes to the OpenCode Team npm package are documented in this file.
 
+## [v1.0.0] - 2026-11-05
+
+### Added
+
+- First stable release targeting `OpenCode 1.x` only
+- Version gate: `TARGET_MAJOR = 1` in `bin/opencode-team` and `install.sh`; OpenCode 2 is explicitly rejected
+- Agent frontmatter uses OpenCode v1 permission model (`permission`, `bash`, `task`)
+- Installer (`install.sh`, `install.ps1`) requires OpenCode 1.x on PATH
+
+### Changed
+
+- update changelog and version for v0.0.5 by @sametcelikbicak in [#121](https://github.com/sametcelikbicak/opencode-team/pull/121)
+
+### Documentation
+
+- v1 README polish — add npm, Node, changelog, support, CoC badges by @sametcelikbicak in [#122](https://github.com/sametcelikbicak/opencode-team/pull/122)
+
+### Notes
+
+- This is the first stable v1 release for OpenCode 1.x users. No new features will be added to v1.x; only critical bug fixes.
+- OpenCode 1 and 2 cannot coexist. OpenCode 2 support is planned as a separate major release (v2.0.0).
+- After v1.0.0, the repo will move to v2.0.0 for OpenCode v2 support.
+
 ## [v0.0.5] - 2026-11-04
 
 ### Fixed
+
 - check warns (not fails) for missing opencode by @sametcelikbicak in [#120](https://github.com/sametcelikbicak/opencode-team/pull/120)
 - checkVersion warns (not fails) for missing opencode by @sametcelikbicak in [#119](https://github.com/sametcelikbicak/opencode-team/pull/119)
 - OpenCode v1 compliance items (install, permissions, docs, tests) by @sametcelikbicak in [#118](https://github.com/sametcelikbicak/opencode-team/pull/118)
@@ -30,38 +54,49 @@ All notable changes to the OpenCode Team npm package are documented in this file
 - new releases auto-latest; add contributors to README by @sametcelikbicak in [#98](https://github.com/sametcelikbicak/opencode-team/pull/98)
 
 ### Changed
+
 - update changelog and version for v0.0.4 by @sametcelikbicak in [#97](https://github.com/sametcelikbicak/opencode-team/pull/97)
+
 ## [v0.0.4] - 2026-11-03
 
 ### Fixed
+
 - uninstall never deletes non-owned files (#74) by @sametcelikbicak in [#74](https://github.com/sametcelikbicak/opencode-team/pull/74)
 - keep install manifest across reinstalls (#73) by @sametcelikbicak in [#73](https://github.com/sametcelikbicak/opencode-team/pull/73)
 - release-prep.sh and release-publish.yml match rolecraft format by @sametcelikbicak in [#72](https://github.com/sametcelikbicak/opencode-team/pull/72)
 
 ### Changed
+
 - update changelog and version for v0.0.3 by @sametcelikbicak in [#71](https://github.com/sametcelikbicak/opencode-team/pull/71)
 
 ### Documentation
+
 - correct v0.0.1 date to v1 release date by @sametcelikbicak in [#94](https://github.com/sametcelikbicak/opencode-team/pull/94)
 
 ### Other
+
 - Restructure README, add team-discipline, and fix release changelog by @sametcelikbicak in [#93](https://github.com/sametcelikbicak/opencode-team/pull/93)
+
 ## [v0.0.3] - 2026-11-02
 
 ### Added
+
 - add npm pack artifact test to CI (3 platforms + paths with spaces) by @sametcelikbicak in [#64](https://github.com/sametcelikbicak/opencode-team/pull/64)
 
 ### Fixed
+
 - release-prep.sh changelog format uses PR titles by @sametcelikbicak in [#70](https://github.com/sametcelikbicak/opencode-team/pull/70)
 - release-prep.sh previous tag detection by @sametcelikbicak in [#68](https://github.com/sametcelikbicak/opencode-team/pull/68)
 - security hardening for npm installer (#56) by @sametcelikbicak in [#65](https://github.com/sametcelikbicak/opencode-team/pull/65)
 
 ### Documentation
+
 - add git-clone to npm migration instructions (#55) by @sametcelikbicak in [#66](https://github.com/sametcelikbicak/opencode-team/pull/66)
 
 ## [v0.0.2] - 2026-11-02
 
 ### Added
+
 - Real `install`, `check`, `update`, `uninstall` CLI commands by @sametcelikbicak in [#58](https://github.com/sametcelikbicak/opencode-team/pull/58)
 - Symlink (default) and copy (`--copy`) install modes by @sametcelikbicak in [#58](https://github.com/sametcelikbicak/opencode-team/pull/58)
 - `--config-dir` / `OPENCODE_CONFIG_DIR` support by @sametcelikbicak in [#58](https://github.com/sametcelikbicak/opencode-team/pull/58)
@@ -69,17 +104,20 @@ All notable changes to the OpenCode Team npm package are documented in this file
 - 8 unit tests with `node --test` (zero dependencies) by @sametcelikbicak in [#58](https://github.com/sametcelikbicak/opencode-team/pull/58)
 
 ### Changed
+
 - Release workflow: tag → changelog PR → npm publish + GitHub Release + provenance by @sametcelikbicak in [#59](https://github.com/sametcelikbicak/opencode-team/pull/59)
 - `install` command no longer requires opencode on PATH by @sametcelikbicak in [#60](https://github.com/sametcelikbicak/opencode-team/pull/60)
 - `check` command warns instead of failing when opencode not installed by @sametcelikbicak in [#61](https://github.com/sametcelikbicak/opencode-team/pull/61)
 
 ### Documentation
+
 - npm install instructions in README and docs/install.md by @sametcelikbicak in [#59](https://github.com/sametcelikbicak/opencode-team/pull/59)
 - Decision files: package name, version policy, copy/link by @sametcelikbicak in [#59](https://github.com/sametcelikbicak/opencode-team/pull/59)
 
 ## [v0.0.1] - 2026-10-23
 
 ### Added
+
 - Initial npm package publication (@opencodeteam/cli) by @sametcelikbicak in [#57](https://github.com/sametcelikbicak/opencode-team/pull/57)
 - Placeholder CLI with --version and --help by @sametcelikbicak in [#57](https://github.com/sametcelikbicak/opencode-team/pull/57)
 - persist run and task checkpoints (#48) by @sametcelikbicak in [#51](https://github.com/sametcelikbicak/opencode-team/pull/51)
@@ -91,6 +129,7 @@ All notable changes to the OpenCode Team npm package are documented in this file
 - add team-memory skill and universal rule by @sametcelikbicak in [#21](https://github.com/sametcelikbicak/opencode-team/pull/21)
 
 ### Fixed
+
 - give the build report a single writer by @sametcelikbicak in [#50](https://github.com/sametcelikbicak/opencode-team/pull/50)
 - memory compaction path/caps and install/Windows docs by @sametcelikbicak in [#41](https://github.com/sametcelikbicak/opencode-team/pull/41)
 - constrain wordmark width so it cannot clip by @sametcelikbicak in [#40](https://github.com/sametcelikbicak/opencode-team/pull/40)
@@ -100,11 +139,13 @@ All notable changes to the OpenCode Team npm package are documented in this file
 - add memory-compact script for gate compaction by @sametcelikbicak in [#30](https://github.com/sametcelikbicak/opencode-team/pull/30)
 
 ### Changed
+
 - replace first-interaction bot with platform-aware templates by @sametcelikbicak in [#49](https://github.com/sametcelikbicak/opencode-team/pull/49)
 - verify memory scenarios end to end by @sametcelikbicak in [#27](https://github.com/sametcelikbicak/opencode-team/pull/27)
 - cover team-memory in install smoke test by @ect2000 in [#23](https://github.com/sametcelikbicak/opencode-team/pull/23)
 
 ### Documentation
+
 - add install troubleshooting by @sametcelikbicak in [#38](https://github.com/sametcelikbicak/opencode-team/pull/38)
 - generate reference pages from manifests by @sametcelikbicak in [#37](https://github.com/sametcelikbicak/opencode-team/pull/37)
 - write initial guides and reference pages by @sametcelikbicak in [#34](https://github.com/sametcelikbicak/opencode-team/pull/34)
@@ -114,12 +155,13 @@ All notable changes to the OpenCode Team npm package are documented in this file
 - publish project-local memory RFC by @sametcelikbicak in [#20](https://github.com/sametcelikbicak/opencode-team/pull/20)
 
 ### Other
+
 - Remove hardcoded agent models, add README badges by @sametcelikbicak in [#43](https://github.com/sametcelikbicak/opencode-team/pull/43)
 - build(deps): bump katex and mermaid in [#36](https://github.com/sametcelikbicak/opencode-team/pull/36)
 - Remove v1 release references and drop CHANGELOG by @sametcelikbicak in [#6](https://github.com/sametcelikbicak/opencode-team/pull/6)
 - Add README logo at a readable size by @sametcelikbicak in [#5](https://github.com/sametcelikbicak/opencode-team/pull/5)
 - Refine v1.0.0 changelog format by @sametcelikbicak in [#4](https://github.com/sametcelikbicak/opencode-team/pull/4)
-- Add self-contained v1 release with local team-* skills by @sametcelikbicak in [#3](https://github.com/sametcelikbicak/opencode-team/pull/3)
+- Add self-contained v1 release with local team-\* skills by @sametcelikbicak in [#3](https://github.com/sametcelikbicak/opencode-team/pull/3)
 - Add phased pipeline diagram and restrict welcome workflow by @sametcelikbicak in [#2](https://github.com/sametcelikbicak/opencode-team/pull/2)
 - Add contribution pipeline and install fixes by @sametcelikbicak in [#1](https://github.com/sametcelikbicak/opencode-team/pull/1)
 - Initial commit by @sametcelikbicak
