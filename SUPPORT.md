@@ -13,8 +13,8 @@ Before opening an issue:
 
 ## Common issues
 
-- `opencode: command not found` — install OpenCode 1.x first (`curl -fsSL https://opencode.ai/install | bash`) or rerun `./install.sh --install-opencode`.
-- `opencode 2 detected; this release targets OpenCode 1.x` — the team currently targets OpenCode 1.x. OpenCode 1 and 2 cannot coexist; OpenCode 2 support is planned as a separate release.
+- `opencode: command not found` — install OpenCode 2.x first (`curl -fsSL https://opencode.ai/install | bash`) or rerun `./install.sh --install-opencode`.
+- `opencode 1 detected; this release targets OpenCode 2.x` — the team currently targets OpenCode 2.x. OpenCode 1 and 2 cannot coexist; OpenCode 1.x users: use Release v1.0.0 (@opencodeteam/cli@1.0.0).
 - `skills/team-* skipped (local)` — a real directory or an external symlink is in the way. Move or remove it, then rerun `./install.sh`.
 - `opencode.json: recommended settings not found` — add the snippet printed by `./install.sh --check` to `~/.config/opencode/opencode.json`.
 - `--check` fails for a missing link — rerun `./install.sh`.

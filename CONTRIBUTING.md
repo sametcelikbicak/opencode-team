@@ -11,7 +11,7 @@ cd opencode-team
 ./install.sh           # link agents, commands, team.yaml and skills
 ```
 
-If OpenCode is not installed, `./install.sh --install-opencode` runs the official OpenCode 1.x installer first. Without it, the installer requires OpenCode on your PATH and only links files.
+If OpenCode is not installed, `./install.sh --install-opencode` runs the official OpenCode 2.x installer first. Without it, the installer requires OpenCode on your PATH and only links files.
 
 The docs site needs Node 22 and the locked dependencies:
 

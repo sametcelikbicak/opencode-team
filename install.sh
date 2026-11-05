@@ -7,7 +7,7 @@
 #
 # Usage:
 #   ./install.sh                    # install
-#   ./install.sh --install-opencode # install OpenCode 1.x, then the team
+#   ./install.sh --install-opencode # install OpenCode 2.x, then the team
 #   ./install.sh --check            # show status only
 #   ./install.sh --uninstall
 #

@@ -101,7 +101,7 @@ Default behavior for every agent that writes or reviews code. Full playbook: `sk
 
 ## Installation
 
-`./install.sh` links the global directories to this repo. It never modifies `~/.config/opencode/opencode.json`; when the recommended settings are missing it prints the snippet to add. `./install.sh --install-opencode` optionally installs OpenCode 1.x first.
+`./install.sh` links the global directories to this repo. It never modifies `~/.config/opencode/opencode.json`; when the recommended settings are missing it prints the snippet to add. `./install.sh --install-opencode` optionally installs OpenCode 2.x first.
 
 On native Windows, use `.\install.ps1` with Windows PowerShell 5.1 or PowerShell 7. Run an Administrator PowerShell, or use PowerShell 7 with Developer Mode enabled for symbolic-link privileges. `-Check`, `-Uninstall`, and `-InstallOpenCode` are the Windows switches. The config directory is `%USERPROFILE%\.config\opencode` unless `OPENCODE_CONFIG_DIR` is set. Neither installer edits `opencode.json`.
 
