@@ -2,9 +2,8 @@
 name: pm
 description: "Product Manager: PRD, epics, user stories, acceptance criteria"
 mode: all
-temperature: 0.3
 color: "#E0A458"
-permission:
+permissions:
   read:
     "*": allow
     "*.env": ask
@@ -14,7 +13,7 @@ permission:
   list: allow
   edit:
     ".team/**": allow
-  bash:
+  shell:
     "*": ask
     "ls": allow
     "ls *": allow

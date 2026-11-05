@@ -2,9 +2,8 @@
 name: fe
 description: "Senior Frontend Developer: UI implementation, HTML/CSS, and frontend tooling. Framework choice (React, Angular, or other) is decided per project needs."
 mode: all
-temperature: 0.1
 color: "#5AD8A6"
-permission:
+permissions:
   read:
     "*": allow
     "*.env": ask
@@ -14,7 +13,7 @@ permission:
   list: allow
   edit:
     "*": allow
-  bash:
+  shell:
     "*": ask
     "git status*": allow
     "git diff*": allow

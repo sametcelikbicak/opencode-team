@@ -2,9 +2,8 @@
 name: marketing
 description: "Marketing: positioning, copywriting, launch strategy, go-to-market"
 mode: all
-temperature: 0.6
 color: "#F2C94C"
-permission:
+permissions:
   read:
     "*": allow
     "*.env": ask
@@ -14,7 +13,7 @@ permission:
   list: allow
   edit:
     ".team/**": allow
-  bash:
+  shell:
     "*": ask
     "ls": allow
     "ls *": allow

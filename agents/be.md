@@ -2,9 +2,8 @@
 name: be
 description: "Senior Backend Developer: API, database, business logic, testing"
 mode: all
-temperature: 0.1
 color: "#9B8AFB"
-permission:
+permissions:
   read:
     "*": allow
     "*.env": ask
@@ -14,7 +13,7 @@ permission:
   list: allow
   edit:
     "*": allow
-  bash:
+  shell:
     "*": ask
     "git status*": allow
     "git diff*": allow

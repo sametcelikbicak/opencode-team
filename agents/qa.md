@@ -2,9 +2,8 @@
 name: qa
 description: "QA Engineer: test strategy, QA test generation, test execution"
 mode: all
-temperature: 0.1
 color: "#F2994A"
-permission:
+permissions:
   read:
     "*": allow
     "*.env": ask
@@ -14,7 +13,7 @@ permission:
   list: allow
   edit:
     ".team/**": allow
-  bash:
+  shell:
     "*": ask
     "git status*": allow
     "git diff*": allow

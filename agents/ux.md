@@ -2,9 +2,8 @@
 name: ux
 description: "UX Designer: user flows, wireframes, information architecture, accessibility"
 mode: all
-temperature: 0.5
 color: "#6FCF97"
-permission:
+permissions:
   read:
     "*": allow
     "*.env": ask
@@ -14,7 +13,7 @@ permission:
   list: allow
   edit:
     ".team/**": allow
-  bash:
+  shell:
     "*": ask
     "ls": allow
     "ls *": allow

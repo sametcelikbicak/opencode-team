@@ -2,9 +2,8 @@
 name: analyst
 description: Market research, competitor analysis, user research
 mode: all
-temperature: 0.3
 color: "#4A9FD8"
-permission:
+permissions:
   read:
     "*": allow
     "*.env": ask
@@ -14,7 +13,7 @@ permission:
   list: allow
   edit:
     ".team/**": allow
-  bash:
+  shell:
     "*": ask
     "ls": allow
     "ls *": allow
