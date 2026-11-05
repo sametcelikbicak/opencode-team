@@ -4,7 +4,7 @@ OpenCode Team defines 14 agent roles in `agents/*.md`. Every role uses `mode: al
 
 - **Tab / Shift+Tab** to cycle through agents
 - **`@agent-name`** to mention one directly
-- the orchestrator can launch it as a subagent through the `task` tool
+- the orchestrator can launch it as a subagent through the `subagent` tool
 
 The orchestrator is the default agent. It routes an idea through the pipeline and asks for approval at each gate. A specialist owns one stage and writes that stage's artifact. In the build stage, `fe` and `be` write specialist reports and the orchestrator consolidates them into `.team/07-build.md`.
 
@@ -32,10 +32,10 @@ Directly invoked agents follow the same memory protocol as subagents: read `.tea
 
 ## Adding a role
 
-1. Create `agents/<role>.md` with frontmatter (`name`, `description`, `mode: all`, `model` (optional), `permission`).
+1. Create `agents/<role>.md` with frontmatter (`description`, `mode: all`, `model` (optional), `permissions` as an ordered array of `{action, resource, effect}`). The filename becomes the agent id; do not add `name`.
 2. Reference it in `team.yaml` as `agent: <role>`.
 3. Add a command in `commands/<role>.md` if you want a direct entry point.
 
 ## Full list
 
-[Agent reference](./reference/agents) — generated from frontmatter: name, description, mode and model.
+[Agent reference](./reference/agents) — generated from the filename and frontmatter: description, mode and model.

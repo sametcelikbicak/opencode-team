@@ -80,7 +80,7 @@ bash -n install.sh scripts/*.sh skills/team-memory/*.sh
 ./scripts/test-memory-compact.sh
 ```
 
-The validator checks frontmatter, filename/name matches, agent and command references, local-only skills, and the required `team.yaml` stage fields. The run-state test covers fresh projects, parallel tasks, interruption, retry, completed-task recovery, approval invalidation, malformed JSON and path/secret guards. The smoke test installs into a throwaway config directory and covers install, check, uninstall and local-skill collisions. The memory test covers empty logs, repeated archive runs and the `INDEX.md` cap.
+The validator checks frontmatter, the v2 agent permission shape, filename/name consistency, agent and command references, local-only skills, and the required `team.yaml` stage fields. The run-state test covers fresh projects, parallel tasks, interruption, retry, completed-task recovery, approval invalidation, malformed JSON and path/secret guards. The smoke test installs into a throwaway config directory and covers install, check, uninstall and local-skill collisions. The memory test covers empty logs, repeated archive runs and the `INDEX.md` cap.
 
 The run-state helper uses only the Python 3 standard library. Python 3 is a contributor/CI tool for this test; the team installer does not require it.
 

@@ -193,7 +193,26 @@ If you previously installed via `git clone` + `install.sh` (symlink mode), migra
    opencode-team check
    ```
 
-   Restart OpenCode after migration.
+   Start a new OpenCode session after migration.
+
+### Upgrading the team from v1 to v2
+
+The team files are symlinked, not copied, so upgrading means installing OpenCode 2.x and running the same installer again:
+
+1. Install OpenCode 2.x. OpenCode 1 and 2 cannot coexist; the v2 installer replaces a v1 binary.
+2. Run `./install.sh` (or `.\install.ps1` on Windows) again. Existing links are kept and the files behind them are updated.
+3. Start a new OpenCode session.
+
+What is preserved:
+
+- `opencode.json` and `opencode.jsonc` are never modified; the installer only prints the recommended settings when they are missing.
+- Provider credentials, OpenCode sessions and the OpenCode database are not touched.
+- Project memory in `.team/memory/` and run checkpoints in `.team/runs/` stay in each project.
+- Agent ids come from the filename in v2, so `@fe`, `@orchestrator` and the slash commands keep working.
+
+If OpenCode 2 cannot open a database created by OpenCode 1, point it at a separate data directory as described in the Windows troubleshooting section instead of deleting the old one.
+
+If you must stay on OpenCode 1, use v1.0.0 (`@opencodeteam/cli@1.0.0`); this branch is not compatible with it.
 
 ## Windows
 
