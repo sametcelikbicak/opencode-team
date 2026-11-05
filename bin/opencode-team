@@ -26,7 +26,7 @@ const pkg = require('../package.json');
 const VERSION = pkg.version;
 const REPO = dirname(require.resolve('../package.json'));
 
-const TARGET_MAJOR = 1;
+const TARGET_MAJOR = 2;
 
 function fail(message, code = 1) {
   console.error(`opencode-team: ${message}`);
@@ -81,11 +81,11 @@ function opencodeMajor() {
 function checkVersion() {
   const major = opencodeMajor();
   if (major === null) {
-    warn('could not determine opencode version; the team targets OpenCode 1.x.');
+    warn('could not determine opencode version; the team targets OpenCode 2.x. Use @opencodeteam/cli@1.0.0 for OpenCode 1.x.');
     return;
   }
   if (major !== TARGET_MAJOR) {
-    fail(`opencode ${major} detected; the team targets OpenCode 1.x. OpenCode 2 support is not available yet.`);
+    fail(`opencode ${major} detected; the team targets OpenCode 2.x. OpenCode 1.x users: use Release v1.0.0 (@opencodeteam/cli@1.0.0).`);
   }
 }
 

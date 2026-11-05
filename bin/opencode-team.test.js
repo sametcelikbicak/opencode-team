@@ -291,21 +291,21 @@ test('update uses manifest mode so --copy install stays copy after update', (t) 
   }
 });
 
-  test('check exits non-zero when opencode major is not 1', (t) => {
+  test('check exits non-zero when opencode major is not 2 (OpenCode 1.x users use v1.0.0)', (t) => {
   const configDir = freshConfigDir();
   const fakeBin = mkdtempSync(join(tmpdir(), 'opencode-fake-'));
   try {
-    writeFileSync(join(fakeBin, 'opencode'), '#!/bin/sh\necho "2.0.0"\n');
+    writeFileSync(join(fakeBin, 'opencode'), '#!/bin/sh\necho "1.0.0"\n');
     try { execSync(`chmod 755 "${fakeBin}/opencode"`); } catch {}
     // install also fails because checkVersion() exits 1 for wrong version
     const installResult = run(['install', '--config-dir', configDir], {
       PATH: `${fakeBin}:${process.env.PATH}`,
     });
-    assert.strictEqual(installResult.code, 1, `expected exit 1 for opencode 2.x on install, got ${installResult.code}`);
+    assert.strictEqual(installResult.code, 1, `expected exit 1 for opencode 1.x on install (use @opencodeteam/cli@1.0.0), got ${installResult.code}`);
     const result = run(['check', '--config-dir', configDir], {
       PATH: `${fakeBin}:${process.env.PATH}`,
     });
-    assert.strictEqual(result.code, 1, `expected exit 1 for opencode 2.x on check, got ${result.code}`);
+    assert.strictEqual(result.code, 1, `expected exit 1 for opencode 1.x on check (use @opencodeteam/cli@1.0.0), got ${result.code}`);
   } finally {
     rmSync(configDir, { recursive: true, force: true });
     rmSync(fakeBin, { recursive: true, force: true });
