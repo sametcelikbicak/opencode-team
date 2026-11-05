@@ -98,7 +98,7 @@ function requireOpencode() {
       'OpenCode 1.x is required.\n' +
         '  Install: https://opencode.ai/docs/\n' +
         '  Or rerun: opencode-team install --install-opencode\n' +
-        '  OpenCode 2 support is not available yet.'
+        '  OpenCode 1.x users: use Release v1.0.0 (@opencodeteam/cli@1.0.0).'
     );
   }
 }
@@ -106,7 +106,7 @@ function requireOpencode() {
 function installOpencode() {
   if (process.platform === 'win32') {
     try {
-      execSync('npm install --global opencode-ai@1', { stdio: 'inherit' });
+      execSync('npm install --global @opencode/cli@2', { stdio: 'inherit' });
     } catch {
       fail('Failed to install OpenCode via npm. Install manually: https://opencode.ai/docs/');
     }

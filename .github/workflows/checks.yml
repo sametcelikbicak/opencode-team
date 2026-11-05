@@ -43,7 +43,7 @@ jobs:
         with:
           node-version: '24'
       - name: Install OpenCode 2.x
-        run: npm install --global opencode-ai@2
+        run: npm install --global @opencode/cli@2
       - name: Run CLI tests
         run: node --test bin/*.test.js
 
@@ -145,7 +145,7 @@ jobs:
           node-version: '24'
           cache: npm
       - name: Install OpenCode 2.x
-        run: npm install --global opencode-ai@2
+        run: npm install --global @opencode/cli@2
       - name: Pack the package
         run: npm pack
       - name: Extract to clean directory
