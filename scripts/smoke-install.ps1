@@ -150,7 +150,7 @@ try {
 
     Write-Host 'version requirements and explicit bootstrap'
     $versionConfig = Join-Path $work 'versions'
-    foreach ($version in @('2.0.0','unparseable')) {
+    foreach ($version in @('1.0.0','unparseable')) {
         Fake-Version $version
         Run-Installer $versionConfig @() $false | Out-Null
         Run-Installer $versionConfig @('-Check') $false | Out-Null
@@ -167,7 +167,7 @@ try {
     $npm = "@echo off`r`necho %* > `"%~dp0npm-args.txt`"`r`ncopy /y `"%~dp0installed.cmd`" `"%~dp0opencode.cmd`" >nul`r`nexit /b 0`r`n"
     Write-Text (Join-Path $work 'bin/npm.cmd') $npm
     Run-Installer $versionConfig @('-InstallOpenCode') | Out-Null
-    Assert (-not (Test-Path (Join-Path $work 'bin/npm-args.txt'))) 'valid 1.x must not invoke npm'
+    Assert (-not (Test-Path (Join-Path $work 'bin/npm-args.txt'))) 'valid 2.x must not invoke npm'
     [IO.File]::Delete((Join-Path $work 'bin/opencode.cmd'))
     Run-Installer $versionConfig @('-InstallOpenCode') | Out-Null
     Assert (([IO.File]::ReadAllText((Join-Path $work 'bin/npm-args.txt'))).Trim() -eq 'install --global @opencode/cli@2') 'bootstrap must constrain OpenCode major version'

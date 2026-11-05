@@ -73,7 +73,7 @@ function Get-OpenCodeVersion {
     try {
         $global:LASTEXITCODE = 0
         $output = (& $command --version 2>$null | Out-String).Trim()
-        if ($LASTEXITCODE -eq 0 -and $output -match '^v?(1\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?)$') { return $Matches[1] }
+        if ($LASTEXITCODE -eq 0 -and $output -match '^v?(2\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?)$') { return $Matches[1] }
     } catch { return $null }
     return $null
 }
