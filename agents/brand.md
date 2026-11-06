@@ -18,9 +18,6 @@ permissions:
   - action: grep
     resource: "*"
     effect: allow
-  - action: list
-    resource: "*"
-    effect: allow
   - action: websearch
     resource: "*"
     effect: allow

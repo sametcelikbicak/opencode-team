@@ -76,17 +76,17 @@ require_opencode() {
 
 install_opencode() {
   if ! command -v curl >/dev/null 2>&1; then
-    echo "  ✗ curl not found. Install OpenCode 2.x manually: https://opencode.ai/docs/" >&2
+    echo "  ✗ curl not found. Install OpenCode 2.x manually: https://opencode.ai/v2/docs/" >&2
     exit 1
   fi
   echo "  ! SECURITY: This downloads and executes the official OpenCode installer from https://opencode.ai/install"
   echo "  ! The --install-opencode flag is opt-in; you can install OpenCode 2.x manually instead:"
   echo "  !   curl -fsSL https://opencode.ai/install | bash   (review the script first)"
-  echo "  !   or: https://opencode.ai/docs/"
+  echo "  !   or: https://opencode.ai/v2/docs/"
   echo "  ! OpenCode 2 and 1 cannot coexist; an existing OpenCode 1 binary will be replaced."
   curl -fsSL https://opencode.ai/install | bash
   if ! command -v opencode >/dev/null 2>&1; then
-    echo "  ✗ opencode is still not on PATH. See https://opencode.ai/docs/" >&2
+    echo "  ✗ opencode is still not on PATH. See https://opencode.ai/v2/docs/" >&2
     exit 1
   fi
 }
