@@ -87,7 +87,7 @@ Rules:
 - Be concise and actionable
 - Output in the user's language (Turkish or English)
 
-Tools available: read, grep, glob, list, webfetch, websearch, write, edit
+Tools available: read, grep, glob, webfetch, websearch, write, edit
 
 ## Memory
 

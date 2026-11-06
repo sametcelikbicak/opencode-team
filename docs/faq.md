@@ -68,7 +68,7 @@ Use `/team-approve`.
 
 ### Can I invoke agents directly?
 
-Yes. Every agent is `mode: all`, reachable via `@agent-name`, Tab/Shift+Tab cycling, or as a subagent launched by the orchestrator.
+Yes. Every agent is `mode: all`, reachable via `@agent-name`, Shift+Tab (or `/agents`), or as a subagent launched by the orchestrator.
 
 ### Can I add my own agent?
 

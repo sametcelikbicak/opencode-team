@@ -95,8 +95,8 @@ function requireOpencode() {
     return;
   } catch {
     fail(
-      'OpenCode 1.x is required.\n' +
-        '  Install: https://opencode.ai/docs/\n' +
+      'OpenCode 2.x is required.\n' +
+        '  Install: https://opencode.ai/v2/docs/\n' +
         '  Or rerun: opencode-team install --install-opencode\n' +
         '  OpenCode 1.x users: use Release v1.0.0 (@opencodeteam/cli@1.0.0).'
     );
@@ -108,19 +108,19 @@ function installOpencode() {
     try {
       execSync('npm install --global @opencode/cli@2', { stdio: 'inherit' });
     } catch {
-      fail('Failed to install OpenCode via npm. Install manually: https://opencode.ai/docs/');
+      fail('Failed to install OpenCode via npm. Install manually: https://opencode.ai/v2/docs/');
     }
   } else {
     try {
       execSync('curl -fsSL https://opencode.ai/install | bash', { stdio: 'inherit' });
     } catch {
-      fail('Failed to install OpenCode. Install manually: https://opencode.ai/docs/');
+      fail('Failed to install OpenCode. Install manually: https://opencode.ai/v2/docs/');
     }
   }
   try {
     execSync('opencode --version', { stdio: 'ignore' });
   } catch {
-    fail('opencode is still not on PATH. See https://opencode.ai/docs/');
+    fail('opencode is still not on PATH. See https://opencode.ai/v2/docs/');
   }
 }
 
@@ -365,7 +365,7 @@ function cmdCheck(configDir) {
 
   const major = opencodeMajor();
   if (major === null) {
-    warn('opencode not found — install it first: https://opencode.ai/docs/');
+    warn('opencode not found — install it first: https://opencode.ai/v2/docs/');
   } else {
     info(`opencode ${major}`);
     checkVersion();
@@ -511,7 +511,7 @@ Options:
   --config-dir <path>    OpenCode config directory (default: OPENCODE_CONFIG_DIR or ~/.config/opencode)
   --copy                 Copy files instead of symlinking (default: symlink)
   --dev                  Link mode (same as default, explicit for development)
-  --install-opencode     Install OpenCode 1.x runtime before installing the team
+  --install-opencode     Install OpenCode 2.x runtime before installing the team
 `);
 }
 
