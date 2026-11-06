@@ -45,6 +45,8 @@ opencode
 - [Usage](./usage) — commands, models, agents
 - [Pipeline & Gates](./pipeline) — how stages and gates work
 - [Customization](./customization) — add agents, commands, skills
+- [How agents work](./agents) — agent files, modes, direct invocation
+- [How commands work](./commands) — slash commands and stage entry points
 - [Output](./output) — .team/ artifacts and run checkpoints
 - [Agent reference](./reference/agents) — all 14 roles
 - [Command reference](./reference/commands) — all 19 slash commands

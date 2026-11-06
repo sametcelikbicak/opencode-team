@@ -43,7 +43,7 @@ If OpenCode is not on your PATH, install it first:
 
 `--install-opencode` runs the official OpenCode 2.x installer. OpenCode 2 and 1 cannot coexist — an existing OpenCode 1 binary is replaced. Without the flag, the installer never installs OpenCode and leaves an existing binary untouched.
 
-> **Security note:** `--install-opencode` downloads and executes the OpenCode installer from `https://opencode.ai/install` via `curl | bash`. This flag is opt-in. If you prefer not to run a remote script, install OpenCode 2.x manually from https://opencode.ai/docs/ before running the team installer.
+> **Security note:** `--install-opencode` downloads and executes the OpenCode installer from `https://opencode.ai/install` via `curl | bash`. This flag is opt-in. If you prefer not to run a remote script, install OpenCode 2.x manually from https://opencode.ai/v2/docs/ before running the team installer.
 
 Start a new OpenCode session after installation. The setup is global, so it works in every project directory.
 
