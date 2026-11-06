@@ -2,6 +2,28 @@
 
 All notable changes to the OpenCode Team npm package are documented in this file.
 
+## [v2.0.0] - 2026-11-06
+
+### Fixed
+- align CLI messages and docs with OpenCode 2 by @sametcelikbicak in [#130](https://github.com/sametcelikbicak/opencode-team/pull/130)
+- load all 14 agents in OpenCode 2 by @sametcelikbicak in [#127](https://github.com/sametcelikbicak/opencode-team/pull/127)
+
+### Changed
+- convert agent frontmatter to OpenCode v2 permission model by @sametcelikbicak in [#125](https://github.com/sametcelikbicak/opencode-team/pull/125)
+- target OpenCode 2.x with v1.0.0 migration guidance by @sametcelikbicak in [#124](https://github.com/sametcelikbicak/opencode-team/pull/124)
+
+### Documentation
+- remove remaining v1 artifacts for OpenCode 2 by @sametcelikbicak in [#129](https://github.com/sametcelikbicak/opencode-team/pull/129)
+- add v1 to v2 team upgrade guide by @sametcelikbicak in [#128](https://github.com/sametcelikbicak/opencode-team/pull/128)
+- target OpenCode 2.x instead of 1.x by @sametcelikbicak in [#126](https://github.com/sametcelikbicak/opencode-team/pull/126)
+
+### Notes
+
+- First release targeting `OpenCode 2.x` only. `OpenCode 1.x` users must stay on v1.0.0 (`@opencodeteam/cli@1.0.0`); v1.x receives critical bug fixes only.
+- **Breaking:** agent frontmatter uses the OpenCode v2 permission model (`permissions` array, `shell`, `subagent`), and `temperature` was removed. Custom agents copied from v1 need the same conversion.
+- **Breaking:** the CLI and installers reject OpenCode 1.x (`TARGET_MAJOR = 2`). `--install-opencode` now installs OpenCode 2.x, replacing an existing OpenCode 1 binary because the two cannot coexist.
+- Upgrading: install OpenCode 2.x, re-run the installer, then start a new session. Symlinks, `opencode.json(c)`, provider credentials, project memory (`.team/memory/`) and run checkpoints (`.team/runs/`) are preserved. See [docs/install.md](docs/install.md#upgrading-the-team-from-v1-to-v2).
+
 ## [v1.0.0] - 2026-11-05
 
 ### Added
