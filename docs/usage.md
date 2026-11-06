@@ -44,7 +44,7 @@ Pipeline control:
 | `/memory`       | Inspect, seed, or compact project-local agent memory     |
 | `/remember`     | Append a note to the active agent's memory log           |
 
-All agents are `mode: all`, so each one is reachable three ways: **Tab / Shift+Tab** to cycle, **`@agent-name`** to mention, and the orchestrator can launch it as a subagent via the `subagent` tool.
+All agents are `mode: all`, so each one is reachable three ways: **`@agent-name`** to mention, **Shift+Tab** (or `/agents`) to switch, and the orchestrator can launch one as a subagent via the `subagent` tool.
 
 ## Models
 

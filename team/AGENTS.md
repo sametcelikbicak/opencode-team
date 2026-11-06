@@ -4,7 +4,7 @@ This file defines the team. Roles, stages and rules live in `team.yaml`.
 
 ## Roles
 
-Each role is an opencode agent defined with `mode: all`, so it is reachable three ways: **Tab / Shift+Tab** to cycle, **`@agent-name`** to mention, and the orchestrator can launch it as a subagent via the `subagent` tool.
+Each role is an opencode agent defined with `mode: all`, so it is reachable three ways: **`@agent-name`** to mention, **Shift+Tab** (or `/agents`) to switch, and the orchestrator can launch one as a subagent via the `subagent` tool.
 
 | Agent          | Role                                          | Stage         |
 | -------------- | --------------------------------------------- | ------------- |

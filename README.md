@@ -72,7 +72,7 @@ Full usage guide, single-stage commands and pipeline control: [docs/usage.md](./
 
 14 agent roles, each owning a pipeline stage and writing a `.team/` artifact. Full role → agent file → artifact mapping: [docs/reference/agents.md](./docs/reference/agents.md).
 
-All agents are `mode: all`, reachable three ways: **Tab / Shift+Tab** to cycle, **`@agent-name`** to mention, and the orchestrator can launch it as a subagent via the `subagent` tool.
+All agents are `mode: all`, reachable three ways: **`@agent-name`** to mention, **Shift+Tab** (or `/agents`) to switch, and the orchestrator can launch one as a subagent via the `subagent` tool.
 
 Models are free-tier OpenCode Zen models. Agent frontmatter no longer pins a model — each agent uses the session's active model. To assign a specific model to a single agent, add a `model:` field to that agent's frontmatter:
 
