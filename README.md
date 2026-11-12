@@ -74,16 +74,16 @@ Full usage guide, single-stage commands and pipeline control: [docs/usage.md](./
 
 All agents are `mode: all`, reachable three ways: **`@agent-name`** to mention, **Shift+Tab** (or `/agents`) to switch, and the orchestrator can launch one as a subagent via the `subagent` tool.
 
-Models are free-tier OpenCode Zen models. Agent frontmatter no longer pins a model — each agent uses the session's active model. To assign a specific model to a single agent, add a `model:` field to that agent's frontmatter:
+No agent pins a model: each one runs on the session's active model, so any provider configured in OpenCode works. To pin a model for a single agent, add a `model:` field to its frontmatter — the filename supplies the agent id, so no `name:` field is needed:
 
 ```yaml
 ---
-name: marketing
+description: "Marketing: positioning, copywriting, launch strategy, go-to-market"
 model: opencode/nemotron-3-ultra-free
 ---
 ```
 
-Benchmark picks: `deepseek-v4.1-flash-free` (code, image input), `beam-free` (fast, text-only), `nemotron-3-ultra-free` (Turkish copy).
+Free-tier OpenCode Zen picks used while testing: `deepseek-v4.1-flash-free` (code, image input), `beam-free` (fast, text-only), `nemotron-3-ultra-free` (Turkish copy).
 
 ## Output convention
 
@@ -116,7 +116,7 @@ The team's working language follows you. Agent instructions, code, code comments
 ## Requirements
 
 - [opencode](https://opencode.ai) 2.x (tested on 2.2.5)
-- An OpenCode Zen account or any provider configured in opencode — the defaults use free-tier models
+- Any provider configured in OpenCode — OpenCode Zen or your own. Agents inherit the session's active model.
 
 ## Disclaimer
 
