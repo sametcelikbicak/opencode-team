@@ -138,7 +138,7 @@ The helper lives at `<config-root>/skills/team-memory/run_state.py`, where the c
 - Checkpoints help reliable continuation; they do not restart a stopped OpenCode process.
 - They do not guarantee exactly-once external side effects. Re-check email, payments, deployments and other external state before retrying.
 - Do not store secrets, credentials or full transcripts. Keep evidence and next-action text short; the helper rejects secret-looking text and long values.
-- `.team/` ignores itself through `.team/.gitignore` (`*`). Run state is project-local.
+- `.team/` ignores itself through `.team/.gitignore` (`*`), so run state does not appear in `git status`. It is created by `start-run` or `start-task` when missing. Run state is project-local.
 - The helper is optional. The JSON files are readable without it, but use the helper for atomic writes and validation when possible.
 
 ## Verification

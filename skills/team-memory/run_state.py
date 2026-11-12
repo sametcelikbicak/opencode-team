@@ -112,6 +112,28 @@ def resolve_run(run_id):
     return None
 
 
+TEAM_GITIGNORE = """\
+# OpenCode Team workspace: local only.
+# This file ignores everything under .team/, including itself, so new workspace
+# files are not picked up by normal git commands.
+*
+"""
+
+
+def ensure_team_gitignore():
+    """Create .team/.gitignore when missing so the workspace ignores itself.
+
+    Idempotent: an existing file belongs to the user and is never rewritten.
+    Failures are ignored; an unwritable workspace must not block a checkpoint.
+    """
+    path = Path(".team/.gitignore")
+    try:
+        if not path.exists():
+            atomic_write(path, TEAM_GITIGNORE)
+    except OSError:
+        pass
+
+
 def load_events(run):
     events = []
     event_dir = run / "events"
@@ -178,6 +200,7 @@ def cmd_start_run(args):
     path = RUNS / run_id
     if (path / "run.json").exists():
         fail("run already exists: %s" % run_id)
+    ensure_team_gitignore()
     data = {
         "run_id": run_id,
         "created_at": utc_now(),
@@ -198,6 +221,7 @@ def cmd_start_task(args):
     check_id(args.stage, "stage")
     check_id(args.agent, "agent")
     inputs = [normalize_path(p, "input") for p in args.input]
+    ensure_team_gitignore()
     attempts = task_attempts(load_events(run), args.task)
     if attempts:
         number = max(attempts)

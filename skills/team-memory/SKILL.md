@@ -35,7 +35,7 @@ Memory is a small index and context layer in `.team/memory/`. It survives new se
 
 The location comes from `memory_dir` in `team.yaml`; the default is `.team/memory`.
 
-`.team/.gitignore` holds a comment and a single `*` line. Everything under `.team/`, including the ignore file itself, stays out of git, so stage artifacts and checkpoints cannot be committed by accident. Create it when it is missing; never add `.team/` to the project's own `.gitignore`, and never store team paths in a tracked file.
+`.team/.gitignore` holds a short comment block and a single `*` line. Git then ignores everything under `.team/`, including the ignore file itself, so new stage artifacts and checkpoints are not picked up by normal git commands. Create it when it is missing (`run_state.py start-run` and `start-task` do it for you); never add `.team/` to the project's own `.gitignore`. Ignore rules only affect untracked files, `git add -f` bypasses them, and a custom `artifact_dir` or `memory_dir` outside `.team/` needs its own rule.
 
 ## Ownership
 

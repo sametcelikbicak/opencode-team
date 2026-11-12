@@ -159,7 +159,7 @@ Read the team-memory skill before seeding, dispatching or compacting memory.
 
 **First `/team` run**
 
-1. Create `.team/.gitignore` containing a comment and a single `*` line, so the workspace ignores everything in itself and no artifact, memory file or checkpoint reaches git. Do not edit the project's own `.gitignore`. Preserve the file when it exists.
+1. Create `.team/.gitignore` with a short comment block and a single `*` line, so the workspace ignores itself and new files are not picked up by normal git commands. `run_state.py start-run` and `start-task` also create it when missing. Do not edit the project's own `.gitignore`. Preserve the file when it exists.
 2. Create the missing `.team/memory/INDEX.md`, `.team/memory/log/`, `.team/memory/decisions/` and `.team/memory/archive/`; preserve existing files.
 3. Seed `INDEX.md` with `project`, `stage`, `stack`, `facts`, `decisions`, `open`, `pointers` and `updated`, using the skill's template.
 4. Create `log/orchestrator.md` and an empty log for every role in the active profile, including support roles.

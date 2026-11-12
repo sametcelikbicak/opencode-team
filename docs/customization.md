@@ -64,10 +64,12 @@ stages:
 
 ## Project-local vs global
 
-- **Project-local:** `.team/` directory in your project. Gitignored. Contains stage artifacts and agent memory.
+- **Project-local:** `.team/` directory in your project. Ignores itself through `.team/.gitignore`, which the first `/team` run, `/memory init`, `run_state.py start-run` or `start-task` creates. Contains stage artifacts and agent memory.
 - **Global:** `~/.config/opencode/` directory. Contains the installed agents, commands, skills, and config.
 
 The installer symlinks the repo into `~/.config/opencode/`. Edit a file in the repo and it takes effect immediately.
+
+Ignore rules only cover `.team/`. If you point `artifact_dir` or `memory_dir` somewhere else, that directory needs its own ignore rule — the team never edits your `.gitignore`.
 
 ## memory_dir
 
