@@ -97,6 +97,20 @@ test('check reports installed status', (t) => {
   }
 });
 
+test('check reports installed skills as managed symlinks', (t) => {
+  const configDir = freshConfigDir();
+  try {
+    assert.strictEqual(run(['install', '--config-dir', configDir]).code, 0);
+    const result = run(['check', '--config-dir', configDir]);
+    assert.strictEqual(result.code, 0, result.stderr);
+    assert.ok(result.stdout.includes('skills/team-memory →'), result.stdout);
+    assert.ok(result.stdout.includes('skills/team-build →'), result.stdout);
+    assert.ok(!result.stdout.includes('not managed'), `linked skills must not be reported as unmanaged:\n${result.stdout}`);
+  } finally {
+    rmSync(configDir, { recursive: true, force: true });
+  }
+});
+
 test('uninstall removes managed files', (t) => {
   const configDir = freshConfigDir();
   try {
