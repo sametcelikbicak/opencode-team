@@ -114,6 +114,10 @@ npm run generate:reference
 
 The docs build runs the generator first. CI regenerates the pages and fails when `git diff --exit-code -- docs/reference` is non-empty, so a manifest change without the generated output is rejected.
 
+## Dependency overrides
+
+`package.json` pins `vite` to `^6.4.6` through `overrides`. `vitepress@1.6.4` still declares `vite: ^5.4.14`, but Vite 5 is end-of-life and has open security advisories; Vite 6.4.6 keeps the docs build working and clears them. Keep the override only until VitePress 2 is stable (its current alpha uses Vite 8), then remove it and upgrade VitePress. `npm audit` should stay clean; if it reports a Vite advisory, bump the override to the patched 6.x release.
+
 ## Docs site
 
 `docs/` is a VitePress site deployed by `.github/workflows/docs.yml` to GitHub Pages on every push to `main`. Configure the repository once: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
