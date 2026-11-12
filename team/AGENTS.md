@@ -52,6 +52,12 @@ Every stage writes one markdown file into `.team/`. The build stage additionally
 .team/12-launch.md
 ```
 
+## Workspace
+
+- Before writing any file under `.team/`, create `.team/.gitignore` if it is missing. It holds a short comment block and a single `*` line, so the workspace ignores itself and new files are not picked up by normal git commands. An existing file belongs to the user: never rewrite it.
+- Never add `.team/` to the project's own `.gitignore`; the workspace carries its own rule.
+- Ignore rules only affect untracked files. A file already tracked, or added with `git add -f`, stays visible. When `artifact_dir` or `memory_dir` points outside `.team/`, that directory needs its own ignore rule.
+
 ## Memory
 
 - Read `.team/memory/INDEX.md` and the tail of your own `log/<role>.md` before starting.

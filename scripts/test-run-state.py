@@ -63,8 +63,15 @@ def main():
         run_id = call(project, "start-run", "--profile", "new", "--stage", "build").stdout.strip()
         check(bool(run_id), "start-run returns a run id")
         check((project / ".team/runs/current").read_text().strip() == run_id, "current points at the run")
+        team_ignore = project / ".team/.gitignore"
+        check(team_ignore.is_file(), "start-run creates .team/.gitignore")
+        check(team_ignore.read_text(encoding="utf-8").splitlines()[-1] == "*",
+              ".team/.gitignore ends with a * rule")
+        team_ignore.write_text("# user edit\n*\n", encoding="utf-8")
         call(project, "start-task", "--run", run_id, "--task", "build-fe", "--stage", "build",
              "--agent", "fe", "--input", ".team/06-architecture.md")
+        check(team_ignore.read_text(encoding="utf-8") == "# user edit\n*\n",
+              "an existing .team/.gitignore is preserved")
         call(project, "start-task", "--run", run_id, "--task", "build-be", "--stage", "build",
              "--agent", "be", "--input", ".team/06-architecture.md")
         events = list((project / ".team/runs" / run_id / "events").glob("*.json"))

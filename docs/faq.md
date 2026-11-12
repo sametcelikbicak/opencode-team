@@ -36,7 +36,7 @@ On Windows, use `.\install.ps1 -Uninstall`; `.\install.ps1 -Check` verifies the 
 
 ### Where is memory stored?
 
-In `.team/memory/` in your project directory. It is gitignored and project-local only.
+In `.team/memory/` in your project directory. The first `/team` run (`/memory init` and `run_state.py start-run` also do it) writes `.team/.gitignore` with a `*` line, so the workspace ignores itself and new files there stay out of `git status`; your project's own `.gitignore` is never touched. A custom `memory_dir` outside `.team/` needs its own ignore rule.
 
 ### Can I change the memory location?
 

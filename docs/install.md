@@ -5,7 +5,7 @@ Install OpenCode Team into your OpenCode configuration so you can use it in any 
 ## Requirements
 
 - [OpenCode](https://opencode.ai) 2.x (tested on 2.2.5; native Windows verified on 2.2.5)
-- An OpenCode Zen account or any provider configured in opencode — the defaults use free-tier models
+- Any provider configured in OpenCode — OpenCode Zen or your own. Agents inherit the session's active model.
 
 ## Platform support
 

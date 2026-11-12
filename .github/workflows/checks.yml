@@ -148,6 +148,16 @@ jobs:
         run: npm install --global @opencode/cli@2
       - name: Pack the package
         run: npm pack
+      - name: Fail when the tarball ships bytecode
+        shell: bash
+        run: |
+          # Generated Python artifacts must never reach the package. A root
+          # .npmignore cannot exclude paths that "files" allows, so the rule
+          # lives in skills/team-memory/.npmignore; this check is the backstop.
+          if tar -tzf opencodeteam-cli-*.tgz | grep -E '(__pycache__|\.py[co]$)'; then
+            echo "packaged tarball contains Python bytecode; see skills/team-memory/.npmignore" >&2
+            exit 1
+          fi
       - name: Extract to clean directory
         shell: bash
         run: |

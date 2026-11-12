@@ -416,7 +416,7 @@ function cmdCheck(configDir) {
       } else if (mode === 'symlink') {
         try {
           const target = readlinkSync(configPath);
-          if (targetInRepo(target, REPO)) {
+          if (targetInRepo(configPath, REPO)) {
             info(`skills/${entry} → ${target}`);
           } else {
             warn(`skills/${entry} → not managed: ${target}`);

@@ -48,13 +48,13 @@ All agents are `mode: all`, so each one is reachable three ways: **`@agent-name`
 
 ## Models
 
-Models are free-tier OpenCode Zen models. Agent frontmatter no longer pins a model — each agent uses the session's active model (set in `~/.config/opencode/opencode.json` via `model`). To assign a specific model to a single agent, add a `model:` field to that agent's frontmatter, e.g.:
+No agent pins a model: each one runs on the session's active model (set in `~/.config/opencode/opencode.json` via `model`), so any configured provider works. To pin a model for a single agent, add a `model:` field to its frontmatter — the filename supplies the agent id, so no `name:` field is needed:
 
 ```yaml
 ---
-name: marketing
+description: "Marketing: positioning, copywriting, launch strategy, go-to-market"
 model: opencode/nemotron-3-ultra-free
 ---
 ```
 
-Benchmark picks: `deepseek-v4.1-flash-free` (code, image input), `beam-free` (fast, text-only), `nemotron-3-ultra-free` (Turkish copy).
+Free-tier OpenCode Zen picks used while testing: `deepseek-v4.1-flash-free` (code, image input), `beam-free` (fast, text-only), `nemotron-3-ultra-free` (Turkish copy).
