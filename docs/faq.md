@@ -36,7 +36,7 @@ On Windows, use `.\install.ps1 -Uninstall`; `.\install.ps1 -Check` verifies the 
 
 ### Where is memory stored?
 
-In `.team/memory/` in your project directory. It is gitignored and project-local only.
+In `.team/memory/` in your project directory. The first `/team` run writes `.team/.gitignore` with a single `*` line, so the whole workspace ignores itself and stays local; your project's own `.gitignore` is never touched.
 
 ### Can I change the memory location?
 

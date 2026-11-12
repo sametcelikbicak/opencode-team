@@ -4,6 +4,7 @@ Every stage writes a markdown artifact:
 
 ```
 .team/
+  .gitignore                     # comment + "*": the workspace ignores itself
   01-research.md
   02-prd.md
   03-backlog.md
@@ -48,9 +49,9 @@ Run state sits next to memory:
     approvals/                    # human gates tied to artifact hashes
 ```
 
-Plain files in a folder. No database, no framework, fully diffable in git, and a human can step in at any stage.
+Plain files in a folder. No database, no framework; a human can step in at any stage. The workspace stays local: `.team/.gitignore` contains `*`, so artifacts, memory and checkpoints never reach a commit.
 
-Full protocol: `skills/team-memory/SKILL.md` and `docs/rfcs/0001-project-memory.md`.
+Full protocol: `skills/team-memory/SKILL.md`.
 
 ## Run checkpoints
 

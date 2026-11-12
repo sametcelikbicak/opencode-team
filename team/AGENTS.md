@@ -54,6 +54,7 @@ Every stage writes one markdown file into `.team/`. The build stage additionally
 
 ## Memory
 
+- The first `/team` run creates `.team/.gitignore` with a single `*` line, so the workspace ignores itself and never lands in git. Never edit the project's own `.gitignore` for this.
 - Read `.team/memory/INDEX.md` and the tail of your own `log/<role>.md` before starting.
 - Append at most five lines to your own log when done; link to the artifact, do not copy it.
 - Create a `decisions/<date>-<slug>.md` file only for a real decision.

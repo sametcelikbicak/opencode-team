@@ -149,7 +149,7 @@ Run `run_state.py start-task --run <run_id> --task <task-id> --stage <stage> --a
 - One writer per task attempt. Never edit or overwrite an event file; write a new one. Different tasks use different task ids and event files.
 - Keep evidence and next-action text short. Never store secrets, credentials or transcripts.
 - Checkpoints do not restart a stopped OpenCode process and do not guarantee exactly-once external side effects.
-- `.team/` is gitignored; run state is project-local.
+- `.team/` is gitignored by its own `.team/.gitignore`; run state is project-local.
 
 ## Memory lifecycle
 
@@ -159,10 +159,11 @@ Read the team-memory skill before seeding, dispatching or compacting memory.
 
 **First `/team` run**
 
-1. Create the missing `.team/memory/INDEX.md`, `.team/memory/log/`, `.team/memory/decisions/` and `.team/memory/archive/`; preserve existing files.
-2. Seed `INDEX.md` with `project`, `stage`, `stack`, `facts`, `decisions`, `open`, `pointers` and `updated`, using the skill's template.
-3. Create `log/orchestrator.md` and an empty log for every role in the active profile, including support roles.
-4. Create a missing memory file and continue the stage; do not fail the stage because memory was absent.
+1. Create `.team/.gitignore` containing a comment and a single `*` line, so the workspace ignores everything in itself and no artifact, memory file or checkpoint reaches git. Do not edit the project's own `.gitignore`. Preserve the file when it exists.
+2. Create the missing `.team/memory/INDEX.md`, `.team/memory/log/`, `.team/memory/decisions/` and `.team/memory/archive/`; preserve existing files.
+3. Seed `INDEX.md` with `project`, `stage`, `stack`, `facts`, `decisions`, `open`, `pointers` and `updated`, using the skill's template.
+4. Create `log/orchestrator.md` and an empty log for every role in the active profile, including support roles.
+5. Create a missing memory file and continue the stage; do not fail the stage because memory was absent.
 
 **At session start**
 
