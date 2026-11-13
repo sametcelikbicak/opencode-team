@@ -2,6 +2,14 @@
 
 All notable changes to the OpenCode Team npm package are documented in this file.
 
+## [v2.0.1] - 2026-11-13
+
+### Fixed
+- clear Vite Dependabot advisories with a Vite 6 override by @sametcelikbicak in [#133](https://github.com/sametcelikbicak/opencode-team/pull/133)
+- check reports linked skills as unmanaged, and .team/ never ignored itself by @abdullahtas0 in [#132](https://github.com/sametcelikbicak/opencode-team/pull/132)
+
+### Changed
+- update changelog and version for v2.0.0 by @sametcelikbicak in [#131](https://github.com/sametcelikbicak/opencode-team/pull/131)
 ## [v2.0.0] - 2026-11-06
 
 ### Fixed

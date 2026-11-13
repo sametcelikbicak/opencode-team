@@ -1,6 +1,6 @@
 {
   "name": "@opencodeteam/cli",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A team of AI agents that takes an idea from research to launch — built on opencode, with no framework and no extra dependencies.",
   "type": "module",
   "bin": {
